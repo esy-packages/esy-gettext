@@ -4,6 +4,16 @@
   "description": "gettext packaged for esy",
   "esy": {
     "buildsInSource": true,
+    "exportedEnv": {
+      "LDFLAGS": {
+        "scope": "global",
+        "val": "-L#{self.lib} $LDFLAGS"
+      },
+      "CFLAGS": {
+        "scope": "global",
+        "val": "-I#{self.install / 'include'} $CFLAGS"
+      }
+    },
     "build": [
       [
         "bash",
