@@ -1,0 +1,28 @@
+{
+  "name": "esy-gettext",
+  "version": "0.0.000",
+  "description": "gettext packaged for esy",
+  "esy": {
+    "buildsInSource": true,
+    "exportedEnv": {
+      "PKG_CONFIG_PATH": {
+        "scope": "global",
+        "val": "#{self.lib / 'pkgconfig'} $PKG_CONFIG_PATH"
+      }
+    },
+    "build": [
+      [
+        "bash",
+        "-c",
+        "#{os == 'windows' ? './configure --prefix=$cur__install --host x86_64-w64-mingw32' : './configure --prefix=$cur__install'}"
+      ],
+      [
+        "make"
+      ],
+      [
+        "make",
+        "install"
+      ]
+    ]
+  }
+}
