@@ -29,9 +29,5 @@
         "install"
       ]
     ]
-  },
-  "dependencies": {
-    "autoconf": "esy-packages/esy-autoconf#94f846f3ad69fc65c65a61dd7fd3d70073dc93ea",
-    "automake": "esy-packages/esy-automake#0d274908e251ad6f989162f70fa497570852a684"
   }
 }
