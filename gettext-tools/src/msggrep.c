@@ -1,5 +1,6 @@
 /* Extract some translations of a translation catalog.
-   Copyright (C) 2001-2007, 2009-2010, 2012 Free Software Foundation, Inc.
+   Copyright (C) 2001-2007, 2009-2010, 2012, 2014, 2016, 2018-2019 Free Software
+   Foundation, Inc.
    Written by Bruno Haible <haible@clisp.cons.org>, 2001.
 
    This program is free software: you can redistribute it and/or modify
@@ -13,7 +14,7 @@
    GNU General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.  */
+   along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
 
 
 #ifdef HAVE_CONFIG_H
@@ -37,6 +38,8 @@
 
 #include <fnmatch.h>
 
+#include <textstyle.h>
+
 #include "closeout.h"
 #include "dir-list.h"
 #include "error.h"
@@ -53,7 +56,6 @@
 #include "write-po.h"
 #include "write-properties.h"
 #include "write-stringtable.h"
-#include "color.h"
 #include "str-list.h"
 #include "msgl-charset.h"
 #include "xalloc.h"
@@ -163,10 +165,8 @@ main (int argc, char **argv)
   set_program_name (argv[0]);
   error_print_progname = maybe_print_progname;
 
-#ifdef HAVE_SETLOCALE
   /* Set locale via LC_ALL.  */
   setlocale (LC_ALL, "");
-#endif
 
   /* Set the text message domain.  */
   bindtextdomain (PACKAGE, relocate (LOCALEDIR));
@@ -244,8 +244,8 @@ main (int argc, char **argv)
           FILE *fp = fopen (optarg, "r");
 
           if (fp == NULL)
-            error (EXIT_FAILURE, errno, _("\
-error while opening \"%s\" for reading"), optarg);
+            error (EXIT_FAILURE, errno,
+                   _("error while opening \"%s\" for reading"), optarg);
 
           while (!feof (fp))
             {
@@ -255,8 +255,8 @@ error while opening \"%s\" for reading"), optarg);
               if (count == 0)
                 {
                   if (ferror (fp))
-                    error (EXIT_FAILURE, errno, _("\
-error while reading \"%s\""), optarg);
+                    error (EXIT_FAILURE, errno,
+                           _("error while reading \"%s\""), optarg);
                   /* EOF reached.  */
                   break;
                 }
@@ -417,11 +417,11 @@ error while reading \"%s\""), optarg);
       printf ("%s (GNU %s) %s\n", basename (program_name), PACKAGE, VERSION);
       /* xgettext: no-wrap */
       printf (_("Copyright (C) %s Free Software Foundation, Inc.\n\
-License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>\n\
+License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>\n\
 This is free software: you are free to change and redistribute it.\n\
 There is NO WARRANTY, to the extent permitted by law.\n\
 "),
-              "2001-2010");
+              "2001-2019");
       printf (_("Written by %s.\n"), proper_name ("Bruno Haible"));
       exit (EXIT_SUCCESS);
     }
@@ -675,6 +675,7 @@ nonintr_close (int fd)
 
   return retval;
 }
+#undef close
 #define close nonintr_close
 
 #endif

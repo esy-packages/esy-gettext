@@ -1,5 +1,6 @@
 /* Reading Desktop Entry files.
-   Copyright (C) 1995-1998, 2000-2003, 2005-2006, 2008-2009, 2014 Free Software Foundation, Inc.
+   Copyright (C) 1995-1998, 2000-2003, 2005-2006, 2008-2009, 2014-2016 Free
+   Software Foundation, Inc.
    This file was written by Daiki Ueno <ueno@gnu.org>.
 
    This program is free software: you can redistribute it and/or modify
@@ -13,12 +14,12 @@
    GNU General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.  */
+   along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
 
 #ifndef _WRITE_DESKTOP_H
 #define _WRITE_DESKTOP_H
 
-#include "message.h"
+#include "msgfmt.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -37,8 +38,7 @@ extern int
                                 const char *file_name);
 
 extern int
-       msgdomain_write_desktop_bulk (string_list_ty *languages,
-                                     message_list_ty **messages,
+       msgdomain_write_desktop_bulk (msgfmt_operand_list_ty *operands,
                                      const char *template_file_name,
                                      hash_table *keywords,
                                      const char *file_name);

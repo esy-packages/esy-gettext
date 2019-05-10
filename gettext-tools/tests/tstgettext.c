@@ -1,5 +1,6 @@
 /* gettext - retrieve text string from message catalog and print it.
-   Copyright (C) 1995-1997, 2000-2007, 2012 Free Software Foundation, Inc.
+   Copyright (C) 1995-1997, 2000-2007, 2012, 2018-2019 Free Software
+   Foundation, Inc.
    Written by Ulrich Drepper <drepper@gnu.ai.mit.edu>, May 1995.
 
    This program is free software: you can redistribute it and/or modify
@@ -13,7 +14,7 @@
    GNU General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.  */
+   along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
 
 #ifdef HAVE_CONFIG_H
 # include <config.h>
@@ -35,7 +36,6 @@
 #include "propername.h"
 #include "xsetenv.h"
 
-#define HAVE_SETLOCALE 1
 /* Make sure we use the included libintl, not the system's one. */
 #undef _LIBINTL_H
 #include "libgnuintl.h"
@@ -88,10 +88,8 @@ main (int argc, char *argv[])
   /* Set program name for message texts.  */
   set_program_name (argv[0]);
 
-#ifdef HAVE_SETLOCALE
   /* Set locale via LC_ALL.  */
   setlocale (LC_ALL, "");
-#endif
 
   /* Set the text message domain.  */
   bindtextdomain (PACKAGE, relocate (LOCALEDIR));
@@ -145,11 +143,9 @@ main (int argc, char *argv[])
       usage (EXIT_FAILURE);
     }
 
-#ifdef HAVE_SETLOCALE
   if (environ_changed)
     /* Set locale again via LC_ALL.  */
     setlocale (LC_ALL, "");
-#endif
 
   /* Version information is requested.  */
   if (do_version)
@@ -157,7 +153,7 @@ main (int argc, char *argv[])
       printf ("%s (GNU %s) %s\n", basename (program_name), PACKAGE, VERSION);
       /* xgettext: no-wrap */
       printf (_("Copyright (C) %s Free Software Foundation, Inc.\n\
-License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>\n\
+License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>\n\
 This is free software: you are free to change and redistribute it.\n\
 There is NO WARRANTY, to the extent permitted by law.\n\
 "),

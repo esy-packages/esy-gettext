@@ -1,5 +1,6 @@
 /* Message list concatenation and duplicate handling.
-   Copyright (C) 2001-2003, 2005-2008, 2012 Free Software Foundation, Inc.
+   Copyright (C) 2001-2003, 2005-2008, 2012, 2015, 2019 Free Software
+   Foundation, Inc.
    Written by Bruno Haible <haible@clisp.cons.org>, 2001.
 
    This program is free software: you can redistribute it and/or modify
@@ -13,7 +14,7 @@
    GNU General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.  */
+   along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
 
 
 #ifdef HAVE_CONFIG_H
@@ -174,8 +175,7 @@ catenate_msgdomain_list (string_list_ty *file_list,
                                   canon_charset = po_charset_ascii;
                                 else
                                   error (EXIT_FAILURE, 0,
-                                         _("\
-present charset \"%s\" is not a portable encoding name"),
+                                         _("present charset \"%s\" is not a portable encoding name"),
                                          charset);
                               }
 
@@ -185,8 +185,7 @@ present charset \"%s\" is not a portable encoding name"),
                               canon_from_code = canon_charset;
                             else if (canon_from_code != canon_charset)
                               error (EXIT_FAILURE, 0,
-                                     _("\
-two different charsets \"%s\" and \"%s\" in input file"),
+                                     _("two different charsets \"%s\" and \"%s\" in input file"),
                                      canon_from_code, canon_charset);
                           }
                       }
@@ -200,12 +199,12 @@ two different charsets \"%s\" and \"%s\" in input file"),
                   else
                     {
                       if (k == 0)
-                        error (EXIT_FAILURE, 0, _("\
-input file '%s' doesn't contain a header entry with a charset specification"),
+                        error (EXIT_FAILURE, 0,
+                               _("input file '%s' doesn't contain a header entry with a charset specification"),
                                files[n]);
                       else
-                        error (EXIT_FAILURE, 0, _("\
-domain \"%s\" in input file '%s' doesn't contain a header entry with a charset specification"),
+                        error (EXIT_FAILURE, 0,
+                               _("domain \"%s\" in input file '%s' doesn't contain a header entry with a charset specification"),
                                mdlp->item[k]->domain, files[n]);
                     }
                 }
@@ -308,6 +307,8 @@ domain \"%s\" in input file '%s' doesn't contain a header entry with a charset s
                   tmp->range.min = - INT_MAX;
                   tmp->range.max = - INT_MAX;
                   tmp->do_wrap = yes; /* may be set to no later */
+                  for (i = 0; i < NSYNTAXCHECKS; i++)
+                    tmp->do_syntax_check[i] = undecided; /* may be set to yes/no later */
                   tmp->obsolete = true; /* may be set to false later */
                   tmp->alternative_count = 0;
                   tmp->alternative = NULL;
@@ -535,6 +536,8 @@ UTF-8 encoded from the beginning, i.e. already in your source code files.\n"),
                     tmp->is_format[i] = mp->is_format[i];
                   tmp->range = mp->range;
                   tmp->do_wrap = mp->do_wrap;
+                  for (i = 0; i < NSYNTAXCHECKS; i++)
+                    tmp->do_syntax_check[i] = mp->do_syntax_check[i];
                   tmp->prev_msgctxt = mp->prev_msgctxt;
                   tmp->prev_msgid = mp->prev_msgid;
                   tmp->prev_msgid_plural = mp->prev_msgid_plural;
@@ -583,6 +586,9 @@ UTF-8 encoded from the beginning, i.e. already in your source code files.\n"),
                     }
                   if (tmp->do_wrap == undecided)
                     tmp->do_wrap = mp->do_wrap;
+                  for (i = 0; i < NSYNTAXCHECKS; i++)
+                    if (tmp->do_syntax_check[i] == undecided)
+                      tmp->do_syntax_check[i] = mp->do_syntax_check[i];
                   tmp->obsolete = false;
                 }
               else
@@ -635,6 +641,12 @@ UTF-8 encoded from the beginning, i.e. already in your source code files.\n"),
                     }
                   if (mp->do_wrap == no)
                     tmp->do_wrap = no;
+                  for (i = 0; i < NSYNTAXCHECKS; i++)
+                    if (mp->do_syntax_check[i] == yes)
+                      tmp->do_syntax_check[i] = yes;
+                    else if (mp->do_syntax_check[i] == no
+                             && tmp->do_syntax_check[i] == undecided)
+                      tmp->do_syntax_check[i] = no;
                   /* Don't fill tmp->prev_msgid in this case.  */
                   if (!mp->obsolete)
                     tmp->obsolete = false;

@@ -1,8 +1,8 @@
-/* A Bison parser, made by GNU Bison 3.0.2.  */
+/* A Bison parser, made by GNU Bison 3.2.2.  */
 
 /* Bison implementation for Yacc-like parsers in C
 
-   Copyright (C) 1984, 1989-1990, 2000-2013 Free Software Foundation, Inc.
+   Copyright (C) 1984, 1989-1990, 2000-2015, 2018 Free Software Foundation, Inc.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -40,11 +40,14 @@
    define necessary library symbols; they are noted "INFRINGES ON
    USER NAME SPACE" below.  */
 
+/* Undocumented macros, especially those whose name start with YY_,
+   are private implementation details.  Do not rely on them.  */
+
 /* Identify Bison output.  */
 #define YYBISON 1
 
 /* Bison version.  */
-#define YYBISON_VERSION "3.0.2"
+#define YYBISON_VERSION "3.2.2"
 
 /* Skeleton name.  */
 #define YYSKELETON_NAME "yacc.c"
@@ -61,8 +64,8 @@
 
 
 
-/* Copy the first part of user declarations.  */
-#line 19 "po-gram-gen.y" /* yacc.c:339  */
+/* First part of user prologue.  */
+#line 20 "po-gram-gen.y" /* yacc.c:338  */
 
 #ifdef HAVE_CONFIG_H
 # include "config.h"
@@ -169,13 +172,16 @@ do_callback_message (char *msgctxt,
     free ((value).ctxt);
 
 
-#line 173 "po-gram-gen.c" /* yacc.c:339  */
-
+#line 176 "po-gram-gen.c" /* yacc.c:338  */
 # ifndef YY_NULLPTR
-#  if defined __cplusplus && 201103L <= __cplusplus
-#   define YY_NULLPTR nullptr
+#  if defined __cplusplus
+#   if 201103L <= __cplusplus
+#    define YY_NULLPTR nullptr
+#   else
+#    define YY_NULLPTR 0
+#   endif
 #  else
-#   define YY_NULLPTR 0
+#   define YY_NULLPTR ((void*)0)
 #  endif
 # endif
 
@@ -238,10 +244,10 @@ extern int yydebug;
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef union YYSTYPE YYSTYPE;
+
 union YYSTYPE
 {
-#line 143 "po-gram-gen.y" /* yacc.c:355  */
+#line 144 "po-gram-gen.y" /* yacc.c:353  */
 
   struct { char *string; lex_pos_ty pos; bool obsolete; } string;
   struct { string_list_ty stringlist; lex_pos_ty pos; bool obsolete; } stringlist;
@@ -251,8 +257,10 @@ union YYSTYPE
   struct { char *prev_ctxt; char *prev_id; char *prev_id_plural; char *ctxt; lex_pos_ty pos; bool obsolete; } message_intro;
   struct { struct msgstr_def rhs; lex_pos_ty pos; bool obsolete; } rhs;
 
-#line 255 "po-gram-gen.c" /* yacc.c:355  */
+#line 261 "po-gram-gen.c" /* yacc.c:353  */
 };
+
+typedef union YYSTYPE YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif
@@ -264,9 +272,7 @@ int yyparse (void);
 
 #endif /* !YY_YY_PO_GRAM_GEN_H_INCLUDED  */
 
-/* Copy the second part of user declarations.  */
 
-#line 270 "po-gram-gen.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -287,13 +293,13 @@ typedef signed char yytype_int8;
 #ifdef YYTYPE_UINT16
 typedef YYTYPE_UINT16 yytype_uint16;
 #else
-typedef unsigned short int yytype_uint16;
+typedef unsigned short yytype_uint16;
 #endif
 
 #ifdef YYTYPE_INT16
 typedef YYTYPE_INT16 yytype_int16;
 #else
-typedef short int yytype_int16;
+typedef short yytype_int16;
 #endif
 
 #ifndef YYSIZE_T
@@ -305,7 +311,7 @@ typedef short int yytype_int16;
 #  include <stddef.h> /* INFRINGES ON USER NAME SPACE */
 #  define YYSIZE_T size_t
 # else
-#  define YYSIZE_T unsigned int
+#  define YYSIZE_T unsigned
 # endif
 #endif
 
@@ -341,15 +347,6 @@ typedef short int yytype_int16;
 # define YY_ATTRIBUTE_UNUSED YY_ATTRIBUTE ((__unused__))
 #endif
 
-#if !defined _Noreturn \
-     && (!defined __STDC_VERSION__ || __STDC_VERSION__ < 201112)
-# if defined _MSC_VER && 1200 <= _MSC_VER
-#  define _Noreturn __declspec (noreturn)
-# else
-#  define _Noreturn YY_ATTRIBUTE ((__noreturn__))
-# endif
-#endif
-
 /* Suppress unused-variable warnings by "using" E.  */
 #if ! defined lint || defined __GNUC__
 # define YYUSE(E) ((void) (E))
@@ -357,7 +354,7 @@ typedef short int yytype_int16;
 # define YYUSE(E) /* empty */
 #endif
 
-#if defined __GNUC__ && 407 <= __GNUC__ * 100 + __GNUC_MINOR__
+#if defined __GNUC__ && ! defined __ICC && 407 <= __GNUC__ * 100 + __GNUC_MINOR__
 /* Suppress an incorrect diagnostic about yylval being uninitialized.  */
 # define YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN \
     _Pragma ("GCC diagnostic push") \
@@ -525,7 +522,7 @@ union yyalloc
 #define YYMAXUTOK   271
 
 #define YYTRANSLATE(YYX)                                                \
-  ((unsigned int) (YYX) <= YYMAXUTOK ? yytranslate[YYX] : YYUNDEFTOK)
+  ((unsigned) (YYX) <= YYMAXUTOK ? yytranslate[YYX] : YYUNDEFTOK)
 
 /* YYTRANSLATE[TOKEN-NUM] -- Symbol number corresponding to TOKEN-NUM
    as returned by yylex, without out-of-bounds checking.  */
@@ -565,10 +562,10 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint16 yyrline[] =
 {
-       0,   168,   168,   170,   171,   172,   173,   178,   186,   194,
-     215,   239,   248,   257,   268,   277,   291,   300,   314,   320,
-     331,   337,   349,   360,   371,   375,   390,   413,   421,   433,
-     441
+       0,   169,   169,   171,   172,   173,   174,   179,   187,   195,
+     216,   237,   246,   255,   266,   275,   289,   298,   312,   318,
+     329,   335,   347,   358,   369,   373,   388,   411,   419,   431,
+     439
 };
 #endif
 
@@ -762,37 +759,37 @@ do {                                                                      \
 } while (0)
 
 
-/*----------------------------------------.
-| Print this symbol's value on YYOUTPUT.  |
-`----------------------------------------*/
+/*-----------------------------------.
+| Print this symbol's value on YYO.  |
+`-----------------------------------*/
 
 static void
-yy_symbol_value_print (FILE *yyoutput, int yytype, YYSTYPE const * const yyvaluep)
+yy_symbol_value_print (FILE *yyo, int yytype, YYSTYPE const * const yyvaluep)
 {
-  FILE *yyo = yyoutput;
-  YYUSE (yyo);
+  FILE *yyoutput = yyo;
+  YYUSE (yyoutput);
   if (!yyvaluep)
     return;
 # ifdef YYPRINT
   if (yytype < YYNTOKENS)
-    YYPRINT (yyoutput, yytoknum[yytype], *yyvaluep);
+    YYPRINT (yyo, yytoknum[yytype], *yyvaluep);
 # endif
   YYUSE (yytype);
 }
 
 
-/*--------------------------------.
-| Print this symbol on YYOUTPUT.  |
-`--------------------------------*/
+/*---------------------------.
+| Print this symbol on YYO.  |
+`---------------------------*/
 
 static void
-yy_symbol_print (FILE *yyoutput, int yytype, YYSTYPE const * const yyvaluep)
+yy_symbol_print (FILE *yyo, int yytype, YYSTYPE const * const yyvaluep)
 {
-  YYFPRINTF (yyoutput, "%s %s (",
+  YYFPRINTF (yyo, "%s %s (",
              yytype < YYNTOKENS ? "token" : "nterm", yytname[yytype]);
 
-  yy_symbol_value_print (yyoutput, yytype, yyvaluep);
-  YYFPRINTF (yyoutput, ")");
+  yy_symbol_value_print (yyo, yytype, yyvaluep);
+  YYFPRINTF (yyo, ")");
 }
 
 /*------------------------------------------------------------------.
@@ -826,7 +823,7 @@ do {                                                            \
 static void
 yy_reduce_print (yytype_int16 *yyssp, YYSTYPE *yyvsp, int yyrule)
 {
-  unsigned long int yylno = yyrline[yyrule];
+  unsigned long yylno = yyrline[yyrule];
   int yynrhs = yyr2[yyrule];
   int yyi;
   YYFPRINTF (stderr, "Reducing stack by rule %d (line %lu):\n",
@@ -959,7 +956,7 @@ yytnamerr (char *yyres, const char *yystr)
   if (! yyres)
     return yystrlen (yystr);
 
-  return yystpcpy (yyres, yystr) - yyres;
+  return (YYSIZE_T) (yystpcpy (yyres, yystr) - yyres);
 }
 # endif
 
@@ -1052,6 +1049,7 @@ yysyntax_error (YYSIZE_T *yymsg_alloc, char **yymsg,
       case N:                               \
         yyformat = S;                       \
       break
+    default: /* Avoid compiler warnings. */
       YYCASE_(0, YY_("syntax error"));
       YYCASE_(1, YY_("syntax error, unexpected %s"));
       YYCASE_(2, YY_("syntax error, unexpected %s, expecting %s"));
@@ -1200,12 +1198,12 @@ yyparse (void)
   yyssp++;
 
  yysetstate:
-  *yyssp = yystate;
+  *yyssp = (yytype_int16) yystate;
 
   if (yyss + yystacksize - 1 <= yyssp)
     {
       /* Get the current used size of the three stacks, in elements.  */
-      YYSIZE_T yysize = yyssp - yyss + 1;
+      YYSIZE_T yysize = (YYSIZE_T) (yyssp - yyss + 1);
 
 #ifdef yyoverflow
       {
@@ -1223,7 +1221,6 @@ yyparse (void)
                     &yyss1, yysize * sizeof (*yyssp),
                     &yyvs1, yysize * sizeof (*yyvsp),
                     &yystacksize);
-
         yyss = yyss1;
         yyvs = yyvs1;
       }
@@ -1257,7 +1254,7 @@ yyparse (void)
       yyvsp = yyvs + yysize - 1;
 
       YYDPRINTF ((stderr, "Stack size increased to %lu\n",
-                  (unsigned long int) yystacksize));
+                  (unsigned long) yystacksize));
 
       if (yyss + yystacksize - 1 <= yyssp)
         YYABORT;
@@ -1368,23 +1365,23 @@ yyreduce:
   switch (yyn)
     {
         case 7:
-#line 179 "po-gram-gen.y" /* yacc.c:1646  */
+#line 180 "po-gram-gen.y" /* yacc.c:1645  */
     {
                   po_callback_comment_dispatcher ((yyvsp[0].string).string);
                 }
-#line 1376 "po-gram-gen.c" /* yacc.c:1646  */
+#line 1373 "po-gram-gen.c" /* yacc.c:1645  */
     break;
 
   case 8:
-#line 187 "po-gram-gen.y" /* yacc.c:1646  */
+#line 188 "po-gram-gen.y" /* yacc.c:1645  */
     {
                    po_callback_domain ((yyvsp[0].string).string);
                 }
-#line 1384 "po-gram-gen.c" /* yacc.c:1646  */
+#line 1381 "po-gram-gen.c" /* yacc.c:1645  */
     break;
 
   case 9:
-#line 195 "po-gram-gen.y" /* yacc.c:1646  */
+#line 196 "po-gram-gen.y" /* yacc.c:1645  */
     {
                   char *string2 = string_list_concat_destroy (&(yyvsp[-2].stringlist).stringlist);
                   char *string4 = string_list_concat_destroy (&(yyvsp[0].stringlist).stringlist);
@@ -1405,11 +1402,11 @@ yyreduce:
                       free (string4);
                     }
                 }
-#line 1409 "po-gram-gen.c" /* yacc.c:1646  */
+#line 1406 "po-gram-gen.c" /* yacc.c:1645  */
     break;
 
   case 10:
-#line 216 "po-gram-gen.y" /* yacc.c:1646  */
+#line 217 "po-gram-gen.y" /* yacc.c:1645  */
     {
                   char *string2 = string_list_concat_destroy (&(yyvsp[-2].stringlist).stringlist);
 
@@ -1417,14 +1414,11 @@ yyreduce:
                   check_obsolete ((yyvsp[-3].message_intro), (yyvsp[-1].string));
                   check_obsolete ((yyvsp[-3].message_intro), (yyvsp[0].rhs));
                   if (!(yyvsp[-3].message_intro).obsolete || pass_obsolete_entries)
-                    {
-                      do_callback_message ((yyvsp[-3].message_intro).ctxt, string2, &(yyvsp[-3].message_intro).pos, (yyvsp[-1].string).string,
-                                           (yyvsp[0].rhs).rhs.msgstr, (yyvsp[0].rhs).rhs.msgstr_len, &(yyvsp[0].rhs).pos,
-                                           (yyvsp[-3].message_intro).prev_ctxt,
-                                           (yyvsp[-3].message_intro).prev_id, (yyvsp[-3].message_intro).prev_id_plural,
-                                           (yyvsp[-3].message_intro).obsolete);
-                      free ((yyvsp[-1].string).string);
-                    }
+                    do_callback_message ((yyvsp[-3].message_intro).ctxt, string2, &(yyvsp[-3].message_intro).pos, (yyvsp[-1].string).string,
+                                         (yyvsp[0].rhs).rhs.msgstr, (yyvsp[0].rhs).rhs.msgstr_len, &(yyvsp[0].rhs).pos,
+                                         (yyvsp[-3].message_intro).prev_ctxt,
+                                         (yyvsp[-3].message_intro).prev_id, (yyvsp[-3].message_intro).prev_id_plural,
+                                         (yyvsp[-3].message_intro).obsolete);
                   else
                     {
                       free_message_intro ((yyvsp[-3].message_intro));
@@ -1433,11 +1427,11 @@ yyreduce:
                       free ((yyvsp[0].rhs).rhs.msgstr);
                     }
                 }
-#line 1437 "po-gram-gen.c" /* yacc.c:1646  */
+#line 1431 "po-gram-gen.c" /* yacc.c:1645  */
     break;
 
   case 11:
-#line 240 "po-gram-gen.y" /* yacc.c:1646  */
+#line 238 "po-gram-gen.y" /* yacc.c:1645  */
     {
                   check_obsolete ((yyvsp[-2].message_intro), (yyvsp[-1].stringlist));
                   check_obsolete ((yyvsp[-2].message_intro), (yyvsp[0].string));
@@ -1446,11 +1440,11 @@ yyreduce:
                   string_list_destroy (&(yyvsp[-1].stringlist).stringlist);
                   free ((yyvsp[0].string).string);
                 }
-#line 1450 "po-gram-gen.c" /* yacc.c:1646  */
+#line 1444 "po-gram-gen.c" /* yacc.c:1645  */
     break;
 
   case 12:
-#line 249 "po-gram-gen.y" /* yacc.c:1646  */
+#line 247 "po-gram-gen.y" /* yacc.c:1645  */
     {
                   check_obsolete ((yyvsp[-2].message_intro), (yyvsp[-1].stringlist));
                   check_obsolete ((yyvsp[-2].message_intro), (yyvsp[0].rhs));
@@ -1459,22 +1453,22 @@ yyreduce:
                   string_list_destroy (&(yyvsp[-1].stringlist).stringlist);
                   free ((yyvsp[0].rhs).rhs.msgstr);
                 }
-#line 1463 "po-gram-gen.c" /* yacc.c:1646  */
+#line 1457 "po-gram-gen.c" /* yacc.c:1645  */
     break;
 
   case 13:
-#line 258 "po-gram-gen.y" /* yacc.c:1646  */
+#line 256 "po-gram-gen.y" /* yacc.c:1645  */
     {
                   check_obsolete ((yyvsp[-1].message_intro), (yyvsp[0].stringlist));
                   po_gram_error_at_line (&(yyvsp[-1].message_intro).pos, _("missing 'msgstr' section"));
                   free_message_intro ((yyvsp[-1].message_intro));
                   string_list_destroy (&(yyvsp[0].stringlist).stringlist);
                 }
-#line 1474 "po-gram-gen.c" /* yacc.c:1646  */
+#line 1468 "po-gram-gen.c" /* yacc.c:1645  */
     break;
 
   case 14:
-#line 269 "po-gram-gen.y" /* yacc.c:1646  */
+#line 267 "po-gram-gen.y" /* yacc.c:1645  */
     {
                   (yyval.message_intro).prev_ctxt = NULL;
                   (yyval.message_intro).prev_id = NULL;
@@ -1483,11 +1477,11 @@ yyreduce:
                   (yyval.message_intro).pos = (yyvsp[0].string).pos;
                   (yyval.message_intro).obsolete = (yyvsp[0].string).obsolete;
                 }
-#line 1487 "po-gram-gen.c" /* yacc.c:1646  */
+#line 1481 "po-gram-gen.c" /* yacc.c:1645  */
     break;
 
   case 15:
-#line 278 "po-gram-gen.y" /* yacc.c:1646  */
+#line 276 "po-gram-gen.y" /* yacc.c:1645  */
     {
                   check_obsolete ((yyvsp[-1].prev), (yyvsp[0].string));
                   (yyval.message_intro).prev_ctxt = (yyvsp[-1].prev).ctxt;
@@ -1497,11 +1491,11 @@ yyreduce:
                   (yyval.message_intro).pos = (yyvsp[0].string).pos;
                   (yyval.message_intro).obsolete = (yyvsp[0].string).obsolete;
                 }
-#line 1501 "po-gram-gen.c" /* yacc.c:1646  */
+#line 1495 "po-gram-gen.c" /* yacc.c:1645  */
     break;
 
   case 16:
-#line 292 "po-gram-gen.y" /* yacc.c:1646  */
+#line 290 "po-gram-gen.y" /* yacc.c:1645  */
     {
                   check_obsolete ((yyvsp[-1].string), (yyvsp[0].stringlist));
                   (yyval.prev).ctxt = (yyvsp[-1].string).string;
@@ -1510,11 +1504,11 @@ yyreduce:
                   (yyval.prev).pos = (yyvsp[-1].string).pos;
                   (yyval.prev).obsolete = (yyvsp[-1].string).obsolete;
                 }
-#line 1514 "po-gram-gen.c" /* yacc.c:1646  */
+#line 1508 "po-gram-gen.c" /* yacc.c:1645  */
     break;
 
   case 17:
-#line 301 "po-gram-gen.y" /* yacc.c:1646  */
+#line 299 "po-gram-gen.y" /* yacc.c:1645  */
     {
                   check_obsolete ((yyvsp[-2].string), (yyvsp[-1].stringlist));
                   check_obsolete ((yyvsp[-2].string), (yyvsp[0].string));
@@ -1524,21 +1518,21 @@ yyreduce:
                   (yyval.prev).pos = (yyvsp[-2].string).pos;
                   (yyval.prev).obsolete = (yyvsp[-2].string).obsolete;
                 }
-#line 1528 "po-gram-gen.c" /* yacc.c:1646  */
+#line 1522 "po-gram-gen.c" /* yacc.c:1645  */
     break;
 
   case 18:
-#line 315 "po-gram-gen.y" /* yacc.c:1646  */
+#line 313 "po-gram-gen.y" /* yacc.c:1645  */
     {
                   (yyval.string).string = NULL;
                   (yyval.string).pos = (yyvsp[0].pos).pos;
                   (yyval.string).obsolete = (yyvsp[0].pos).obsolete;
                 }
-#line 1538 "po-gram-gen.c" /* yacc.c:1646  */
+#line 1532 "po-gram-gen.c" /* yacc.c:1645  */
     break;
 
   case 19:
-#line 321 "po-gram-gen.y" /* yacc.c:1646  */
+#line 319 "po-gram-gen.y" /* yacc.c:1645  */
     {
                   check_obsolete ((yyvsp[-2].pos), (yyvsp[-1].stringlist));
                   check_obsolete ((yyvsp[-2].pos), (yyvsp[0].pos));
@@ -1546,21 +1540,21 @@ yyreduce:
                   (yyval.string).pos = (yyvsp[0].pos).pos;
                   (yyval.string).obsolete = (yyvsp[0].pos).obsolete;
                 }
-#line 1550 "po-gram-gen.c" /* yacc.c:1646  */
+#line 1544 "po-gram-gen.c" /* yacc.c:1645  */
     break;
 
   case 20:
-#line 332 "po-gram-gen.y" /* yacc.c:1646  */
+#line 330 "po-gram-gen.y" /* yacc.c:1645  */
     {
                   (yyval.string).string = NULL;
                   (yyval.string).pos = (yyvsp[0].pos).pos;
                   (yyval.string).obsolete = (yyvsp[0].pos).obsolete;
                 }
-#line 1560 "po-gram-gen.c" /* yacc.c:1646  */
+#line 1554 "po-gram-gen.c" /* yacc.c:1645  */
     break;
 
   case 21:
-#line 338 "po-gram-gen.y" /* yacc.c:1646  */
+#line 336 "po-gram-gen.y" /* yacc.c:1645  */
     {
                   check_obsolete ((yyvsp[-2].pos), (yyvsp[-1].stringlist));
                   check_obsolete ((yyvsp[-2].pos), (yyvsp[0].pos));
@@ -1568,11 +1562,11 @@ yyreduce:
                   (yyval.string).pos = (yyvsp[0].pos).pos;
                   (yyval.string).obsolete = (yyvsp[0].pos).obsolete;
                 }
-#line 1572 "po-gram-gen.c" /* yacc.c:1646  */
+#line 1566 "po-gram-gen.c" /* yacc.c:1645  */
     break;
 
   case 22:
-#line 350 "po-gram-gen.y" /* yacc.c:1646  */
+#line 348 "po-gram-gen.y" /* yacc.c:1645  */
     {
                   check_obsolete ((yyvsp[-1].pos), (yyvsp[0].stringlist));
                   plural_counter = 0;
@@ -1580,30 +1574,30 @@ yyreduce:
                   (yyval.string).pos = (yyvsp[-1].pos).pos;
                   (yyval.string).obsolete = (yyvsp[-1].pos).obsolete;
                 }
-#line 1584 "po-gram-gen.c" /* yacc.c:1646  */
+#line 1578 "po-gram-gen.c" /* yacc.c:1645  */
     break;
 
   case 23:
-#line 361 "po-gram-gen.y" /* yacc.c:1646  */
+#line 359 "po-gram-gen.y" /* yacc.c:1645  */
     {
                   check_obsolete ((yyvsp[-1].pos), (yyvsp[0].stringlist));
                   (yyval.string).string = string_list_concat_destroy (&(yyvsp[0].stringlist).stringlist);
                   (yyval.string).pos = (yyvsp[-1].pos).pos;
                   (yyval.string).obsolete = (yyvsp[-1].pos).obsolete;
                 }
-#line 1595 "po-gram-gen.c" /* yacc.c:1646  */
+#line 1589 "po-gram-gen.c" /* yacc.c:1645  */
     break;
 
   case 24:
-#line 372 "po-gram-gen.y" /* yacc.c:1646  */
+#line 370 "po-gram-gen.y" /* yacc.c:1645  */
     {
                   (yyval.rhs) = (yyvsp[0].rhs);
                 }
-#line 1603 "po-gram-gen.c" /* yacc.c:1646  */
+#line 1597 "po-gram-gen.c" /* yacc.c:1645  */
     break;
 
   case 25:
-#line 376 "po-gram-gen.y" /* yacc.c:1646  */
+#line 374 "po-gram-gen.y" /* yacc.c:1645  */
     {
                   check_obsolete ((yyvsp[-1].rhs), (yyvsp[0].rhs));
                   (yyval.rhs).rhs.msgstr = XNMALLOC ((yyvsp[-1].rhs).rhs.msgstr_len + (yyvsp[0].rhs).rhs.msgstr_len, char);
@@ -1615,11 +1609,11 @@ yyreduce:
                   (yyval.rhs).pos = (yyvsp[-1].rhs).pos;
                   (yyval.rhs).obsolete = (yyvsp[-1].rhs).obsolete;
                 }
-#line 1619 "po-gram-gen.c" /* yacc.c:1646  */
+#line 1613 "po-gram-gen.c" /* yacc.c:1645  */
     break;
 
   case 26:
-#line 391 "po-gram-gen.y" /* yacc.c:1646  */
+#line 389 "po-gram-gen.y" /* yacc.c:1645  */
     {
                   check_obsolete ((yyvsp[-4].pos), (yyvsp[-3].pos));
                   check_obsolete ((yyvsp[-4].pos), (yyvsp[-2].number));
@@ -1638,11 +1632,11 @@ yyreduce:
                   (yyval.rhs).pos = (yyvsp[-4].pos).pos;
                   (yyval.rhs).obsolete = (yyvsp[-4].pos).obsolete;
                 }
-#line 1642 "po-gram-gen.c" /* yacc.c:1646  */
+#line 1636 "po-gram-gen.c" /* yacc.c:1645  */
     break;
 
   case 27:
-#line 414 "po-gram-gen.y" /* yacc.c:1646  */
+#line 412 "po-gram-gen.y" /* yacc.c:1645  */
     {
                   string_list_init (&(yyval.stringlist).stringlist);
                   string_list_append (&(yyval.stringlist).stringlist, (yyvsp[0].string).string);
@@ -1650,11 +1644,11 @@ yyreduce:
                   (yyval.stringlist).pos = (yyvsp[0].string).pos;
                   (yyval.stringlist).obsolete = (yyvsp[0].string).obsolete;
                 }
-#line 1654 "po-gram-gen.c" /* yacc.c:1646  */
+#line 1648 "po-gram-gen.c" /* yacc.c:1645  */
     break;
 
   case 28:
-#line 422 "po-gram-gen.y" /* yacc.c:1646  */
+#line 420 "po-gram-gen.y" /* yacc.c:1645  */
     {
                   check_obsolete ((yyvsp[-1].stringlist), (yyvsp[0].string));
                   (yyval.stringlist).stringlist = (yyvsp[-1].stringlist).stringlist;
@@ -1663,11 +1657,11 @@ yyreduce:
                   (yyval.stringlist).pos = (yyvsp[-1].stringlist).pos;
                   (yyval.stringlist).obsolete = (yyvsp[-1].stringlist).obsolete;
                 }
-#line 1667 "po-gram-gen.c" /* yacc.c:1646  */
+#line 1661 "po-gram-gen.c" /* yacc.c:1645  */
     break;
 
   case 29:
-#line 434 "po-gram-gen.y" /* yacc.c:1646  */
+#line 432 "po-gram-gen.y" /* yacc.c:1645  */
     {
                   string_list_init (&(yyval.stringlist).stringlist);
                   string_list_append (&(yyval.stringlist).stringlist, (yyvsp[0].string).string);
@@ -1675,11 +1669,11 @@ yyreduce:
                   (yyval.stringlist).pos = (yyvsp[0].string).pos;
                   (yyval.stringlist).obsolete = (yyvsp[0].string).obsolete;
                 }
-#line 1679 "po-gram-gen.c" /* yacc.c:1646  */
+#line 1673 "po-gram-gen.c" /* yacc.c:1645  */
     break;
 
   case 30:
-#line 442 "po-gram-gen.y" /* yacc.c:1646  */
+#line 440 "po-gram-gen.y" /* yacc.c:1645  */
     {
                   check_obsolete ((yyvsp[-1].stringlist), (yyvsp[0].string));
                   (yyval.stringlist).stringlist = (yyvsp[-1].stringlist).stringlist;
@@ -1688,11 +1682,11 @@ yyreduce:
                   (yyval.stringlist).pos = (yyvsp[-1].stringlist).pos;
                   (yyval.stringlist).obsolete = (yyvsp[-1].stringlist).obsolete;
                 }
-#line 1692 "po-gram-gen.c" /* yacc.c:1646  */
+#line 1686 "po-gram-gen.c" /* yacc.c:1645  */
     break;
 
 
-#line 1696 "po-gram-gen.c" /* yacc.c:1646  */
+#line 1690 "po-gram-gen.c" /* yacc.c:1645  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1717,14 +1711,13 @@ yyreduce:
   /* Now 'shift' the result of the reduction.  Determine what state
      that goes to, based on the state we popped back to and the rule
      number reduced by.  */
-
-  yyn = yyr1[yyn];
-
-  yystate = yypgoto[yyn - YYNTOKENS] + *yyssp;
-  if (0 <= yystate && yystate <= YYLAST && yycheck[yystate] == *yyssp)
-    yystate = yytable[yystate];
-  else
-    yystate = yydefgoto[yyn - YYNTOKENS];
+  {
+    const int yylhs = yyr1[yyn] - YYNTOKENS;
+    const int yyi = yypgoto[yylhs] + *yyssp;
+    yystate = (0 <= yyi && yyi <= YYLAST && yycheck[yyi] == *yyssp
+               ? yytable[yyi]
+               : yydefgoto[yylhs]);
+  }
 
   goto yynewstate;
 

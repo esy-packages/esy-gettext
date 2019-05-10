@@ -1,5 +1,6 @@
 /* Recode Serbian text from Cyrillic to Latin script.
-   Copyright (C) 2006-2007, 2010, 2012 Free Software Foundation, Inc.
+   Copyright (C) 2006-2007, 2010, 2012, 2018-2019 Free Software Foundation,
+   Inc.
    Written by Bruno Haible <bruno@clisp.org>, 2006.
 
    This program is free software: you can redistribute it and/or modify
@@ -13,7 +14,7 @@
    GNU General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.  */
+   along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
 
 #ifdef HAVE_CONFIG_H
 # include "config.h"
@@ -74,10 +75,8 @@ main (int argc, char *argv[])
   /* Set program name for message texts.  */
   set_program_name (argv[0]);
 
-#ifdef HAVE_SETLOCALE
   /* Set locale via LC_ALL.  */
   setlocale (LC_ALL, "");
-#endif
 
   /* Set the text message domain.  */
   bindtextdomain (PACKAGE, relocate (LOCALEDIR));
@@ -108,11 +107,11 @@ main (int argc, char *argv[])
       printf ("%s (GNU %s) %s\n", basename (program_name), PACKAGE, VERSION);
       /* xgettext: no-wrap */
       printf (_("Copyright (C) %s Free Software Foundation, Inc.\n\
-License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>\n\
+License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>\n\
 This is free software: you are free to change and redistribute it.\n\
 There is NO WARRANTY, to the extent permitted by law.\n\
 "),
-              "2006-2007");
+              "2006-2019");
       printf (_("Written by %s and %s.\n"),
               /* TRANSLATORS: This is a proper name. The last name is
                  (with Unicode escapes) "\u0160egan" or (with HTML entities)
@@ -285,23 +284,20 @@ process (FILE *stream)
           conv_from_utf8 = iconv_open (locale_code, "UTF-8");
         }
       if (conv_to_utf8 == (iconv_t)(-1))
-        error (EXIT_FAILURE, 0, _("\
-Cannot convert from \"%s\" to \"%s\". %s relies on iconv(), \
-and iconv() does not support this conversion."),
+        error (EXIT_FAILURE, 0,
+               _("Cannot convert from \"%s\" to \"%s\". %s relies on iconv(), and iconv() does not support this conversion."),
                locale_code, "UTF-8", basename (program_name));
       if (conv_from_utf8 == (iconv_t)(-1))
-        error (EXIT_FAILURE, 0, _("\
-Cannot convert from \"%s\" to \"%s\". %s relies on iconv(), \
-and iconv() does not support this conversion."),
+        error (EXIT_FAILURE, 0,
+               _("Cannot convert from \"%s\" to \"%s\". %s relies on iconv(), and iconv() does not support this conversion."),
                "UTF-8", locale_code, basename (program_name));
       last_utf8_line = NULL;
       last_utf8_line_len = 0;
       last_backconv_line = NULL;
       last_backconv_line_len = 0;
 #else
-      error (EXIT_FAILURE, 0, _("\
-Cannot convert from \"%s\" to \"%s\". %s relies on iconv(). \
-This version was built without iconv()."),
+      error (EXIT_FAILURE, 0,
+             _("Cannot convert from \"%s\" to \"%s\". %s relies on iconv(). This version was built without iconv()."),
              locale_code, "UTF-8", basename (program_name));
 #endif
     }

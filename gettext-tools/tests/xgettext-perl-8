@@ -57,14 +57,19 @@ $foo = $Some->thing->method ? 1 : 0;
 print __"Chained method calls without parentheses do not accept arguments!";
 # ?; Re-sync.
 
+condition() ? 1 : 0;
+
+print __"Question mark after an explicit function call is always an operator!";
+# ?;
+
 print __"Synching works.";
 EOF
 
 : ${XGETTEXT=xgettext}
 ${XGETTEXT} --omit-header -n \
   -k__ \
-  -d xg-pl-8.tmp xg-pl-8.pl || exit 1
-LC_ALL=C tr -d '\r' < xg-pl-8.tmp.po > xg-pl-8.po || exit 1
+  -d xg-pl-8.tmp xg-pl-8.pl || Exit 1
+LC_ALL=C tr -d '\r' < xg-pl-8.tmp.po > xg-pl-8.po || Exit 1
 
 cat <<\EOF > xg-pl-8.ok
 #: xg-pl-8.pl:1
@@ -112,7 +117,11 @@ msgstr ""
 msgid "Chained method calls without parentheses do not accept arguments!"
 msgstr ""
 
-#: xg-pl-8.pl:51
+#: xg-pl-8.pl:53
+msgid "Question mark after an explicit function call is always an operator!"
+msgstr ""
+
+#: xg-pl-8.pl:56
 msgid "Synching works."
 msgstr ""
 EOF

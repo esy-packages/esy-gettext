@@ -1,5 +1,5 @@
 ## Makefile for the gettext-tools/src subdirectory of GNU gettext
-## Copyright (C) 1995-1998, 2000-2011 Free Software Foundation, Inc.
+## Copyright (C) 1995-1998, 2000-2019 Free Software Foundation, Inc.
 ##
 ## This program is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -12,15 +12,17 @@
 ## GNU General Public License for more details.
 ##
 ## You should have received a copy of the GNU General Public License
-## along with this program.  If not, see <http://www.gnu.org/licenses/>.
+## along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 ## Process this file with automake to produce Makefile.in.
 
 AUTOMAKE_OPTIONS = 1.5 gnits no-dependencies subdir-objects
 EXTRA_DIST =
+BUILT_SOURCES =
 MOSTLYCLEANFILES = core *.stackdump
 CLEANFILES =
 DISTCLEANFILES =
+MAINTAINERCLEANFILES =
 
 RM = rm -f
 
@@ -29,7 +31,7 @@ msgcmp msgfmt msgmerge msgunfmt xgettext \
 msgattrib msgcat msgcomm msgconv msgen msgexec msgfilter msggrep msginit msguniq \
 recode-sr-latin
 
-noinst_PROGRAMS = hostname urlget
+noinst_PROGRAMS = hostname urlget cldr-plurals
 
 lib_LTLIBRARIES = libgettextsrc.la
 
@@ -37,8 +39,9 @@ noinst_HEADERS = pos.h message.h po-error.h po-xerror.h po-gram.h po-charset.h \
 po-lex.h open-catalog.h read-catalog-abstract.h read-catalog.h \
 read-po.h read-properties.h read-stringtable.h \
 str-list.h \
-color.h write-catalog.h write-po.h write-properties.h write-stringtable.h \
-dir-list.h file-list.h po-gram-gen.h po-gram-gen2.h \
+write-catalog.h write-po.h write-properties.h write-stringtable.h \
+dir-list.h file-list.h po-gram-gen.h po-gram-gen2.h cldr-plural.h \
+cldr-plural-exp.h locating-rule.h its.h search-path.h \
 msgl-charset.h msgl-equal.h msgl-iconv.h msgl-ascii.h msgl-cat.h msgl-header.h \
 msgl-english.h msgl-check.h msgl-fsearch.h msgfmt.h msgunfmt.h \
 plural-count.h plural-eval.h plural-distrib.h \
@@ -49,13 +52,17 @@ read-resources.h write-resources.h \
 read-tcl.h write-tcl.h \
 write-qt.h \
 read-desktop.h write-desktop.h \
+write-xml.h \
 po-time.h plural-table.h lang-table.h format.h filters.h \
-xgettext.h x-c.h x-po.h x-sh.h x-python.h x-lisp.h x-elisp.h x-librep.h \
+xgettext.h \
+rc-str-list.h xg-pos.h xg-encoding.h xg-mixed-string.h xg-arglist-context.h \
+xg-arglist-callshape.h xg-arglist-parser.h xg-message.h \
+x-c.h x-po.h x-sh.h x-python.h x-lisp.h x-elisp.h x-librep.h \
 x-scheme.h x-smalltalk.h x-java.h x-properties.h x-csharp.h x-awk.h x-ycp.h \
 x-tcl.h x-perl.h x-php.h x-stringtable.h x-rst.h x-glade.h x-lua.h \
-x-javascript.h x-vala.h x-gsettings.h x-desktop.h libexpat-compat.h
+x-javascript.h x-vala.h x-gsettings.h x-desktop.h x-appdata.h
 
-EXTRA_DIST += FILES project-id ChangeLog.0
+EXTRA_DIST += FILES project-id
 
 aliaspath = $(localedir)
 jardir = $(datadir)/gettext
@@ -73,12 +80,11 @@ DEFS = \
   -DLOCALEDIR=\"$(localedir)\" -DBISON_LOCALEDIR=\"$(BISON_LOCALEDIR)\" \
   -DLOCALE_ALIAS_PATH=\"$(aliaspath)\" \
   -DUSEJAVA=$(USEJAVA) \
-  -DUSEJEXE=$(USEJEXE) \
-  -DGETTEXTJEXEDIR=\"$(pkglibdir)\" \
   -DGETTEXTJAR=\"$(jardir)/gettext.jar\" \
   -DLIBDIR=\"$(libdir)\" \
   -DGETTEXTDATADIR=\"$(pkgdatadir)\" \
-  -DPROJECTSDIR=\"$(projectsdir)\" @DEFS@
+  -DPROJECTSDIR=\"$(projectsdir)\" \
+  -DEXEEXT=\"@EXEEXT@\" @DEFS@
 # Ensure that <stdint.h> defines SIZE_MAX in C++ mode, like it does in C mode.
 AM_CXXFLAGS = -D__STDC_LIMIT_MACROS
 
@@ -87,8 +93,6 @@ OTHERPROGDEPENDENCIES = ../gnulib-lib/libgettextlib.la $(WOE32_LDADD)
 
 SED = sed
 YACC = @YACC@ -d
-GCJ = @GCJ@
-GCJFLAGS = @GCJFLAGS@
 JAR = @JAR@
 JAVACOMP = $(SHELL) ../javacomp.sh
 CSHARPCOMP = $(SHELL) ../csharpcomp.sh
@@ -138,6 +142,7 @@ FORMAT_SOURCE += \
   format-qt.c \
   format-qt-plural.c \
   format-kde.c \
+  format-kde-kuit.c \
   format-boost.c \
   format-lua.c \
   format-javascript.c
@@ -145,12 +150,12 @@ FORMAT_SOURCE += \
 # libgettextsrc contains all code that is needed by at least two programs.
 libgettextsrc_la_SOURCES = \
 $(COMMON_SOURCE) read-catalog.c \
-color.c write-catalog.c write-properties.c write-stringtable.c write-po.c \
+write-catalog.c write-properties.c write-stringtable.c write-po.c \
 msgl-ascii.c msgl-iconv.c msgl-equal.c msgl-cat.c msgl-header.c msgl-english.c \
 msgl-check.c file-list.c msgl-charset.c po-time.c plural-exp.c plural-eval.c \
-plural-table.c \
+plural-table.c quote.h sentence.h sentence.c \
 $(FORMAT_SOURCE) \
-read-desktop.c
+read-desktop.c locating-rule.c its.c search-path.c
 
 # msggrep needs pattern matching.
 LIBGREP = ../libgrep/libgrep.a
@@ -161,7 +166,8 @@ msgcmp_SOURCES += msgl-fsearch.c
 msgfmt_SOURCES = msgfmt.c
 msgfmt_SOURCES += \
   write-mo.c write-java.c write-csharp.c write-resources.c write-tcl.c \
-  write-qt.c write-desktop.c ../../gettext-runtime/intl/hash-string.c
+  write-qt.c write-desktop.c write-xml.c \
+  ../../gettext-runtime/intl/hash-string.c
 if !WOE32DLL
 msgmerge_SOURCES = msgmerge.c
 else
@@ -177,10 +183,14 @@ else
 xgettext_SOURCES = ../woe32dll/c++xgettext.cc
 endif
 xgettext_SOURCES += \
+  xg-pos.c \
+  xg-encoding.c \
+  xg-mixed-string.c \
+  xg-arglist-context.c xg-arglist-callshape.c xg-arglist-parser.c \
+  xg-message.c \
   x-c.c x-po.c x-sh.c x-python.c x-lisp.c x-elisp.c x-librep.c x-scheme.c \
   x-smalltalk.c x-java.c x-csharp.c x-awk.c x-ycp.c x-tcl.c x-perl.c x-php.c \
-  x-rst.c x-glade.c x-lua.c x-javascript.c x-vala.c x-gsettings.c \
-  libexpat-compat.c \
+  x-rst.c x-lua.c x-javascript.c x-vala.c \
   x-desktop.c
 if !WOE32DLL
 msgattrib_SOURCES = msgattrib.c
@@ -236,6 +246,17 @@ endif
 recode_sr_latin_SOURCES = recode-sr-latin.c filter-sr-latin.c
 hostname_SOURCES = hostname.c
 urlget_SOURCES = urlget.c
+cldr_plurals_SOURCES = cldr-plural.y cldr-plural-exp.c cldr-plurals.c
+cldr_plurals_CFLAGS = $(AM_CFLAGS) $(INCXML)
+cldr_plurals_LDADD = libgettextsrc.la $(LDADD)
+
+# How to get the include files of libtextstyle.
+textstyle.h textstyle/stdbool.h textstyle/version.h textstyle/woe32dll.h:
+	here=`pwd`; \
+	cd ../../libtextstyle/lib && \
+	  $(MAKE) install-nobase_includeHEADERS install-nobase_nodist_includeHEADERS includedir="$$here"
+BUILT_SOURCES    += textstyle.h textstyle/stdbool.h textstyle/version.h textstyle/woe32dll.h
+MOSTLYCLEANFILES += textstyle.h textstyle/stdbool.h textstyle/version.h textstyle/woe32dll.h
 
 # How to build libgettextsrc.la.
 # Need ../gnulib-lib/libgettextlib.la.
@@ -247,9 +268,14 @@ urlget_SOURCES = urlget.c
 # use iconv().
 libgettextsrc_la_LDFLAGS = \
   -release @VERSION@ \
-  ../gnulib-lib/libgettextlib.la $(LTLIBUNISTRING) @LTLIBINTL@ @LTLIBICONV@ -lc -no-undefined
+  ../gnulib-lib/libgettextlib.la $(LTLIBUNISTRING) ../../libtextstyle/lib/libtextstyle.la @LTLIBINTL@ @LTLIBICONV@ -lc -no-undefined
 
-libgettextsrc_la_CPPFLAGS = $(AM_CPPFLAGS)
+# OS/2 does not support a DLL name longer than 8 characters.
+if OS2
+libgettextsrc_la_LDFLAGS += -os2dllname gtsrc
+endif
+
+libgettextsrc_la_CPPFLAGS = $(AM_CPPFLAGS) $(INCXML)
 
 # Tell the mingw or Cygwin linker which symbols to export.
 if WOE32DLL
@@ -258,8 +284,14 @@ libgettextsrc_la_LDFLAGS += -Wl,--export-all-symbols
 libgettextsrc_la_CPPFLAGS += $(GETTEXTLIB_EXPORTS_FLAGS)
 endif
 
+# Specify installation directory, for --enable-relocatable.
+if RELOCATABLE_VIA_LD
+# This is needed, because libgettextsrc depends on libgettextlib and libintl.
+libgettextsrc_la_LDFLAGS += `$(RELOCATABLE_LDFLAGS) $(libdir)`
+endif
+
 # No need to install libgettextsrc.a, except on AIX.
-install-exec-local: install-libLTLIBRARIES install-exec-clean
+install-exec-hook: install-exec-clean
 install-exec-clean:
 	case "@host_os@" in \
 	  aix*) ;; \
@@ -278,7 +310,7 @@ msgcmp_LDADD = libgettextsrc.la @INTL_MACOSX_LIBS@ @MSGMERGE_LIBM@ $(WOE32_LDADD
 msgfmt_LDADD = libgettextsrc.la @INTL_MACOSX_LIBS@ $(WOE32_LDADD)
 msgmerge_LDADD = libgettextsrc.la @INTL_MACOSX_LIBS@ @MSGMERGE_LIBM@ $(WOE32_LDADD) $(OPENMP_CFLAGS)
 msgunfmt_LDADD = libgettextsrc.la @INTL_MACOSX_LIBS@ $(WOE32_LDADD)
-xgettext_LDADD = libgettextsrc.la @INTL_MACOSX_LIBS@ @LTLIBEXPAT@ @LTLIBICONV@ $(WOE32_LDADD)
+xgettext_LDADD = libgettextsrc.la @INTL_MACOSX_LIBS@ @LTLIBICONV@ $(WOE32_LDADD)
 msgattrib_LDADD = libgettextsrc.la @INTL_MACOSX_LIBS@ $(WOE32_LDADD)
 msgcat_LDADD = libgettextsrc.la @INTL_MACOSX_LIBS@ $(WOE32_LDADD)
 msgcomm_LDADD = libgettextsrc.la @INTL_MACOSX_LIBS@ $(WOE32_LDADD)
@@ -329,6 +361,7 @@ msguniq_CPPFLAGS = $(AM_CPPFLAGS) -DINSTALLDIR=\"$(bindir)\"
 recode_sr_latin_CPPFLAGS = $(AM_CPPFLAGS) -DINSTALLDIR=\"$(bindir)\"
 hostname_CPPFLAGS = $(AM_CPPFLAGS) -DINSTALLDIR=\"$(pkglibdir)\"
 urlget_CPPFLAGS = $(AM_CPPFLAGS) -DINSTALLDIR=\"$(pkglibdir)\"
+cldr_plurals_CPPFLAGS = $(AM_CPPFLAGS) -DINSTALLDIR=\"$(pkglibdir)\"
 if RELOCATABLE_VIA_LD
 msgcmp_LDFLAGS = `$(RELOCATABLE_LDFLAGS) $(bindir)`
 msgfmt_LDFLAGS = `$(RELOCATABLE_LDFLAGS) $(bindir)`
@@ -348,6 +381,7 @@ msguniq_LDFLAGS = `$(RELOCATABLE_LDFLAGS) $(bindir)`
 recode_sr_latin_LDFLAGS = `$(RELOCATABLE_LDFLAGS) $(bindir)`
 hostname_LDFLAGS = `$(RELOCATABLE_LDFLAGS) $(pkglibdir)`
 urlget_LDFLAGS = `$(RELOCATABLE_LDFLAGS) $(pkglibdir)`
+cldr_plurals_LDFLAGS = `$(RELOCATABLE_LDFLAGS) $(pkglibdir)`
 endif
 
 # Linking with C++ libraries is needed _only_ on mingw and Cygwin.
@@ -445,16 +479,58 @@ endif
 
 # Special rules for bison and flex generated files.
 
-BUILT_SOURCES = \
-  po-gram-gen.c po-gram-gen.h po-gram-gen2.h
+# The Automake generated .y.c rule is broken: When executed in a VPATH build,
+#   - The .c file gets generated in the build directory. But since it requires
+#     special tools to rebuild it, we need to distribute it in the tarballs,
+#     and by the GNU Coding Standards
+#     <https://www.gnu.org/prep/standards/html_node/Makefile-Basics.html>
+#     the file should be generated in the source directory.
+#   - The #line numbers in the .c file refer to a nonexistent file once it
+#     has been moved from the build directory to the source directory. This
+#     leads to error if 'lcov' is used later.
+# Therefore we override this rule.
+
+po-gram-gen.c po-gram-gen.h: po-gram-gen.y
+	$(AM_V_GEN)$(SHELL) $(YLWRAP) $(srcdir)/po-gram-gen.y \
+	                              y.tab.c po-gram-gen.c \
+	                              y.tab.h po-gram-gen.h \
+	                              y.output po-gram-gen.output \
+	                              -- $(YACC) $(YFLAGS) $(AM_YFLAGS) \
+	&& sed -e 's|".*/po-gram-gen.y"|"po-gram-gen.y"|' < po-gram-gen.c > po-gram-gen.c-tmp \
+	&& rm -f po-gram-gen.c \
+	&& mv po-gram-gen.c-tmp $(srcdir)/po-gram-gen.c \
+	&& { test '$(srcdir)' = . || mv po-gram-gen.h $(srcdir)/po-gram-gen.h; }
+BUILT_SOURCES += po-gram-gen.c po-gram-gen.h
+MOSTLYCLEANFILES += po-gram-gen.c-tmp
+MAINTAINERCLEANFILES += po-gram-gen.c po-gram-gen.h
+EXTRA_DIST += po-gram-gen.c po-gram-gen.h
+
+# po-gram-gen2.h is generated from po-gram-gen.h and is also distributed in the
+# tarballs (just for convenience).
+po-gram-gen2.h: po-gram-gen.h
+	$(SED) -e 's/yy/po_gram_/g' -e 's/extern /extern DLL_VARIABLE /' $(srcdir)/po-gram-gen.h > po-gram-gen2.h-tmp \
+	&& mv po-gram-gen2.h-tmp $(srcdir)/po-gram-gen2.h
+BUILT_SOURCES += po-gram-gen2.h
+MOSTLYCLEANFILES += po-gram-gen2.h-tmp
+MAINTAINERCLEANFILES += po-gram-gen2.h
+EXTRA_DIST += po-gram-gen2.h
 
 po-lex.o po-lex.lo: po-gram-gen2.h
-po-gram-gen2.h: po-gram-gen.h
-	srcdir=''; \
-	test -f ./po-gram-gen.h || srcdir=$(srcdir)/; \
-	$(SED) -e 's/yy/po_gram_/g' -e 's/extern /extern DLL_VARIABLE /' \
-	  $${srcdir}po-gram-gen.h > $@-tmp && \
-	mv $@-tmp $@
+
+cldr-plural.c cldr-plural.h: cldr-plural.y
+	$(AM_V_GEN)$(SHELL) $(YLWRAP) $(srcdir)/cldr-plural.y \
+	                              y.tab.c cldr-plural.c \
+	                              y.tab.h cldr-plural.h \
+	                              y.output cldr-plural.output \
+	                              -- $(YACC) $(YFLAGS) $(AM_YFLAGS) \
+	&& sed -e 's|".*/cldr-plural.y"|"cldr-plural.y"|' < cldr-plural.c > cldr-plural.c-tmp \
+	&& rm -f cldr-plural.c \
+	&& mv cldr-plural.c-tmp $(srcdir)/cldr-plural.c \
+	&& { test '$(srcdir)' = . || mv cldr-plural.h $(srcdir)/cldr-plural.h; }
+BUILT_SOURCES += cldr-plural.c cldr-plural.h
+MOSTLYCLEANFILES += cldr-plural.c-tmp
+MAINTAINERCLEANFILES += cldr-plural.c cldr-plural.h
+EXTRA_DIST += cldr-plural.c cldr-plural.h
 
 
 # Special rules for installation of auxiliary programs.
@@ -463,6 +539,7 @@ install-exec-local:
 	$(MKDIR_P) $(DESTDIR)$(pkglibdir)
 	$(INSTALL_PROGRAM_ENV) $(LIBTOOL) --mode=install $(INSTALL_PROGRAM) hostname$(EXEEXT) $(DESTDIR)$(pkglibdir)/hostname$(EXEEXT)
 	$(INSTALL_PROGRAM_ENV) $(LIBTOOL) --mode=install $(INSTALL_PROGRAM) urlget$(EXEEXT) $(DESTDIR)$(pkglibdir)/urlget$(EXEEXT)
+	$(INSTALL_PROGRAM_ENV) $(LIBTOOL) --mode=install $(INSTALL_PROGRAM) cldr-plurals$(EXEEXT) $(DESTDIR)$(pkglibdir)/cldr-plurals$(EXEEXT)
 	$(INSTALL_SCRIPT) user-email $(DESTDIR)$(pkglibdir)/user-email
 	$(INSTALL_SCRIPT) $(srcdir)/project-id $(DESTDIR)$(pkglibdir)/project-id
 
@@ -472,6 +549,7 @@ installdirs-local:
 uninstall-local:
 	$(RM) $(DESTDIR)$(pkglibdir)/hostname$(EXEEXT)
 	$(RM) $(DESTDIR)$(pkglibdir)/urlget$(EXEEXT)
+	$(RM) $(DESTDIR)$(pkglibdir)/cldr-plurals$(EXEEXT)
 	$(RM) $(DESTDIR)$(pkglibdir)/user-email
 	$(RM) $(DESTDIR)$(pkglibdir)/project-id
 
@@ -480,27 +558,13 @@ DISTCLEANFILES += user-email
 
 # Special rules for Java compilation.
 
-USEJAVA = $(USEJAVA_@BUILDJAVAEXE@)
+USEJAVA = $(USEJAVA_@BUILDJAVA@)
 USEJAVA_yes = 1
-USEJAVA_no = $(USEJAVA_no_@BUILDJAVA@)
-USEJAVA_no_yes = 1
-USEJAVA_no_no = 0
+USEJAVA_no = 0
 
-USEJEXE = $(USEJEXE_@BUILDJAVAEXE@)
-USEJEXE_yes = 1
-USEJEXE_no = 0
-
-all-local: all-java-@BUILDJAVAEXE@
-all-java-yes: gnu.gettext.DumpResource$(EXEEXT) gnu.gettext.GetURL$(EXEEXT)
-all-java-no: all-java-no-@BUILDJAVA@
-all-java-no-yes: gettext.jar
-all-java-no-no:
-
-gnu.gettext.DumpResource$(EXEEXT): $(srcdir)/gnu/gettext/DumpResource.java
-	$(GCJ) $(GCJFLAGS) $(srcdir)/gnu/gettext/DumpResource.java --main=gnu.gettext.DumpResource -o $@
-
-gnu.gettext.GetURL$(EXEEXT): $(srcdir)/gnu/gettext/GetURL.java
-	$(GCJ) $(GCJFLAGS) $(srcdir)/gnu/gettext/GetURL.java --main=gnu.gettext.GetURL -o $@
+all-local: all-java-@BUILDJAVA@
+all-java-yes: gettext.jar
+all-java-no:
 
 gnu/gettext/DumpResource.class: $(srcdir)/gnu/gettext/DumpResource.java
 	$(JAVACOMP) -d . $(srcdir)/gnu/gettext/DumpResource.java
@@ -513,39 +577,22 @@ gettext.jar: gnu/gettext/DumpResource.class gnu/gettext/GetURL.class
 
 EXTRA_DIST += gnu/gettext/DumpResource.java gnu/gettext/GetURL.java
 
-CLEANFILES += gnu.gettext.DumpResource$(EXEEXT) gnu.gettext.GetURL$(EXEEXT) \
-              gettext.jar gnu/gettext/*.class
+CLEANFILES += gettext.jar gnu/gettext/*.class
 
-install-exec-local: install-exec-java-@BUILDJAVAEXE@
-install-exec-java-yes: all-java-yes
-	$(MKDIR_P) $(DESTDIR)$(pkglibdir)
-	$(INSTALL_PROGRAM_ENV) $(INSTALL_PROGRAM) gnu.gettext.DumpResource$(EXEEXT) $(DESTDIR)$(pkglibdir)/gnu.gettext.DumpResource$(EXEEXT)
-	$(INSTALL_PROGRAM_ENV) $(INSTALL_PROGRAM) gnu.gettext.GetURL$(EXEEXT) $(DESTDIR)$(pkglibdir)/gnu.gettext.GetURL$(EXEEXT)
-install-exec-java-no:
-
-install-data-local: install-data-java-@BUILDJAVAEXE@
-install-data-java-yes:
-install-data-java-no: install-data-java-no-@BUILDJAVA@
-install-data-java-no-yes: all-java-no-yes
+install-data-local: install-data-java-@BUILDJAVA@
+install-data-java-yes: all-java-yes
 	$(INSTALL_DATA) gettext.jar $(DESTDIR)$(jardir)/gettext.jar
-install-data-java-no-no:
+install-data-java-no:
 
-installdirs-local: installdirs-java-@BUILDJAVAEXE@
+installdirs-local: installdirs-java-@BUILDJAVA@
 installdirs-java-yes:
-	$(MKDIR_P) $(DESTDIR)$(pkglibdir)
-installdirs-java-no: installdirs-java-no-@BUILDJAVA@
-installdirs-java-no-yes:
 	$(MKDIR_P) $(DESTDIR)$(jardir)
-installdirs-java-no-no:
+installdirs-java-no:
 
-uninstall-local: uninstall-java-@BUILDJAVAEXE@
+uninstall-local: uninstall-java-@BUILDJAVA@
 uninstall-java-yes:
-	$(RM) $(DESTDIR)$(pkglibdir)/gnu.gettext.DumpResource$(EXEEXT)
-	$(RM) $(DESTDIR)$(pkglibdir)/gnu.gettext.GetURL$(EXEEXT)
-uninstall-java-no: uninstall-java-no-@BUILDJAVA@
-uninstall-java-no-yes:
 	$(RM) $(DESTDIR)$(jardir)/gettext.jar
-uninstall-java-no-no:
+uninstall-java-no:
 
 
 # Special rules for C# auxiliary programs.

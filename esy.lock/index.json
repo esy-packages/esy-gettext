@@ -1,7 +1,23 @@
 {
-  "checksum": "0cc961f41dbf4ff5ab5654751a4ba36e",
+  "checksum": "7559b82a17fd645ef42fc7c1e7e1235c",
   "root": "esy-gettext@link-dev:./package.json",
   "node": {
+    "esy-libiconv@github:prometheansacrifice/esy-libiconv#38bab1ac2d53ae01b9c945620f6267446c4b2baa@d41d8cd9": {
+      "id":
+        "esy-libiconv@github:prometheansacrifice/esy-libiconv#38bab1ac2d53ae01b9c945620f6267446c4b2baa@d41d8cd9",
+      "name": "esy-libiconv",
+      "version":
+        "github:prometheansacrifice/esy-libiconv#38bab1ac2d53ae01b9c945620f6267446c4b2baa",
+      "source": {
+        "type": "install",
+        "source": [
+          "github:prometheansacrifice/esy-libiconv#38bab1ac2d53ae01b9c945620f6267446c4b2baa"
+        ]
+      },
+      "overrides": [],
+      "dependencies": [],
+      "devDependencies": []
+    },
     "esy-gettext@link-dev:./package.json": {
       "id": "esy-gettext@link-dev:./package.json",
       "name": "esy-gettext",
@@ -12,7 +28,9 @@
         "manifest": "package.json"
       },
       "overrides": [],
-      "dependencies": [],
+      "dependencies": [
+        "esy-libiconv@github:prometheansacrifice/esy-libiconv#38bab1ac2d53ae01b9c945620f6267446c4b2baa@d41d8cd9"
+      ],
       "devDependencies": []
     }
   }

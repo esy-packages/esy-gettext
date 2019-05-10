@@ -1,5 +1,6 @@
 /* Display hostname in various forms.
-   Copyright (C) 2001-2003, 2006-2007, 2012 Free Software Foundation, Inc.
+   Copyright (C) 2001-2003, 2006-2007, 2012, 2014, 2018-2019 Free Software
+   Foundation, Inc.
    Written by Bruno Haible <haible@clisp.cons.org>, 2001.
 
    This program is free software: you can redistribute it and/or modify
@@ -13,7 +14,7 @@
    GNU General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.  */
+   along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
 
 
 #ifdef HAVE_CONFIG_H
@@ -27,7 +28,7 @@
 #include <string.h>
 #include <locale.h>
 
-#if defined _WIN32 || defined __WIN32__
+#if defined _WIN32
 # define WIN32_NATIVE
 #endif
 
@@ -46,7 +47,9 @@
 #endif
 
 /* Get MAXHOSTNAMELEN.  */
-#include <sys/param.h>
+#if HAVE_SYS_PARAM_H
+# include <sys/param.h>
+#endif
 #ifndef MAXHOSTNAMELEN
 # define MAXHOSTNAMELEN 64
 #endif
@@ -126,10 +129,8 @@ main (int argc, char *argv[])
   set_program_name (argv[0]);
   error_print_progname = maybe_print_progname;
 
-#ifdef HAVE_SETLOCALE
   /* Set locale via LC_ALL.  */
   setlocale (LC_ALL, "");
-#endif
 
   /* Set the text message domain.  */
   bindtextdomain (PACKAGE, relocate (LOCALEDIR));
@@ -176,11 +177,11 @@ main (int argc, char *argv[])
       printf ("%s (GNU %s) %s\n", basename (program_name), PACKAGE, VERSION);
       /* xgettext: no-wrap */
       printf (_("Copyright (C) %s Free Software Foundation, Inc.\n\
-License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>\n\
+License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>\n\
 This is free software: you are free to change and redistribute it.\n\
 There is NO WARRANTY, to the extent permitted by law.\n\
 "),
-              "2001-2003, 2006-2007");
+              "2001-2019");
       printf (_("Written by %s.\n"), proper_name ("Bruno Haible"));
       exit (EXIT_SUCCESS);
     }

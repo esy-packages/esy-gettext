@@ -1,5 +1,6 @@
 /* GNU gettext - internationalization aids
-   Copyright (C) 1995-1998, 2000-2003, 2006, 2008 Free Software Foundation, Inc.
+   Copyright (C) 1995-1998, 2000-2003, 2006, 2008, 2014, 2018-2019 Free Software
+   Foundation, Inc.
 
    This file was written by Peter Miller <millerp@canb.auug.org.au>
 
@@ -14,15 +15,16 @@
    GNU General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.  */
+   along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
 
 #ifndef _WRITE_PO_H
 #define _WRITE_PO_H
 
-#include "ostream.h"
-#include "message.h"
-
 #include <stdbool.h>
+
+#include <textstyle.h>
+
+#include "message.h"
 
 
 #ifdef __cplusplus
@@ -68,6 +70,8 @@ extern void
        message_print_style_uniforum (void);
 extern void
        message_print_style_escape (bool flag);
+extern void
+       message_print_style_comment (bool flag);
 extern void
        message_print_style_filepos (enum filepos_comment_type type);
 

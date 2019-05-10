@@ -1,5 +1,5 @@
 dnl Configuration for the gettext-tools directory of GNU gettext
-dnl Copyright (C) 1995-1999, 2000-2011 Free Software Foundation, Inc.
+dnl Copyright (C) 1995-2019 Free Software Foundation, Inc.
 dnl
 dnl This program is free software: you can redistribute it and/or modify
 dnl it under the terms of the GNU General Public License as published by
@@ -12,11 +12,11 @@ dnl MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 dnl GNU General Public License for more details.
 dnl
 dnl You should have received a copy of the GNU General Public License
-dnl along with this program.  If not, see <http://www.gnu.org/licenses/>.
+dnl along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 dnl Process this file with autoconf to produce a configure script.
 
-AC_PREREQ([2.62])
+AC_PREREQ([2.63])
 AC_INIT([gettext-tools],
 	m4_esyscmd([../build-aux/git-version-gen ../.tarball-version]),
 	[bug-gnu-gettext@gnu.org])
@@ -35,16 +35,8 @@ AC_PROG_YACC
 
 gt_JAVA_CHOICE
 
-gt_GCJ
-if test -n "$HAVE_GCJ" && test "$JAVA_CHOICE" = yes; then
-  BUILDJAVAEXE=yes
-else
-  BUILDJAVAEXE=no
-fi
-AC_SUBST([BUILDJAVAEXE])
-
 gt_JAVAEXEC
-gt_JAVACOMP([1.3])
+gt_JAVACOMP([1.5])
 AC_CHECK_PROG([JAR], [jar], [jar])
 if test -n "$HAVE_JAVACOMP" && test -n "$JAR" && test "$JAVA_CHOICE" != no; then
   BUILDJAVA=yes
@@ -82,6 +74,9 @@ dnl Checks for compiler output filename suffixes.
 AC_OBJEXT
 AC_EXEEXT
 
+dnl For a 64-bit build on AIX, AC_PROG_RANLIB is not sufficient.
+gl_PROG_AR_RANLIB
+
 dnl Make sure we see all GNU and Solaris extensions.
 gl_EARLY
 grgl_EARLY
@@ -100,10 +95,12 @@ LT_LANG([Windows Resource])
 dnl On mingw and Cygwin, we can activate special Makefile rules which add
 dnl version information to the shared libraries and executables.
 case "$host_os" in
-  mingw* | cygwin*) is_woe32=yes ;;
-  *) is_woe32=no ;;
+  mingw* | cygwin*) special_makefile_rules=woe32 ;;
+  os2*) special_makefile_rules=os2 ;;
+  *) special_makefile_rules=none ;;
 esac
-AM_CONDITIONAL([WOE32], [test $is_woe32 = yes])
+AM_CONDITIONAL([WOE32], [test $special_makefile_rules = woe32])
+AM_CONDITIONAL([OS2], [test $special_makefile_rules = os2])
 
 dnl On Cygwin 1.7.10-1 or later, error_* variables are defined in the
 dnl Cygwin DLL.  To avoid any conflict with gettext DLLs, always link
@@ -117,6 +114,12 @@ dnl Checks for libraries.
 dnl These are the only lines required to internationalize the package.
 dnl (OK, not quite, the AC_CONFIG_FILES has also some parts.)
 AM_GNU_GETTEXT([use-libtool], [need-ngettext])
+dnl Conditionals for the intl/ directory.
+AM_CONDITIONAL([USE_INCLUDED_LIBINTL], [test $USE_INCLUDED_LIBINTL = yes])
+AM_CONDITIONAL([BUILD_INCLUDED_LIBINTL], [test $BUILD_INCLUDED_LIBINTL = yes])
+AM_CONDITIONAL([PACKAGE_IS_GETTEXT_TOOLS], [true])
+AM_CONDITIONAL([PRELOADABLE_LIBINTL],
+  [test $USE_INCLUDED_LIBINTL = no && test $GLIBC2 = yes])
 
 dnl This line internationalizes the bison generated parsers.
 BISON_I18N
@@ -151,6 +154,9 @@ if test "$MSGMERGE_LIBM" = "?"; then
 fi
 AC_SUBST([MSGMERGE_LIBM])
 
+dnl Test whether msgmerge can make use of OpenMP.
+AC_OPENMP
+
 dnl Checks for header files, functions and declarations.
 gl_INIT
 grgl_INIT
@@ -167,9 +173,6 @@ AC_CHECK_TYPES([ptrdiff_t])
 gt_TYPE_SSIZE_T
 AC_TYPE_PID_T
 gl_GLIBC21
-if test $GLIBC21 = yes; then
-  AC_CHECK_MEMBERS([struct __locale_struct.__names], , , [#include <xlocale.h>])
-fi
 
 dnl Checks for library functions.
 AC_CHECK_FUNCS([select])
@@ -200,6 +203,14 @@ AH_BOTTOM([
 ])
 
 gt_PREREQ_HOSTNAME
+
+dnl Parameterization of the 'libxml' module:
+dnl When INCLUDED_LIBXML is true and building static libraries, tell
+dnl libxml's xmlexports.h to omit '__declspec(dllimport)' on mingw and Cygwin.
+if test "$gl_cv_libxml_use_included" = yes && test "$enable_shared" != yes; then
+  AC_DEFINE([LIBXML_STATIC], [1],
+    [Define if libxml is being used as a static library.])
+fi
 
 dnl Compilation on mingw and Cygwin needs special Makefile rules, because
 dnl 1. when we install a shared library, we must arrange to export
@@ -286,29 +297,10 @@ AH_BOTTOM([
 #endif
 
 /* Extra OS/2 (emx+gcc) defines.  */
-#ifdef __EMX__
+#if defined __EMX__ && !defined __KLIBC__
 # include "intl/os2compat.h"
 #endif
 ])
-
-dnl Check for the expat XML parser.
-dnl On operating systems where binary distribution vendors are likely to
-dnl ship both gettext and expat, we use dynamic loading to avoid a hard
-dnl dependency from gettext to expat.
-case "$host_os" in
-  linux*)
-    AC_DEFINE([DYNLOAD_LIBEXPAT], [1],
-      [Define to 1 if libexpat shall be dynamically loaded via dlopen().])
-    LIBEXPAT="-ldl"
-    LTLIBEXPAT="-ldl"
-    AC_SUBST([LIBEXPAT])
-    AC_SUBST([LTLIBEXPAT])
-    ;;
-  *)
-    AC_LIB_HAVE_LINKFLAGS([expat], [],
-      [#include <expat.h>], [XML_ExpatVersion();])
-    ;;
-esac
 
 dnl Check for nm output filter that yields the exported symbols.
 gt_GLOBAL_SYMBOL_PIPE
@@ -355,9 +347,9 @@ AC_ARG_WITH([xz],
   [gt_use_xz=maybe])
 # The CVS format is deprecated, because "cvs init" does not work in all
 # circumstances
-# (see <http://lists.gnu.org/archive/html/bug-cvs/2010-05/msg00003.html>)
+# (see <https://lists.gnu.org/archive/html/bug-cvs/2010-05/msg00003.html>)
 # and we are not allowed to distribute the cvs infrastructure files ourselves
-# (see <http://lists.gnu.org/archive/html/bug-cvs/2010-06/msg00011.html>).
+# (see <https://lists.gnu.org/archive/html/bug-cvs/2010-06/msg00011.html>).
 #
 # With the archive from version 0.18.1, we can observe the following
 # compression rates:
@@ -458,6 +450,14 @@ changequote([,])dnl
 fi
 AC_SUBST([ARCHIVE_FORMAT])
 
+ARCHIVE_VERSION=0.20
+AC_SUBST([ARCHIVE_VERSION])
+
+PACKAGE_SUFFIX="-$ARCHIVE_VERSION"
+AC_SUBST([PACKAGE_SUFFIX])
+AC_DEFINE_UNQUOTED(PACKAGE_SUFFIX, "$PACKAGE_SUFFIX",
+  [Define to the suffix of this package])
+
 dnl Check for tools needed for formatting the documentation.
 ac_aux_dir_abs=`cd $ac_aux_dir && pwd`
 AC_PATH_PROG([DVIPS], [dvips], [$ac_aux_dir_abs/missing dvips])
@@ -473,6 +473,7 @@ gl_PROG_ANSI_CXX([CXX], [ANSICXX])
 gt_LOCALE_FR
 gt_LOCALE_FR_UTF8
 gt_LOCALE_JA
+gt_LOCALE_DE_UTF8
 
 dnl Checks for functions for the tests/*.c tests.
 AC_CHECK_FUNCS_ONCE([getrlimit setrlimit uselocale])
@@ -496,9 +497,9 @@ if test "$CXX" = no; then
 fi
 AC_SUBST([TESTLIBASPRINTF])
 
-dnl Generate the version information file in the intl/ directory.
-test -d intl || mkdir intl
-echo "GNU gettext library from gettext-$VERSION" > intl/VERSION
+dnl Check whether to execute tests of the system (vendor-provided) libintl API.
+dnl We execute these tests if and only if we don't install our own libintl.
+AM_CONDITIONAL([TEST_SYSTEM_LIBINTL], [test $USE_INCLUDED_LIBINTL = no])
 
 AC_CONFIG_SUBDIRS([examples])
 
@@ -506,13 +507,16 @@ AC_CONFIG_FILES([Makefile])
 
 AC_CONFIG_FILES([doc/Makefile])
 
-AC_CONFIG_FILES([intl/Makefile:../gettext-runtime/intl/Makefile.in], [
+AC_CONFIG_FILES([intl/Makefile], [
   # Change srcdir variable so that it points to ../gettext-runtime/intl.
   sed -e 's|^srcdir =.*$|srcdir = $(top_srcdir)/../gettext-runtime/intl|' \
       -e 's|^VPATH =.*$||' \
+      -e 's|^DISTFILES =.*|DISTFILES =|' \
     < intl/Makefile > intl/Makefile.tmp
   mv intl/Makefile.tmp intl/Makefile
   ])
+
+AC_CONFIG_FILES([its/Makefile])
 
 AC_CONFIG_FILES([gnulib-lib/Makefile])
 
@@ -530,6 +534,8 @@ AC_CONFIG_FILES([projects/Makefile])
 
 AC_CONFIG_FILES([styles/Makefile])
 
+AC_CONFIG_FILES([emacs/Makefile])
+
 AC_CONFIG_FILES([misc/Makefile])
 AC_CONFIG_FILES([misc/gettextize], [chmod a+x misc/gettextize])
 AC_CONFIG_FILES([misc/autopoint], [chmod a+x misc/autopoint])
@@ -542,8 +548,9 @@ AC_CONFIG_FILES([man/x-to-1])
 AC_CONFIG_FILES([m4/Makefile])
 
 AC_CONFIG_FILES([tests/Makefile])
-
 AC_CONFIG_FILES([tests/init-env])
+
+AC_CONFIG_FILES([system-tests/Makefile])
 
 AC_CONFIG_FILES([gnulib-tests/Makefile])
 

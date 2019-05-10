@@ -1,6 +1,6 @@
 {
   "name": "esy-gettext",
-  "version": "0.0.000",
+  "version": "0.20.000",
   "description": "gettext packaged for esy",
   "esy": {
     "buildsInSource": true,
@@ -29,5 +29,8 @@
         "install"
       ]
     ]
+  },
+  "dependencies": {
+    "esy-libiconv": "prometheansacrifice/esy-libiconv#38bab1ac2d53ae01b9c945620f6267446c4b2baa"
   }
 }

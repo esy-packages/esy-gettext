@@ -1,5 +1,5 @@
 /* xgettext Desktop Entry backend.
-   Copyright (C) 2014 Free Software Foundation, Inc.
+   Copyright (C) 2014, 2018 Free Software Foundation, Inc.
 
    This file was written by Daiki Ueno <ueno@gnu.org>, 2014.
 
@@ -14,7 +14,7 @@
    GNU General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.  */
+   along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
 
 #ifdef HAVE_CONFIG_H
 # include "config.h"
@@ -31,6 +31,7 @@
 
 #include "message.h"
 #include "xgettext.h"
+#include "xg-message.h"
 #include "error.h"
 #include "error-progname.h"
 #include "xalloc.h"
@@ -39,6 +40,7 @@
 #include "gettext.h"
 #include "read-desktop.h"
 #include "po-charset.h"
+#include "c-ctype.h"
 
 #define _(s) gettext(s)
 
@@ -47,13 +49,13 @@
 /* ====================== Keyword set customization.  ====================== */
 
 /* The syntax of a Desktop Entry file is defined at
-   http://standards.freedesktop.org/desktop-entry-spec/latest/index.html
+   https://standards.freedesktop.org/desktop-entry-spec/latest/index.html
 
    Basically, values with 'localestring' type can be translated.
 
    The type of a value is determined by looking at the key associated
    with it.  The list of available keys are listed on:
-   http://standards.freedesktop.org/desktop-entry-spec/latest/ar01s05.html  */
+   https://standards.freedesktop.org/desktop-entry-spec/latest/ar01s05.html  */
 
 static hash_table keywords;
 static bool default_keywords = true;
@@ -123,23 +125,38 @@ extract_desktop_handle_pair (struct desktop_reader_ty *reader,
       bool is_list = (bool) keyword_value;
 
       remember_a_message (extract_reader->mlp, NULL,
-                          desktop_unescape_string (value, is_list),
+                          desktop_unescape_string (value, is_list), false,
                           null_context, key_pos,
-                          NULL, savable_comment);
+                          NULL, savable_comment, false);
     }
   savable_comment_reset ();
 }
 
 static void
 extract_desktop_handle_comment (struct desktop_reader_ty *reader,
-                                const char *s)
+                                const char *buffer)
 {
-  savable_comment_add (s);
+  size_t buflen = strlen (buffer);
+  size_t bufpos = 0;
+
+  while (bufpos < buflen
+         && c_isspace (buffer[bufpos]))
+    ++bufpos;
+  while (buflen >= bufpos
+         && c_isspace (buffer[buflen - 1]))
+    --buflen;
+  if (bufpos < buflen)
+    {
+      char *comment = xstrdup (buffer);
+      comment[buflen] = 0;
+      savable_comment_add (&comment[bufpos]);
+      free (comment);
+    }
 }
 
 static void
-extract_desktop_handle_text (struct desktop_reader_ty *reader,
-                             const char *s)
+extract_desktop_handle_blank (struct desktop_reader_ty *reader,
+                              const char *s)
 {
   savable_comment_reset ();
 }
@@ -152,7 +169,7 @@ desktop_reader_class_ty extract_methods =
     extract_desktop_handle_group,
     extract_desktop_handle_pair,
     extract_desktop_handle_comment,
-    extract_desktop_handle_text
+    extract_desktop_handle_blank
   };
 
 void

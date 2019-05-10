@@ -1,5 +1,5 @@
 dnl Configuration for the gettext-runtime directory of GNU gettext
-dnl Copyright (C) 1995-1999, 2000-2010 Free Software Foundation, Inc.
+dnl Copyright (C) 1995-2010, 2012-2015, 2018 Free Software Foundation, Inc.
 dnl
 dnl This program is free software: you can redistribute it and/or modify
 dnl it under the terms of the GNU General Public License as published by
@@ -12,11 +12,11 @@ dnl MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 dnl GNU General Public License for more details.
 dnl
 dnl You should have received a copy of the GNU General Public License
-dnl along with this program.  If not, see <http://www.gnu.org/licenses/>.
+dnl along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 dnl Process this file with autoconf to produce a configure script.
 
-AC_PREREQ([2.62])
+AC_PREREQ([2.63])
 AC_INIT([gettext-runtime],
 	m4_esyscmd([../build-aux/git-version-gen ../.tarball-version]),
 	[bug-gnu-gettext@gnu.org])
@@ -35,7 +35,7 @@ AC_PROG_YACC
 
 gt_JAVA_CHOICE
 
-gt_JAVACOMP([1.3], [1.1])
+gt_JAVACOMP([1.5], [1.6])
 AC_CHECK_PROG([JAR], [jar], [jar])
 if test -n "$HAVE_JAVACOMP" && test -n "$JAR" && test "$JAVA_CHOICE" != no; then
   BUILDJAVA=yes
@@ -59,8 +59,12 @@ dnl Checks for compiler output filename suffixes.
 AC_OBJEXT
 AC_EXEEXT
 
+dnl For a 64-bit build on AIX, AC_PROG_RANLIB is not sufficient.
+gl_PROG_AR_RANLIB
+
 dnl Make sure we see all GNU and Solaris extensions.
 gl_EARLY
+AM_PROG_CC_C_O
 
 dnl Check for build configuration.
 
@@ -85,6 +89,11 @@ dnl Checks for libraries.
 dnl These are the only lines required to internationalize the package.
 dnl (OK, not quite, the AC_CONFIG_FILES has also some parts.)
 AM_GNU_GETTEXT([use-libtool], [need-ngettext])
+dnl Conditionals for the intl/ directory.
+AM_CONDITIONAL([USE_INCLUDED_LIBINTL], [test $USE_INCLUDED_LIBINTL = yes])
+AM_CONDITIONAL([BUILD_INCLUDED_LIBINTL], [test $BUILD_INCLUDED_LIBINTL = yes])
+AM_CONDITIONAL([PACKAGE_IS_GETTEXT_TOOLS], [false])
+AM_CONDITIONAL([PRELOADABLE_LIBINTL], [false])
 
 dnl Checks for header files, functions and declarations.
 gl_INIT
@@ -101,7 +110,7 @@ AH_BOTTOM([
 #endif
 
 /* Extra OS/2 (emx+gcc) defines.  */
-#ifdef __EMX__
+#if defined __EMX__ && !defined __KLIBC__
 # include "intl/os2compat.h"
 #endif
 ])
@@ -166,7 +175,7 @@ AC_ARG_ENABLE([libasprintf],
      SUBDIR_libasprintf=
    fi
   ], [SUBDIR_libasprintf=libasprintf])
-if test "$CXX" = ":"; then
+if test "$CXX" = "no"; then
   SUBDIR_libasprintf=
 fi
 AM_CONDITIONAL([ENABLE_LIBASPRINTF], [test -n "$SUBDIR_libasprintf"])

@@ -1,6 +1,5 @@
 /* Implementation of the bindtextdomain(3) function
-   Copyright (C) 1995-1998, 2000-2003, 2005-2006, 2008 Free Software
-   Foundation, Inc.
+   Copyright (C) 1995-2016 Free Software Foundation, Inc.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU Lesser General Public License as published by
@@ -13,7 +12,7 @@
    GNU Lesser General Public License for more details.
 
    You should have received a copy of the GNU Lesser General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.  */
+   along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
 
 #ifdef HAVE_CONFIG_H
 # include <config.h>
@@ -318,7 +317,39 @@ set_binding_values (const char *domainname,
 char *
 BINDTEXTDOMAIN (const char *domainname, const char *dirname)
 {
+#ifdef __EMX__
+  const char *saved_dirname = dirname;
+  char dirname_with_drive[_MAX_PATH];
+
+# ifdef __KLIBC__
+  if (dirname && strncmp (dirname, "/@unixroot", 10) == 0
+      && (dirname[10] == '\0' || dirname[10] == '/' || dirname[10] == '\\'))
+    /* kLIBC itself processes /@unixroot prefix */;
+  else
+# endif
+  /* Resolve UNIXROOT into dirname if it is not resolved by os2compat.[ch]. */
+  if (dirname && (dirname[0] == '/' || dirname[0] == '\\' ))
+    {
+      const char *unixroot = getenv ("UNIXROOT");
+      size_t len = strlen (dirname) + 1;
+
+      if (unixroot
+          && unixroot[0] != '\0'
+          && unixroot[1] == ':'
+          && unixroot[2] == '\0'
+          && 2 + len <= _MAX_PATH)
+        {
+          memcpy (dirname_with_drive, unixroot, 2);
+          memcpy (dirname_with_drive + 2, dirname, len);
+
+          dirname = dirname_with_drive;
+        }
+    }
+#endif
   set_binding_values (domainname, &dirname, NULL);
+#ifdef __EMX__
+  dirname = saved_dirname;
+#endif
   return (char *) dirname;
 }
 

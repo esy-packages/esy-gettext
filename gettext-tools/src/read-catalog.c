@@ -1,5 +1,6 @@
 /* Reading PO files.
-   Copyright (C) 1995-1998, 2000-2003, 2005-2006, 2008-2009 Free Software Foundation, Inc.
+   Copyright (C) 1995-1998, 2000-2003, 2005-2006, 2008-2009, 2014-2016 Free
+   Software Foundation, Inc.
    This file was written by Peter Miller <millerp@canb.auug.org.au>
 
    This program is free software: you can redistribute it and/or modify
@@ -13,7 +14,7 @@
    GNU General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.  */
+   along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
 
 #ifdef HAVE_CONFIG_H
 # include <config.h>
@@ -105,6 +106,8 @@ default_constructor (abstract_catalog_reader_ty *that)
   this->range.min = -1;
   this->range.max = -1;
   this->do_wrap = undecided;
+  for (i = 0; i < NSYNTAXCHECKS; i++)
+    this->do_syntax_check[i] = undecided;
 }
 
 
@@ -172,6 +175,8 @@ default_copy_comment_state (default_catalog_reader_ty *this, message_ty *mp)
     mp->is_format[i] = this->is_format[i];
   mp->range = this->range;
   mp->do_wrap = this->do_wrap;
+  for (i = 0; i < NSYNTAXCHECKS; i++)
+    mp->do_syntax_check[i] = this->do_syntax_check[i];
 }
 
 
@@ -205,6 +210,8 @@ default_reset_comment_state (default_catalog_reader_ty *this)
   this->range.min = -1;
   this->range.max = -1;
   this->do_wrap = undecided;
+  for (i = 0; i < NSYNTAXCHECKS; i++)
+    this->do_syntax_check[i] = undecided;
 }
 
 
@@ -299,7 +306,7 @@ default_comment_special (abstract_catalog_reader_ty *that, const char *s)
   default_catalog_reader_ty *this = (default_catalog_reader_ty *) that;
 
   po_parse_comment_special (s, &this->is_fuzzy, this->is_format, &this->range,
-                            &this->do_wrap);
+                            &this->do_wrap, this->do_syntax_check);
 }
 
 
@@ -390,6 +397,8 @@ default_add_message (default_catalog_reader_ty *this,
          appropriate.  */
       mp = message_alloc (msgctxt, msgid, msgid_plural, msgstr, msgstr_len,
                           msgstr_pos);
+      if (msgid_plural != NULL)
+        free (msgid_plural);
       mp->prev_msgctxt = prev_msgctxt;
       mp->prev_msgid = prev_msgid;
       mp->prev_msgid_plural = prev_msgid_plural;

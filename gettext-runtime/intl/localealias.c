@@ -1,5 +1,5 @@
 /* Handle aliases for locale names.
-   Copyright (C) 1995-1999, 2000-2001, 2003, 2005-2006 Free Software Foundation, Inc.
+   Copyright (C) 1995-2017 Free Software Foundation, Inc.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU Lesser General Public License as published by
@@ -12,7 +12,7 @@
    GNU Lesser General Public License for more details.
 
    You should have received a copy of the GNU Lesser General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.  */
+   along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
 
 /* Tell glibc's <string.h> to provide a prototype for mempcpy().
    This must come before <config.h> because <config.h> may include
@@ -60,10 +60,11 @@ char *alloca ();
 
 #include "gettextP.h"
 
-#if ENABLE_RELOCATABLE
+#ifdef ENABLE_RELOCATABLE
 # include "relocatable.h"
 #else
 # define relocate(pathname) (pathname)
+# define relocate2(pathname,allocatedp) (*(allocatedp) = NULL, (pathname))
 #endif
 
 /* @@ end of prolog @@ */
@@ -72,7 +73,7 @@ char *alloca ();
 /* Rename the non ANSI C functions.  This is required by the standard
    because some ANSI C functions will require linking with this object
    file and the name space must not be polluted.  */
-# define strcasecmp __strcasecmp
+# define strcasecmp(s1, s2) __strcasecmp_l (s1, s2, _nl_C_locobj_ptr)
 
 # ifndef mempcpy
 #  define mempcpy __mempcpy
@@ -95,7 +96,7 @@ char *alloca ();
 /* Some optimizations for glibc.  */
 #ifdef _LIBC
 # define FEOF(fp)		feof_unlocked (fp)
-# define FGETS(buf, n, fp)	fgets_unlocked (buf, n, fp)
+# define FGETS(buf, n, fp)	__fgets_unlocked (buf, n, fp)
 #else
 # define FEOF(fp)		feof (fp)
 # define FGETS(buf, n, fp)	fgets (buf, n, fp)
@@ -110,11 +111,13 @@ char *alloca ();
 # define freea(p) free (p)
 #endif
 
-#if defined _LIBC_REENTRANT || HAVE_DECL_FGETS_UNLOCKED
+#if defined _LIBC_REENTRANT \
+  || (defined HAVE_DECL_FGETS_UNLOCKED && HAVE_DECL_FGETS_UNLOCKED)
 # undef fgets
 # define fgets(buf, len, s) fgets_unlocked (buf, len, s)
 #endif
-#if defined _LIBC_REENTRANT || HAVE_DECL_FEOF_UNLOCKED
+#if defined _LIBC_REENTRANT \
+  || (defined HAVE_DECL_FEOF_UNLOCKED && HAVE_DECL_FEOF_UNLOCKED)
 # undef feof
 # define feof(s) feof_unlocked (s)
 #endif
@@ -217,6 +220,7 @@ read_alias_file (const char *fname, int fname_len)
 {
   FILE *fp;
   char *full_fname;
+  char *malloc_full_fname;
   size_t added;
   static const char aliasfile[] = "/locale.alias";
 
@@ -232,10 +236,11 @@ read_alias_file (const char *fname, int fname_len)
 #ifdef _LIBC
   /* Note the file is opened with cancellation in the I/O functions
      disabled.  */
-  fp = fopen (relocate (full_fname), "rc");
+  fp = fopen (relocate2 (full_fname, &malloc_full_fname), "rce");
 #else
-  fp = fopen (relocate (full_fname), "r");
+  fp = fopen (relocate2 (full_fname, &malloc_full_fname), "r");
 #endif
+  free (malloc_full_fname);
   freea (full_fname);
   if (fp == NULL)
     return 0;
@@ -388,7 +393,7 @@ read_alias_file (const char *fname, int fname_len)
 
 
 static int
-extend_alias_table ()
+extend_alias_table (void)
 {
   size_t new_size;
   struct alias_map *new_map;

@@ -1,41 +1,58 @@
 # Irish translations for hello-c-gnome3.
-# Copyright (C) 2004 Yoyodyne, Inc.
-# This file is distributed under the same license as the hello-c-gnome3 package.
-# Kevin Patrick Scannell <scannell@SLU.EDU>, 2004.
+# Copyright (C) 2015 Yoyodyne, Inc. (msgids)
+# This file is distributed under the same license as the gettext package.
+# Kevin Patrick Scannell <kscanne@gmail.com>, 2004, 2017.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: hello-c-gnome3 0.14.1\n"
+"Project-Id-Version: hello-c-gnome3 0.19.4.73\n"
 "Report-Msgid-Bugs-To: bug-gnu-gettext@gnu.org\n"
-"PO-Revision-Date: 2005-02-07 12:09-0500\n"
-"Last-Translator: Kevin Patrick Scannell <scannell@SLU.EDU>\n"
-"Language-Team: Irish <ga@li.org>\n"
+"PO-Revision-Date: 2017-01-10 12:09-0500\n"
+"Last-Translator: Kevin Patrick Scannell <kscanne@gmail.com>\n"
+"Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
 "Language: ga\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Bugs: Report translation errors to the Language-Team address.\n"
 
-#: hello.c:70
+#: hello.c:79
 #, c-format
-msgid "This program is running as process number %d."
-msgstr "T� an cl�r seo � rith mar phr�iseas %d."
-
-#: ../hello.desktop.in.in:4
-msgid "Hello"
+msgid ""
+"<big>Hello world!</big>\n"
+"This program is running as process number <b>%d</b>."
 msgstr ""
+"<big>Dia dhuit a dhomhain!</big>\n"
+"Tá an clár seo ag rith mar phróiseas <b>%d</b>."
 
-#: ../hello.desktop.in.in:5 hello.ui:22
+#: hello.c:84
+msgid "<big><u>This is another text</u></big>"
+msgstr "<big><u>Seo é téacs eile</u></big>"
+
+#: hello.c:86
+msgid "<big><i>This is yet another text</i></big>"
+msgstr "<big><i>Seo é téacs eile fós</i></big>"
+
+#: hello.desktop.in.in:4
+msgid "Hello"
+msgstr "Dia dhuit"
+
+#: hello.desktop.in.in:5
 msgid "Hello, world!"
 msgstr "Dia duit, a dhomhain!"
 
-#: hello.ui:5
+#: hello.ui:6
 msgid "Example Application"
-msgstr ""
+msgstr "Feidhmchlár Samplach"
 
-#: hello.gschema.xml:7
-msgid "Set label sensitive"
-msgstr ""
+#: hello.ui:34
+msgid "Update text"
+msgstr "Nuashonraigh an téacs"
 
 #: hello.gschema.xml:8
-msgid "Whether to set the label sensitive."
-msgstr ""
+msgid "Use XML markup"
+msgstr "Úsáid marcáil XML"
+
+#: hello.gschema.xml:9
+msgid "Whether to use XML markup in the text."
+msgstr "An úsáidfear marcáil XML sa téacs."
