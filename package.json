@@ -16,6 +16,7 @@
     },
     "build": [
       "find ./ -exec touch -t 200905010101 {} + ",
+      "chmod u+x build-aux/git-version-gen ./libtextstyle/build-aux/install-sh",
       [
         "./configure",
         "--disable-dependency-tracking",
