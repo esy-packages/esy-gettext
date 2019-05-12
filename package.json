@@ -17,9 +17,10 @@
     "build": [
       "find ./ -exec touch -t 200905010101 {} + ",
       [
-        "bash",
-        "-c",
-        "#{os == 'windows' ? './configure --prefix=$cur__install --host x86_64-w64-mingw32' : './configure --prefix=$cur__install'}"
+        "./configure",
+        "--disable-dependency-tracking",
+        "#{os == 'windows' ? '--host=x86_64-w64-mingw32' : ''}",
+        "--prefix=#{self.install}"
       ],
       [
         "make"
