@@ -1,3 +1,6 @@
+[![Build Status](https://dev.azure.com/prometheansacrifice/esy-packages/_apis/build/status/prometheansacrifice.esy-gettext?branchName=master)](https://dev.azure.com/prometheansacrifice/esy-packages/_build/latest?definitionId=37&branchName=master)
+
+
 This is the GNU gettext package.  It is interesting for authors or
 maintainers of other packages or programs which they want to see
 internationalized.  As one step the handling of messages in different
