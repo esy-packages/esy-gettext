@@ -20,6 +20,7 @@
         "./configure",
         "--disable-dependency-tracking",
         "#{os == 'windows' ? '--host=x86_64-w64-mingw32' : ''}",
+        "#{os == 'linux' ? '--host=x86_64-linux-gnu' : ''}",
         "--prefix=#{self.install}"
       ],
       [
