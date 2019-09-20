@@ -4098,6 +4098,12 @@ uninstall-tcl:
 @WOE32_TRUE@gettext.res : $(top_srcdir)/../windows/gettext.rc
 @WOE32_TRUE@	$(WINDRES) `$(SHELL) $(top_srcdir)/../windows/windres-options --escape $(VERSION)` -i $(top_srcdir)/../windows/gettext.rc -o gettext.res --output-format=coff
 
+# This Makefile contains rules which don't work with parallel make,
+# namely those which build textstyle.h, po-gram-gen.c, cldr-plural.c.
+# See <https://lists.gnu.org/archive/html/bug-make/2019-05/msg00011.html>.
+# So, turn off parallel execution in this Makefile.
+.NOTPARALLEL:
+
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

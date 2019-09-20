@@ -1,3 +1,103 @@
+2019-05-12  Bruno Haible  <bruno@clisp.org>
+
+	Update translations (from the TP).
+
+	Update release steps.
+
+2019-05-12  Bruno Haible  <bruno@clisp.org>
+
+	intl: Fix wrong libtool versioning information.
+	Reported by Ken Takata <ktakata65536@gmail.com>
+	in <https://savannah.gnu.org/bugs/?56305>.
+
+	* gettext-runtime/intl/Makefile.am (LTV_*): Bump to 9:6:1, not 9:6:2.
+	* NEWS: Mention the change.
+
+2019-05-12  Bruno Haible  <bruno@clisp.org>
+
+	Update bug reporting instructions.
+	* README: Tell users to report bugs in the bug tracker or by email. Use the
+	mailing list address, not the alias.
+	* gettext-runtime/libasprintf/README: Likewise.
+	* gettext-tools/doc/gettext.texi (Introduction): Likewise.
+	(Plural forms): Use the mailing list address, not the alias.
+	* configure.ac (AC_INIT): Use the mailing list address, not the alias.
+	* gettext-runtime/configure.ac (AC_INIT): Likewise.
+	* gettext-tools/configure.ac (AC_INIT): Likewise.
+	* gettext-tools/examples/configure.ac (AC_INIT): Likewise.
+	* gettext-runtime/po/Makevars (MSGID_BUGS_ADDRESS): Use the mailing list
+	address, not the alias.
+	* gettext-tools/po/Makevars (MSGID_BUGS_ADDRESS): Likewise.
+	* gettext-tools/examples/po/Makefile.am (MSGID_BUGS_ADDRESS): Likewise.
+	* gettext-tools/examples/hello-*/po/Makevars (MSGID_BUGS_ADDRESS): Likewise.
+	* gettext-tools/examples/hello-*/po/Makefile.am (MSGID_BUGS_ADDRESS): Likewise.
+	* gettext-tools/examples/hello-objc-gnustep/po/GNUmakefile (MSGID_BUGS_ADDRESS):
+	Likewise.
+	* gettext-tools/examples/hello-c++-kde/hello.cc (main): Likewise.
+	* gettext-runtime/src/envsubst.c (main): Move URL out of translatable string.
+	(usage): Tell users to report bugs in the bug tracker or by email. Use the
+	mailing list address, not the alias.
+	* gettext-runtime/src/gettext.c: Likewise.
+	* gettext-runtime/src/ngettext.c: Likewise.
+	* gettext-tools/src/cldr-plurals.c: Likewise.
+	* gettext-tools/src/hostname.c: Likewise.
+	* gettext-tools/src/msgattrib.c: Likewise.
+	* gettext-tools/src/msgcat.c: Likewise.
+	* gettext-tools/src/msgcmp.c: Likewise.
+	* gettext-tools/src/msgcomm.c: Likewise.
+	* gettext-tools/src/msgconv.c: Likewise.
+	* gettext-tools/src/msgen.c: Likewise.
+	* gettext-tools/src/msgexec.c: Likewise.
+	* gettext-tools/src/msgfilter.c: Likewise.
+	* gettext-tools/src/msgfmt.c: Likewise.
+	* gettext-tools/src/msggrep.c: Likewise.
+	* gettext-tools/src/msginit.c: Likewise.
+	* gettext-tools/src/msgmerge.c: Likewise.
+	* gettext-tools/src/msgunfmt.c: Likewise.
+	* gettext-tools/src/msguniq.c: Likewise.
+	* gettext-tools/src/recode-sr-latin.c: Likewise.
+	* gettext-tools/src/urlget.c: Likewise.
+	* gettext-tools/src/xgettext.c: Likewise.
+	* gettext-tools/tests/tstgettext.c: Likewise.
+	* gettext-tools/tests/tstngettext.c: Likewise.
+	* gettext-tools/misc/autopoint.in (func_usage): Tell users to report bugs in the
+	bug tracker or by email. Use the mailing list address, not the alias.
+	* gettext-tools/misc/convert-archive.in (func_usage): Likewise.
+	* gettext-tools/misc/gettextize.in (func_usage): Likewise.
+
+2019-05-11  Bruno Haible  <bruno@clisp.org>
+
+	doc: Recommend to avoid literal URLs in translatable strings.
+	Suggested by John Darrington <john@darrington.wattle.id.au>
+	in <https://lists.gnu.org/archive/html/bug-gnulib/2019-05/msg00033.html>.
+
+	* gettext-tools/doc/gettext.texi (Preparing Strings): Add recommendation against
+	embedded URLs. Add sub-headers.
+
+2019-05-11  Bruno Haible  <bruno@clisp.org>
+
+	build: Fix build failure with parallel make.
+	Reported by Lars Wendler <polynomial-c@gentoo.org>.
+
+	* gettext-tools/src/Makefile.am (.NOTPARALLEL): Add this special target.
+
+2019-05-11  Bruno Haible  <bruno@clisp.org>
+
+	intl: Remove obsolete code.
+	* gettext-runtime/intl/plural.y: Assume bison >= 2.0.
+
+	Update after gnulib changed.
+	* autogen.sh: Don't copy intl.m4.
+	* Makefile.am (distcheck-hook): Don't check glibc2.m4, glibc21.m4, intdiv0.m4,
+	intl.m4, intmax.m4, printf-posix.m4, uintmax_t.m4, visibility.m4.
+	* gettext-runtime/intl/verify.h: Update from gnulib.
+
+	Update to newest gnulib.
+
+2019-05-09  Bruno Haible  <bruno@clisp.org>
+
+	Update release steps.
+
 2019-05-08  Bruno Haible  <bruno@clisp.org>
 
 	examples: Use infrastructure from gettext version 0.20.

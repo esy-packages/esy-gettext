@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on May, 8 2019 by texi2html 1.78a -->
+<!-- Created on May, 12 2019 by texi2html 1.78a -->
 <!--
 Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -42,8 +42,8 @@ ul.toc {list-style: none}
 <body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
 
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="gettext_14.html#SEC247" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="gettext_16.html#SEC322" title="Next chapter"> &gt;&gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="gettext_14.html#SEC253" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="gettext_16.html#SEC328" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -51,13 +51,13 @@ ul.toc {list-style: none}
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="gettext_toc.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="gettext_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="gettext_21.html#SEC370" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gettext_21.html#SEC376" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="gettext_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
 <hr size="2">
 <a name="Programming-Languages"></a>
-<a name="SEC248"></a>
+<a name="SEC254"></a>
 <h1 class="chapter"> <a href="gettext_toc.html#TOC248">15. Other Programming Languages</a> </h1>
 
 <p>While the presentation of <code>gettext</code> focuses mostly on C and
@@ -69,7 +69,7 @@ approach.
 
 
 <a name="Language-Implementors"></a>
-<a name="SEC249"></a>
+<a name="SEC255"></a>
 <h2 class="section"> <a href="gettext_toc.html#TOC249">15.1 The Language Implementor's View</a> </h2>
 
 <p>All programming and scripting languages that have the notion of strings
@@ -128,7 +128,7 @@ The language's library should have a string formatting facility where
 the arguments of a format string are denoted by a positional number or a
 name.  This is needed because for some languages and some messages with
 more than one substitutable argument, the translation will need to
-output the substituted arguments in different order.  See section <a href="gettext_4.html#SEC23">Special Comments preceding Keywords</a>.
+output the substituted arguments in different order.  See section <a href="gettext_4.html#SEC29">Special Comments preceding Keywords</a>.
 
 </li><li>
 If the language has more than one implementation, and not all of the
@@ -139,7 +139,7 @@ without actually translating the strings.
 
 </li><li>
 To help the programmer in the task of marking translatable strings,
-which is sometimes performed using the Emacs PO mode (see section <a href="gettext_4.html#SEC22">Marking Translatable Strings</a>),
+which is sometimes performed using the Emacs PO mode (see section <a href="gettext_4.html#SEC28">Marking Translatable Strings</a>),
 you are welcome to
 contact the GNU <code>gettext</code> maintainers, so they can add support for
 your language to &lsquo;<tt>po-mode.el</tt>&rsquo;.
@@ -168,7 +168,7 @@ and plural handling).
 
 
 <a name="Programmers-for-other-Languages"></a>
-<a name="SEC250"></a>
+<a name="SEC256"></a>
 <h2 class="section"> <a href="gettext_toc.html#TOC250">15.2 The Programmer's View</a> </h2>
 
 <p>For the programmer, the general procedure is the same as for the C
@@ -180,7 +180,7 @@ underlying language runtime.
 </p>
 
 <a name="Translators-for-other-Languages"></a>
-<a name="SEC251"></a>
+<a name="SEC257"></a>
 <h2 class="section"> <a href="gettext_toc.html#TOC251">15.3 The Translator's View</a> </h2>
 
 <p>The translator works exactly as in the C language case.  The only
@@ -191,7 +191,7 @@ strings.
 
 
 <a name="c_002dformat"></a>
-<a name="SEC252"></a>
+<a name="SEC258"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC252">15.3.1 C Format Strings</a> </h3>
 
 <p>C format strings are described in POSIX (IEEE P1003.1 2001), section
@@ -217,8 +217,8 @@ on this reordering ability: On the few platforms where <code>printf()</code>,
 or &lsquo;<tt>libintl.so</tt>&rsquo; provides replacement functions, and GNU <code>&lt;libintl.h&gt;</code>
 activates these replacement functions automatically.
 </p>
-<a name="IDX1068"></a>
-<a name="IDX1069"></a>
+<a name="IDX1061"></a>
+<a name="IDX1062"></a>
 <p>As a special feature for Farsi (Persian) and maybe Arabic, translators can
 insert an &lsquo;<samp>I</samp>&rsquo; flag into numeric format directives.  For example, the
 translation of <code>&quot;%d&quot;</code> can be <code>&quot;%Id&quot;</code>.  The effect of this flag,
@@ -234,7 +234,7 @@ glibc when NLS is disabled.)
 </p>
 
 <a name="objc_002dformat"></a>
-<a name="SEC253"></a>
+<a name="SEC259"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC253">15.3.2 Objective C Format Strings</a> </h3>
 
 <p>Objective C format strings are like C format strings.  They support an
@@ -243,7 +243,7 @@ of type <code>Object *</code>.
 </p>
 
 <a name="sh_002dformat"></a>
-<a name="SEC254"></a>
+<a name="SEC260"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC254">15.3.3 Shell Format Strings</a> </h3>
 
 <p>Shell format strings, as supported by GNU gettext and the &lsquo;<samp>envsubst</samp>&rsquo;
@@ -264,7 +264,7 @@ a variable reference is ignored.
 </p>
 
 <a name="python_002dformat"></a>
-<a name="SEC255"></a>
+<a name="SEC261"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC255">15.3.4 Python Format Strings</a> </h3>
 
 <p>There are two kinds of format strings in Python: those acceptable to
@@ -284,7 +284,7 @@ String Formatting, <a href="https://www.python.org/dev/peps/pep-3101/">https://w
 </p>
 
 <a name="lisp_002dformat"></a>
-<a name="SEC256"></a>
+<a name="SEC262"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC256">15.3.5 Lisp Format Strings</a> </h3>
 
 <p>Lisp format strings are described in the Common Lisp HyperSpec,
@@ -293,7 +293,7 @@ chapter 22.3 Formatted Output,
 </p>
 
 <a name="elisp_002dformat"></a>
-<a name="SEC257"></a>
+<a name="SEC263"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC257">15.3.6 Emacs Lisp Format Strings</a> </h3>
 
 <p>Emacs Lisp format strings are documented in the Emacs Lisp reference,
@@ -304,7 +304,7 @@ in format strings while FSF Emacs doesn't.
 </p>
 
 <a name="librep_002dformat"></a>
-<a name="SEC258"></a>
+<a name="SEC264"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC258">15.3.7 librep Format Strings</a> </h3>
 
 <p>librep format strings are documented in the librep manual, section
@@ -314,7 +314,7 @@ Formatted Output,
 </p>
 
 <a name="scheme_002dformat"></a>
-<a name="SEC259"></a>
+<a name="SEC265"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC259">15.3.8 Scheme Format Strings</a> </h3>
 
 <p>Scheme format strings are documented in the SLIB manual, section
@@ -322,7 +322,7 @@ Format Specification.
 </p>
 
 <a name="smalltalk_002dformat"></a>
-<a name="SEC260"></a>
+<a name="SEC266"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC260">15.3.9 Smalltalk Format Strings</a> </h3>
 
 <p>Smalltalk format strings are described in the GNU Smalltalk documentation,
@@ -334,7 +334,7 @@ or a nonzero digit (&lsquo;<samp>1</samp>&rsquo; to &lsquo;<samp>9</samp>&rsquo;
 </p>
 
 <a name="java_002dformat"></a>
-<a name="SEC261"></a>
+<a name="SEC267"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC261">15.3.10 Java Format Strings</a> </h3>
 
 <p>Java format strings are described in the JDK documentation for class
@@ -345,7 +345,7 @@ See also the ICU documentation
 </p>
 
 <a name="csharp_002dformat"></a>
-<a name="SEC262"></a>
+<a name="SEC268"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC262">15.3.11 C# Format Strings</a> </h3>
 
 <p>C# format strings are described in the .NET documentation for class
@@ -354,7 +354,7 @@ See also the ICU documentation
 </p>
 
 <a name="awk_002dformat"></a>
-<a name="SEC263"></a>
+<a name="SEC269"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC263">15.3.12 awk Format Strings</a> </h3>
 
 <p>awk format strings are described in the gawk documentation, section
@@ -363,7 +363,7 @@ Printf,
 </p>
 
 <a name="object_002dpascal_002dformat"></a>
-<a name="SEC264"></a>
+<a name="SEC270"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC264">15.3.13 Object Pascal Format Strings</a> </h3>
 
 <p>Object Pascal format strings are described in the documentation of the
@@ -372,7 +372,7 @@ Free Pascal runtime library, section Format,
 </p>
 
 <a name="ycp_002dformat"></a>
-<a name="SEC265"></a>
+<a name="SEC271"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC265">15.3.14 YCP Format Strings</a> </h3>
 
 <p>YCP sformat strings are described in the libycp documentation
@@ -382,7 +382,7 @@ or a nonzero digit (&lsquo;<samp>1</samp>&rsquo; to &lsquo;<samp>9</samp>&rsquo;
 </p>
 
 <a name="tcl_002dformat"></a>
-<a name="SEC266"></a>
+<a name="SEC272"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC266">15.3.15 Tcl Format Strings</a> </h3>
 
 <p>Tcl format strings are described in the &lsquo;<tt>format.n</tt>&rsquo; manual page,
@@ -390,7 +390,7 @@ or a nonzero digit (&lsquo;<samp>1</samp>&rsquo; to &lsquo;<samp>9</samp>&rsquo;
 </p>
 
 <a name="perl_002dformat"></a>
-<a name="SEC267"></a>
+<a name="SEC273"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC267">15.3.16 Perl Format Strings</a> </h3>
 
 <p>There are two kinds format strings in Perl: those acceptable to the
@@ -409,7 +409,7 @@ of simple identifiers.
 </p>
 
 <a name="php_002dformat"></a>
-<a name="SEC268"></a>
+<a name="SEC274"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC268">15.3.17 PHP Format Strings</a> </h3>
 
 <p>PHP format strings are described in the documentation of the PHP function
@@ -418,7 +418,7 @@ of simple identifiers.
 </p>
 
 <a name="gcc_002dinternal_002dformat"></a>
-<a name="SEC269"></a>
+<a name="SEC275"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC269">15.3.18 GCC internal Format Strings</a> </h3>
 
 <p>These format strings are used inside the GCC sources.  In such a format
@@ -438,7 +438,7 @@ operator, &lsquo;<samp>V</samp>&rsquo; denotes a const/volatile qualifier.
 </p>
 
 <a name="gfc_002dinternal_002dformat"></a>
-<a name="SEC270"></a>
+<a name="SEC276"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC270">15.3.19 GFC internal Format Strings</a> </h3>
 
 <p>These format strings are used inside the GNU Fortran Compiler sources,
@@ -452,7 +452,7 @@ denote an integer, &lsquo;<samp>u</samp>&rsquo; denotes an unsigned integer.  &l
 </p>
 
 <a name="qt_002dformat"></a>
-<a name="SEC271"></a>
+<a name="SEC277"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC271">15.3.20 Qt Format Strings</a> </h3>
 
 <p>Qt format strings are described in the documentation of the QString class
@@ -462,7 +462,7 @@ directive cannot occur more than once in a format string.
 </p>
 
 <a name="qt_002dplural_002dformat"></a>
-<a name="SEC272"></a>
+<a name="SEC278"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC272">15.3.21 Qt Format Strings</a> </h3>
 
 <p>Qt format strings are described in the documentation of the QObject::tr method
@@ -471,7 +471,7 @@ In summary, the only allowed directive is &lsquo;<samp>%n</samp>&rsquo;.
 </p>
 
 <a name="kde_002dformat"></a>
-<a name="SEC273"></a>
+<a name="SEC279"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC273">15.3.22 KDE Format Strings</a> </h3>
 
 <p>KDE 4 format strings are defined as follows:
@@ -481,7 +481,7 @@ must occur as well, except possibly one of them.
 </p>
 
 <a name="kde_002dkuit_002dformat"></a>
-<a name="SEC274"></a>
+<a name="SEC280"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC274">15.3.23 KUIT Format Strings</a> </h3>
 
 <p>KUIT (KDE User Interface Text) is compatible with KDE 4 format strings,
@@ -495,7 +495,7 @@ with a &lsquo;<samp>filename</samp>&rsquo; tag, like &lsquo;<samp>&lt;filename&g
 </p>
 
 <a name="boost_002dformat"></a>
-<a name="SEC275"></a>
+<a name="SEC281"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC275">15.3.24 Boost Format Strings</a> </h3>
 
 <p>Boost format strings are described in the documentation of the
@@ -508,7 +508,7 @@ between percent signs, such as &lsquo;<samp>%1%</samp>&rsquo;.
 </p>
 
 <a name="lua_002dformat"></a>
-<a name="SEC276"></a>
+<a name="SEC282"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC276">15.3.25 Lua Format Strings</a> </h3>
 
 <p>Lua format strings are described in the Lua reference manual, section String Manipulation,
@@ -516,7 +516,7 @@ between percent signs, such as &lsquo;<samp>%1%</samp>&rsquo;.
 </p>
 
 <a name="javascript_002dformat"></a>
-<a name="SEC277"></a>
+<a name="SEC283"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC277">15.3.26 JavaScript Format Strings</a> </h3>
 
 <p>Although JavaScript specification itself does not define any format
@@ -533,7 +533,7 @@ object.
 
 
 <a name="Maintainers-for-other-Languages"></a>
-<a name="SEC278"></a>
+<a name="SEC284"></a>
 <h2 class="section"> <a href="gettext_toc.html#TOC278">15.4 The Maintainer's View</a> </h2>
 
 <p>For the maintainer, the general procedure differs from the C language
@@ -542,7 +542,7 @@ case:
 <ul>
 <li>
 If only a single programming language is used, the <code>XGETTEXT_OPTIONS</code>
-variable in &lsquo;<tt>po/Makevars</tt>&rsquo; (see section <a href="gettext_13.html#SEC222">&lsquo;<tt>Makevars</tt>&rsquo; in &lsquo;<tt>po/</tt>&rsquo;</a>) should be adjusted to
+variable in &lsquo;<tt>po/Makevars</tt>&rsquo; (see section <a href="gettext_13.html#SEC228">&lsquo;<tt>Makevars</tt>&rsquo; in &lsquo;<tt>po/</tt>&rsquo;</a>) should be adjusted to
 match the <code>xgettext</code> options for that particular programming language.
 If the package uses more than one programming language with <code>gettext</code>
 support, it becomes necessary to change the POT file construction rule
@@ -553,14 +553,14 @@ that language, and to combine the resulting files using <code>msgcat</code>.
 
 
 <a name="List-of-Programming-Languages"></a>
-<a name="SEC279"></a>
+<a name="SEC285"></a>
 <h2 class="section"> <a href="gettext_toc.html#TOC279">15.5 Individual Programming Languages</a> </h2>
 
 
 
 
 <a name="C"></a>
-<a name="SEC280"></a>
+<a name="SEC286"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC280">15.5.1 C, C++, Objective C</a> </h3>
 
 <dl compact="compact">
@@ -639,7 +639,7 @@ that language, and to combine the resulting files using <code>msgcat</code>.
 </p>
 
 <a name="sh"></a>
-<a name="SEC281"></a>
+<a name="SEC287"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC281">15.5.2 sh - Shell Script</a> </h3>
 
 <dl compact="compact">
@@ -664,20 +664,20 @@ that language, and to combine the resulting files using <code>msgcat</code>.
 </p>
 </dd>
 <dt> gettext/ngettext functions</dt>
-<dd><a name="IDX1070"></a>
-<a name="IDX1071"></a>
+<dd><a name="IDX1063"></a>
+<a name="IDX1064"></a>
 <p><code>gettext</code>, <code>ngettext</code> programs
 <br><code>eval_gettext</code>, <code>eval_ngettext</code>, <code>eval_pgettext</code>,
 <code>eval_npgettext</code> shell functions
 </p>
 </dd>
 <dt> textdomain</dt>
-<dd><a name="IDX1072"></a>
+<dd><a name="IDX1065"></a>
 <p>environment variable <code>TEXTDOMAIN</code>
 </p>
 </dd>
 <dt> bindtextdomain</dt>
-<dd><a name="IDX1073"></a>
+<dd><a name="IDX1066"></a>
 <p>environment variable <code>TEXTDOMAINDIR</code>
 </p>
 </dd>
@@ -715,7 +715,7 @@ that language, and to combine the resulting files using <code>msgcat</code>.
 
 
 <a name="Preparing-Shell-Scripts"></a>
-<a name="SEC282"></a>
+<a name="SEC288"></a>
 <h4 class="subsubsection"> <a href="gettext_toc.html#TOC282">15.5.2.1 Preparing Shell Scripts for Internationalization</a> </h4>
 
 <p>Preparing a shell script for internationalization is conceptually similar
@@ -731,10 +731,10 @@ Insert the line
 
 <p>near the top of the script.  <code>gettext.sh</code> is a shell function library
 that provides the functions
-<code>eval_gettext</code> (see <a href="#SEC287">Invoking the <code>eval_gettext</code> function</a>),
-<code>eval_ngettext</code> (see <a href="#SEC288">Invoking the <code>eval_ngettext</code> function</a>),
-<code>eval_pgettext</code> (see <a href="#SEC289">Invoking the <code>eval_pgettext</code> function</a>), and
-<code>eval_npgettext</code> (see <a href="#SEC290">Invoking the <code>eval_npgettext</code> function</a>).
+<code>eval_gettext</code> (see <a href="#SEC293">Invoking the <code>eval_gettext</code> function</a>),
+<code>eval_ngettext</code> (see <a href="#SEC294">Invoking the <code>eval_ngettext</code> function</a>),
+<code>eval_pgettext</code> (see <a href="#SEC295">Invoking the <code>eval_pgettext</code> function</a>), and
+<code>eval_npgettext</code> (see <a href="#SEC296">Invoking the <code>eval_npgettext</code> function</a>).
 You have to ensure that <code>gettext.sh</code> can be found in the <code>PATH</code>.
 </p>
 </li><li>
@@ -824,7 +824,7 @@ backquoting eats one level of backslashes). For example, assuming that
 
 
 <a name="gettext_002esh"></a>
-<a name="SEC283"></a>
+<a name="SEC289"></a>
 <h4 class="subsubsection"> <a href="gettext_toc.html#TOC283">15.5.2.2 Contents of <code>gettext.sh</code></a> </h4>
 
 <p><code>gettext.sh</code>, contained in the run-time package of GNU gettext, provides
@@ -836,21 +836,21 @@ The variable <code>echo</code> is set to a command that outputs its first argume
 and a newline, without interpreting backslashes in the argument string.
 
 </li><li> eval_gettext
-See <a href="#SEC287">Invoking the <code>eval_gettext</code> function</a>.
+See <a href="#SEC293">Invoking the <code>eval_gettext</code> function</a>.
 
 </li><li> eval_ngettext
-See <a href="#SEC288">Invoking the <code>eval_ngettext</code> function</a>.
+See <a href="#SEC294">Invoking the <code>eval_ngettext</code> function</a>.
 
 </li><li> eval_pgettext
-See <a href="#SEC289">Invoking the <code>eval_pgettext</code> function</a>.
+See <a href="#SEC295">Invoking the <code>eval_pgettext</code> function</a>.
 
 </li><li> eval_npgettext
-See <a href="#SEC290">Invoking the <code>eval_npgettext</code> function</a>.
+See <a href="#SEC296">Invoking the <code>eval_npgettext</code> function</a>.
 </li></ul>
 
 
 <a name="gettext-Invocation"></a>
-<a name="SEC284"></a>
+<a name="SEC290"></a>
 <h4 class="subsubsection"> <a href="gettext_toc.html#TOC284">15.5.2.3 Invoking the <code>gettext</code> program</a> </h4>
 
 
@@ -858,7 +858,7 @@ See <a href="#SEC290">Invoking the <code>eval_npgettext</code> function</a>.
 gettext [<var>option</var>] -s [<var>msgid</var>]...
 </pre></td></tr></table>
 
-<a name="IDX1074"></a>
+<a name="IDX1067"></a>
 <p>The <code>gettext</code> program displays the native language translation of a
 textual message.
 </p>
@@ -867,22 +867,22 @@ textual message.
 <dl compact="compact">
 <dt> &lsquo;<samp>-c <var>context</var></samp>&rsquo;</dt>
 <dt> &lsquo;<samp>--context=<var>context</var></samp>&rsquo;</dt>
-<dd><a name="IDX1075"></a>
-<a name="IDX1076"></a>
+<dd><a name="IDX1068"></a>
+<a name="IDX1069"></a>
 <p>Specify the context for the messages to be translated.
-See <a href="gettext_11.html#SEC191">Using contexts for solving ambiguities</a> for details.
+See <a href="gettext_11.html#SEC197">Using contexts for solving ambiguities</a> for details.
 </p>
 </dd>
 <dt> &lsquo;<samp>-d <var>textdomain</var></samp>&rsquo;</dt>
 <dt> &lsquo;<samp>--domain=<var>textdomain</var></samp>&rsquo;</dt>
-<dd><a name="IDX1077"></a>
-<a name="IDX1078"></a>
+<dd><a name="IDX1070"></a>
+<a name="IDX1071"></a>
 <p>Retrieve translated messages from <var>textdomain</var>.  Usually a <var>textdomain</var>
 corresponds to a package, a program, or a module of a program.
 </p>
 </dd>
 <dt> &lsquo;<samp>-e</samp>&rsquo;</dt>
-<dd><a name="IDX1079"></a>
+<dd><a name="IDX1072"></a>
 <p>Enable expansion of some escape sequences.  This option is for compatibility
 with the &lsquo;<samp>echo</samp>&rsquo; program or shell built-in.  The escape sequences
 &lsquo;<samp>\a</samp>&rsquo;, &lsquo;<samp>\b</samp>&rsquo;, &lsquo;<samp>\c</samp>&rsquo;, &lsquo;<samp>\f</samp>&rsquo;, &lsquo;<samp>\n</samp>&rsquo;, &lsquo;<samp>\r</samp>&rsquo;, &lsquo;<samp>\t</samp>&rsquo;,
@@ -891,28 +891,28 @@ interpreted like the System V &lsquo;<samp>echo</samp>&rsquo; program did.
 </p>
 </dd>
 <dt> &lsquo;<samp>-E</samp>&rsquo;</dt>
-<dd><a name="IDX1080"></a>
+<dd><a name="IDX1073"></a>
 <p>This option is only for compatibility with the &lsquo;<samp>echo</samp>&rsquo; program or shell
 built-in.  It has no effect.
 </p>
 </dd>
 <dt> &lsquo;<samp>-h</samp>&rsquo;</dt>
 <dt> &lsquo;<samp>--help</samp>&rsquo;</dt>
-<dd><a name="IDX1081"></a>
-<a name="IDX1082"></a>
+<dd><a name="IDX1074"></a>
+<a name="IDX1075"></a>
 <p>Display this help and exit.
 </p>
 </dd>
 <dt> &lsquo;<samp>-n</samp>&rsquo;</dt>
-<dd><a name="IDX1083"></a>
+<dd><a name="IDX1076"></a>
 <p>Suppress trailing newline.  By default, <code>gettext</code> adds a newline to
 the output.
 </p>
 </dd>
 <dt> &lsquo;<samp>-V</samp>&rsquo;</dt>
 <dt> &lsquo;<samp>--version</samp>&rsquo;</dt>
-<dd><a name="IDX1084"></a>
-<a name="IDX1085"></a>
+<dd><a name="IDX1077"></a>
+<a name="IDX1078"></a>
 <p>Output version information and exit.
 </p>
 </dd>
@@ -937,14 +937,14 @@ messages found in the selected catalog are translated.
 </p>
 
 <a name="ngettext-Invocation"></a>
-<a name="SEC285"></a>
+<a name="SEC291"></a>
 <h4 class="subsubsection"> <a href="gettext_toc.html#TOC285">15.5.2.4 Invoking the <code>ngettext</code> program</a> </h4>
 
 
 <table><tr><td>&nbsp;</td><td><pre class="example">ngettext [<var>option</var>] [<var>textdomain</var>] <var>msgid</var> <var>msgid-plural</var> <var>count</var>
 </pre></td></tr></table>
 
-<a name="IDX1086"></a>
+<a name="IDX1079"></a>
 <p>The <code>ngettext</code> program displays the native language translation of a
 textual message whose grammatical form depends on a number.
 </p>
@@ -953,22 +953,22 @@ textual message whose grammatical form depends on a number.
 <dl compact="compact">
 <dt> &lsquo;<samp>-c <var>context</var></samp>&rsquo;</dt>
 <dt> &lsquo;<samp>--context=<var>context</var></samp>&rsquo;</dt>
-<dd><a name="IDX1087"></a>
-<a name="IDX1088"></a>
+<dd><a name="IDX1080"></a>
+<a name="IDX1081"></a>
 <p>Specify the context for the messages to be translated.
-See <a href="gettext_11.html#SEC191">Using contexts for solving ambiguities</a> for details.
+See <a href="gettext_11.html#SEC197">Using contexts for solving ambiguities</a> for details.
 </p>
 </dd>
 <dt> &lsquo;<samp>-d <var>textdomain</var></samp>&rsquo;</dt>
 <dt> &lsquo;<samp>--domain=<var>textdomain</var></samp>&rsquo;</dt>
-<dd><a name="IDX1089"></a>
-<a name="IDX1090"></a>
+<dd><a name="IDX1082"></a>
+<a name="IDX1083"></a>
 <p>Retrieve translated messages from <var>textdomain</var>.  Usually a <var>textdomain</var>
 corresponds to a package, a program, or a module of a program.
 </p>
 </dd>
 <dt> &lsquo;<samp>-e</samp>&rsquo;</dt>
-<dd><a name="IDX1091"></a>
+<dd><a name="IDX1084"></a>
 <p>Enable expansion of some escape sequences.  This option is for compatibility
 with the &lsquo;<samp>gettext</samp>&rsquo; program.  The escape sequences
 &lsquo;<samp>\a</samp>&rsquo;, &lsquo;<samp>\b</samp>&rsquo;, &lsquo;<samp>\c</samp>&rsquo;, &lsquo;<samp>\f</samp>&rsquo;, &lsquo;<samp>\n</samp>&rsquo;, &lsquo;<samp>\r</samp>&rsquo;, &lsquo;<samp>\t</samp>&rsquo;,
@@ -977,22 +977,22 @@ interpreted like the System V &lsquo;<samp>echo</samp>&rsquo; program did.
 </p>
 </dd>
 <dt> &lsquo;<samp>-E</samp>&rsquo;</dt>
-<dd><a name="IDX1092"></a>
+<dd><a name="IDX1085"></a>
 <p>This option is only for compatibility with the &lsquo;<samp>gettext</samp>&rsquo; program.  It has
 no effect.
 </p>
 </dd>
 <dt> &lsquo;<samp>-h</samp>&rsquo;</dt>
 <dt> &lsquo;<samp>--help</samp>&rsquo;</dt>
-<dd><a name="IDX1093"></a>
-<a name="IDX1094"></a>
+<dd><a name="IDX1086"></a>
+<a name="IDX1087"></a>
 <p>Display this help and exit.
 </p>
 </dd>
 <dt> &lsquo;<samp>-V</samp>&rsquo;</dt>
 <dt> &lsquo;<samp>--version</samp>&rsquo;</dt>
-<dd><a name="IDX1095"></a>
-<a name="IDX1096"></a>
+<dd><a name="IDX1088"></a>
+<a name="IDX1089"></a>
 <p>Output version information and exit.
 </p>
 </dd>
@@ -1021,16 +1021,16 @@ environment variable <code>TEXTDOMAINDIR</code>.
 </p>
 
 <a name="envsubst-Invocation"></a>
-<a name="SEC286"></a>
+<a name="SEC292"></a>
 <h4 class="subsubsection"> <a href="gettext_toc.html#TOC286">15.5.2.5 Invoking the <code>envsubst</code> program</a> </h4>
 
 
 <table><tr><td>&nbsp;</td><td><pre class="example">envsubst [<var>option</var>] [<var>shell-format</var>]
 </pre></td></tr></table>
 
-<a name="IDX1097"></a>
-<a name="IDX1098"></a>
-<a name="IDX1099"></a>
+<a name="IDX1090"></a>
+<a name="IDX1091"></a>
+<a name="IDX1092"></a>
 <p>The <code>envsubst</code> program substitutes the values of environment variables.
 </p>
 <p><strong>Operation mode</strong>
@@ -1038,8 +1038,8 @@ environment variable <code>TEXTDOMAINDIR</code>.
 <dl compact="compact">
 <dt> &lsquo;<samp>-v</samp>&rsquo;</dt>
 <dt> &lsquo;<samp>--variables</samp>&rsquo;</dt>
-<dd><a name="IDX1100"></a>
-<a name="IDX1101"></a>
+<dd><a name="IDX1093"></a>
+<a name="IDX1094"></a>
 <p>Output the variables occurring in <var>shell-format</var>.
 </p>
 </dd>
@@ -1050,15 +1050,15 @@ environment variable <code>TEXTDOMAINDIR</code>.
 <dl compact="compact">
 <dt> &lsquo;<samp>-h</samp>&rsquo;</dt>
 <dt> &lsquo;<samp>--help</samp>&rsquo;</dt>
-<dd><a name="IDX1102"></a>
-<a name="IDX1103"></a>
+<dd><a name="IDX1095"></a>
+<a name="IDX1096"></a>
 <p>Display this help and exit.
 </p>
 </dd>
 <dt> &lsquo;<samp>-V</samp>&rsquo;</dt>
 <dt> &lsquo;<samp>--version</samp>&rsquo;</dt>
-<dd><a name="IDX1104"></a>
-<a name="IDX1105"></a>
+<dd><a name="IDX1097"></a>
+<a name="IDX1098"></a>
 <p>Output version information and exit.
 </p>
 </dd>
@@ -1083,26 +1083,26 @@ consists of the environment variables that are referenced in
 </p>
 
 <a name="eval_005fgettext-Invocation"></a>
-<a name="SEC287"></a>
+<a name="SEC293"></a>
 <h4 class="subsubsection"> <a href="gettext_toc.html#TOC287">15.5.2.6 Invoking the <code>eval_gettext</code> function</a> </h4>
 
 <table><tr><td>&nbsp;</td><td><pre class="example">eval_gettext <var>msgid</var>
 </pre></td></tr></table>
 
-<a name="IDX1106"></a>
+<a name="IDX1099"></a>
 <p>This function outputs the native language translation of a textual message,
 performing dollar-substitution on the result.  Note that only shell variables
 mentioned in <var>msgid</var> will be dollar-substituted in the result.
 </p>
 
 <a name="eval_005fngettext-Invocation"></a>
-<a name="SEC288"></a>
+<a name="SEC294"></a>
 <h4 class="subsubsection"> <a href="gettext_toc.html#TOC288">15.5.2.7 Invoking the <code>eval_ngettext</code> function</a> </h4>
 
 <table><tr><td>&nbsp;</td><td><pre class="example">eval_ngettext <var>msgid</var> <var>msgid-plural</var> <var>count</var>
 </pre></td></tr></table>
 
-<a name="IDX1107"></a>
+<a name="IDX1100"></a>
 <p>This function outputs the native language translation of a textual message
 whose grammatical form depends on a number, performing dollar-substitution
 on the result.  Note that only shell variables mentioned in <var>msgid</var> or
@@ -1110,36 +1110,36 @@ on the result.  Note that only shell variables mentioned in <var>msgid</var> or
 </p>
 
 <a name="eval_005fpgettext-Invocation"></a>
-<a name="SEC289"></a>
+<a name="SEC295"></a>
 <h4 class="subsubsection"> <a href="gettext_toc.html#TOC289">15.5.2.8 Invoking the <code>eval_pgettext</code> function</a> </h4>
 
 <table><tr><td>&nbsp;</td><td><pre class="example">eval_pgettext <var>msgctxt</var> <var>msgid</var>
 </pre></td></tr></table>
 
-<a name="IDX1108"></a>
+<a name="IDX1101"></a>
 <p>This function outputs the native language translation of a textual message
-in the given context <var>msgctxt</var> (see <a href="gettext_11.html#SEC191">Using contexts for solving ambiguities</a>), performing
+in the given context <var>msgctxt</var> (see <a href="gettext_11.html#SEC197">Using contexts for solving ambiguities</a>), performing
 dollar-substitution on the result.  Note that only shell variables mentioned
 in <var>msgid</var> will be dollar-substituted in the result.
 </p>
 
 <a name="eval_005fnpgettext-Invocation"></a>
-<a name="SEC290"></a>
+<a name="SEC296"></a>
 <h4 class="subsubsection"> <a href="gettext_toc.html#TOC290">15.5.2.9 Invoking the <code>eval_npgettext</code> function</a> </h4>
 
 <table><tr><td>&nbsp;</td><td><pre class="example">eval_npgettext <var>msgctxt</var> <var>msgid</var> <var>msgid-plural</var> <var>count</var>
 </pre></td></tr></table>
 
-<a name="IDX1109"></a>
+<a name="IDX1102"></a>
 <p>This function outputs the native language translation of a textual message
 whose grammatical form depends on a number in the given context <var>msgctxt</var>
-(see <a href="gettext_11.html#SEC191">Using contexts for solving ambiguities</a>), performing dollar-substitution on the result.  Note
+(see <a href="gettext_11.html#SEC197">Using contexts for solving ambiguities</a>), performing dollar-substitution on the result.  Note
 that only shell variables mentioned in <var>msgid</var> or <var>msgid-plural</var>
 will be dollar-substituted in the result.
 </p>
 
 <a name="bash"></a>
-<a name="SEC291"></a>
+<a name="SEC297"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC291">15.5.3 bash - Bourne-Again Shell Script</a> </h3>
 
 <p>GNU <code>bash</code> 2.0 or newer has a special shorthand for translating a
@@ -1179,7 +1179,7 @@ that don't have the <code>gettext()</code> function in libc.
 </p>
 
 <a name="Python"></a>
-<a name="SEC292"></a>
+<a name="SEC298"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC292">15.5.4 Python</a> </h3>
 
 <dl compact="compact">
@@ -1281,7 +1281,7 @@ verifies that the format string uses all supplied arguments.)
 
 
 <a name="Common-Lisp"></a>
-<a name="SEC293"></a>
+<a name="SEC299"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC293">15.5.5 GNU clisp - Common Lisp</a> </h3>
 
 <dl compact="compact">
@@ -1350,7 +1350,7 @@ verifies that the format string uses all supplied arguments.)
 </p>
 
 <a name="clisp-C"></a>
-<a name="SEC294"></a>
+<a name="SEC300"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC294">15.5.6 GNU clisp C sources</a> </h3>
 
 <dl compact="compact">
@@ -1419,7 +1419,7 @@ verifies that the format string uses all supplied arguments.)
 
 
 <a name="Emacs-Lisp"></a>
-<a name="SEC295"></a>
+<a name="SEC301"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC295">15.5.7 Emacs Lisp</a> </h3>
 
 <dl compact="compact">
@@ -1486,7 +1486,7 @@ verifies that the format string uses all supplied arguments.)
 
 
 <a name="librep"></a>
-<a name="SEC296"></a>
+<a name="SEC302"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC296">15.5.8 librep</a> </h3>
 
 <dl compact="compact">
@@ -1555,7 +1555,7 @@ verifies that the format string uses all supplied arguments.)
 </p>
 
 <a name="Scheme"></a>
-<a name="SEC297"></a>
+<a name="SEC303"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC297">15.5.9 GNU guile - Scheme</a> </h3>
 
 <dl compact="compact">
@@ -1624,7 +1624,7 @@ verifies that the format string uses all supplied arguments.)
 </p>
 
 <a name="Smalltalk"></a>
-<a name="SEC298"></a>
+<a name="SEC304"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC298">15.5.10 GNU Smalltalk</a> </h3>
 
 <dl compact="compact">
@@ -1696,7 +1696,7 @@ Example: <code>I18N Locale default messages domain: 'gettext' localeDirectory: /
 </p>
 
 <a name="Java"></a>
-<a name="SEC299"></a>
+<a name="SEC305"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC299">15.5.11 Java</a> </h3>
 
 <dl compact="compact">
@@ -1820,7 +1820,7 @@ a translation is missing, the <var>msgid</var> argument is returned unchanged.
 handling and the <code>pgettext</code> and <code>npgettext</code> for strings constraint
 to a particular context.
 </p>
-<a name="IDX1110"></a>
+<a name="IDX1103"></a>
 <p>To use this API, one needs the <code>libintl.jar</code> file which is part of
 the GNU gettext package and distributed under the LGPL.
 </p></li></ol>
@@ -1900,7 +1900,7 @@ than a class with a single-letter name.
 </p>
 
 <a name="C_0023"></a>
-<a name="SEC300"></a>
+<a name="SEC306"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC300">15.5.12 C#</a> </h3>
 
 <dl compact="compact">
@@ -2107,7 +2107,7 @@ unchanged.
 specific to a particular context, with plural handling, like the
 <code>npgettext</code> function in C.
 </p>
-<a name="IDX1111"></a>
+<a name="IDX1104"></a>
 <p>To use this API, one needs the <code>GNU.Gettext.dll</code> file which is part of
 the GNU gettext package and distributed under the LGPL.
 </p></li></ol>
@@ -2170,7 +2170,7 @@ with a single-letter name.
 </p>
 
 <a name="gawk"></a>
-<a name="SEC301"></a>
+<a name="SEC307"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC301">15.5.13 GNU awk</a> </h3>
 
 <dl compact="compact">
@@ -2243,7 +2243,7 @@ yourself.
 </p>
 
 <a name="Pascal"></a>
-<a name="SEC302"></a>
+<a name="SEC308"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC302">15.5.14 Pascal - Free Pascal Compiler</a> </h3>
 
 <dl compact="compact">
@@ -2319,7 +2319,7 @@ can be loaded using the <code>TranslateResourceStrings</code> function in the
 </p>
 
 <a name="wxWidgets"></a>
-<a name="SEC303"></a>
+<a name="SEC309"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC303">15.5.15 wxWidgets library</a> </h3>
 
 <dl compact="compact">
@@ -2388,7 +2388,7 @@ according to POSIX.
 
 
 <a name="YCP"></a>
-<a name="SEC304"></a>
+<a name="SEC310"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC304">15.5.16 YCP - YaST2 scripting language</a> </h3>
 
 <dl compact="compact">
@@ -2457,7 +2457,7 @@ according to POSIX.
 </p>
 
 <a name="Tcl"></a>
-<a name="SEC305"></a>
+<a name="SEC311"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC305">15.5.17 Tcl - Tk's scripting language</a> </h3>
 
 <dl compact="compact">
@@ -2539,7 +2539,7 @@ argument is given.
 </p>
 
 <a name="Perl"></a>
-<a name="SEC306"></a>
+<a name="SEC312"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC306">15.5.18 Perl</a> </h3>
 
 <dl compact="compact">
@@ -2653,7 +2653,7 @@ package is not installed on the target system.
 
 <p>An example is available in the &lsquo;<tt>examples</tt>&rsquo; directory: <code>hello-perl</code>.
 </p>
-<a name="IDX1112"></a>
+<a name="IDX1105"></a>
 
 <p>The <code>xgettext</code> parser backend for Perl differs significantly from
 the parser backends for other programming languages, just as Perl
@@ -2665,7 +2665,7 @@ worst probably being its imperfectness.
 
 
 <a name="General-Problems"></a>
-<a name="SEC307"></a>
+<a name="SEC313"></a>
 <h4 class="subsubsection"> <a href="gettext_toc.html#TOC307">15.5.18.1 General Problems Parsing Perl Code</a> </h4>
 
 <p>It is often heard that only Perl can parse Perl.  This is not true.
@@ -2815,7 +2815,7 @@ about such constructs.
 </p>
 
 <a name="Default-Keywords"></a>
-<a name="SEC308"></a>
+<a name="SEC314"></a>
 <h4 class="subsubsection"> <a href="gettext_toc.html#TOC308">15.5.18.2 Which keywords will xgettext look for?</a> </h4>
 
 <p>Unless you instruct <code>xgettext</code> otherwise by invoking it with one
@@ -2889,7 +2889,7 @@ argument will be extracted.
 
 
 <a name="Special-Keywords"></a>
-<a name="SEC309"></a>
+<a name="SEC315"></a>
 <h4 class="subsubsection"> <a href="gettext_toc.html#TOC309">15.5.18.3 How to Extract Hash Keys</a> </h4>
 
 <p>Translating messages at runtime is normally performed by looking up the
@@ -2929,7 +2929,7 @@ are <em>not</em> allowed, regardless of the <code>use utf8</code> pragma.
 </p>
 
 <a name="Quote_002dlike-Expressions"></a>
-<a name="SEC310"></a>
+<a name="SEC316"></a>
 <h4 class="subsubsection"> <a href="gettext_toc.html#TOC310">15.5.18.4 What are Strings And Quote-like Expressions?</a> </h4>
 
 <p>Perl offers a plethora of different string constructs.  Those that can
@@ -3006,7 +3006,7 @@ quotes or has no quotes at all, the string is interpolated.
 
 
 <a name="Interpolation-I"></a>
-<a name="SEC311"></a>
+<a name="SEC317"></a>
 <h4 class="subsubsection"> <a href="gettext_toc.html#TOC311">15.5.18.5 Invalid Uses Of String Interpolation</a> </h4>
 
 <p>Perl is capable of interpolating variables into strings.  This offers
@@ -3110,7 +3110,7 @@ well write what you mean.
 </p>
 
 <a name="Interpolation-II"></a>
-<a name="SEC312"></a>
+<a name="SEC318"></a>
 <h4 class="subsubsection"> <a href="gettext_toc.html#TOC312">15.5.18.6 Valid Uses Of String Interpolation</a> </h4>
 
 <p>Perl is often used to generate sources for other programming languages
@@ -3174,7 +3174,7 @@ s/$gettext{&quot;U. S. A.&quot;}/$gettext{&quot;U. S. A.&quot;} $gettext{&quot;(
 
 
 <a name="Parentheses"></a>
-<a name="SEC313"></a>
+<a name="SEC319"></a>
 <h4 class="subsubsection"> <a href="gettext_toc.html#TOC313">15.5.18.7 When To Use Parentheses</a> </h4>
 
 <p>In Perl, parentheses around function arguments are mostly optional.
@@ -3214,7 +3214,7 @@ print dngettext 'package', (&quot;one cake&quot;, &quot;several cakes&quot;, $n)
 
 
 <a name="Long-Lines"></a>
-<a name="SEC314"></a>
+<a name="SEC320"></a>
 <h4 class="subsubsection"> <a href="gettext_toc.html#TOC314">15.5.18.8 How To Grok with Long Lines</a> </h4>
 
 <p>The necessity of long messages can often lead to a cumbersome or
@@ -3268,7 +3268,7 @@ the resulting POT file.
 </p>
 
 <a name="Perl-Pitfalls"></a>
-<a name="SEC315"></a>
+<a name="SEC321"></a>
 <h4 class="subsubsection"> <a href="gettext_toc.html#TOC315">15.5.18.9 Bugs, Pitfalls, And Things That Do Not Work</a> </h4>
 
 <p>The foregoing sections should have proven that
@@ -3374,7 +3374,7 @@ get executed.  Most of the time you will happily get along with
 </p>
 
 <a name="PHP"></a>
-<a name="SEC316"></a>
+<a name="SEC322"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC316">15.5.19 PHP Hypertext Preprocessor</a> </h3>
 
 <dl compact="compact">
@@ -3444,7 +3444,7 @@ also <code>ngettext</code>, <code>dngettext</code>, <code>dcngettext</code>
 </p>
 
 <a name="Pike"></a>
-<a name="SEC317"></a>
+<a name="SEC323"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC317">15.5.20 Pike</a> </h3>
 
 <dl compact="compact">
@@ -3511,7 +3511,7 @@ also <code>ngettext</code>, <code>dngettext</code>, <code>dcngettext</code>
 
 
 <a name="GCC_002dsource"></a>
-<a name="SEC318"></a>
+<a name="SEC324"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC318">15.5.21 GNU Compiler Collection sources</a> </h3>
 
 <dl compact="compact">
@@ -3579,7 +3579,7 @@ also <code>ngettext</code>, <code>dngettext</code>, <code>dcngettext</code>
 
 
 <a name="Lua"></a>
-<a name="SEC319"></a>
+<a name="SEC325"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC319">15.5.22 Lua</a> </h3>
 
 <dl compact="compact">
@@ -3666,7 +3666,7 @@ appropriate one, and install it through
 
 
 <a name="JavaScript"></a>
-<a name="SEC320"></a>
+<a name="SEC326"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC320">15.5.23 JavaScript</a> </h3>
 
 <dl compact="compact">
@@ -3741,7 +3741,7 @@ appropriate one, and install it through
 
 
 <a name="Vala"></a>
-<a name="SEC321"></a>
+<a name="SEC327"></a>
 <h3 class="subsection"> <a href="gettext_toc.html#TOC321">15.5.24 Vala</a> </h3>
 
 <dl compact="compact">
@@ -3815,8 +3815,8 @@ appropriate one, and install it through
 
 
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC248" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="gettext_16.html#SEC322" title="Next chapter"> &gt;&gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#SEC254" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="gettext_16.html#SEC328" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -3824,12 +3824,12 @@ appropriate one, and install it through
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="gettext_toc.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="gettext_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="gettext_21.html#SEC370" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gettext_21.html#SEC376" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="gettext_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated by <em>Bruno Haible</em> on <em>May, 8 2019</em> using <a href="https://www.nongnu.org/texi2html/"><em>texi2html 1.78a</em></a>.
+  This document was generated by <em>Bruno Haible</em> on <em>May, 12 2019</em> using <a href="https://www.nongnu.org/texi2html/"><em>texi2html 1.78a</em></a>.
  </font>
  <br>
 

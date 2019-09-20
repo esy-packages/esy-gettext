@@ -74,7 +74,7 @@
 #line 1 "plural.y" /* yacc.c:338  */
 
 /* Expression parsing for plural form selection.
-   Copyright (C) 2000-2016 Free Software Foundation, Inc.
+   Copyright (C) 2000-2019 Free Software Foundation, Inc.
    Written by Ulrich Drepper <drepper@cygnus.com>, 2000.
 
    This program is free software: you can redistribute it and/or modify
@@ -89,15 +89,6 @@
 
    You should have received a copy of the GNU Lesser General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
-
-/* For bison < 2.0, the bison generated parser uses alloca.  AIX 3 forces us
-   to put this declaration at the beginning of the file.  The declaration in
-   bison's skeleton file comes too late.  This must come before <config.h>
-   because <config.h> may include arbitrary system headers.
-   This can go away once the AM_INTL_SUBDIR macro requires bison >= 2.0.  */
-#if defined _AIX && !defined __GNUC__
- #pragma alloca
-#endif
 
 #ifdef HAVE_CONFIG_H
 # include <config.h>
@@ -115,7 +106,7 @@
 #endif
 
 
-#line 119 "plural.c" /* yacc.c:338  */
+#line 110 "plural.c" /* yacc.c:338  */
 # ifndef YY_NULLPTR
 #  if defined __cplusplus
 #   if 201103L <= __cplusplus
@@ -172,13 +163,13 @@ extern int __gettextdebug;
 
 union YYSTYPE
 {
-#line 49 "plural.y" /* yacc.c:353  */
+#line 40 "plural.y" /* yacc.c:353  */
 
   unsigned long int num;
   enum expression_operator op;
   struct expression *exp;
 
-#line 182 "plural.c" /* yacc.c:353  */
+#line 173 "plural.c" /* yacc.c:353  */
 };
 
 typedef union YYSTYPE YYSTYPE;
@@ -193,7 +184,7 @@ int __gettextparse (struct parse_args *arg);
 #endif /* !YY__GETTEXT_PLURAL_H_INCLUDED  */
 
 /* Second part of user prologue.  */
-#line 55 "plural.y" /* yacc.c:355  */
+#line 46 "plural.y" /* yacc.c:355  */
 
 /* Prototypes for local functions.  */
 static int yylex (YYSTYPE *lval, struct parse_args *arg);
@@ -270,7 +261,7 @@ new_exp_3 (enum expression_operator op, struct expression *bexp,
 }
 
 
-#line 274 "plural.c" /* yacc.c:355  */
+#line 265 "plural.c" /* yacc.c:355  */
 
 #ifdef short
 # undef short
@@ -559,8 +550,8 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,   152,   152,   160,   164,   168,   172,   176,   180,   184,
-     188,   192,   196,   201
+       0,   143,   143,   151,   155,   159,   163,   167,   171,   175,
+     179,   183,   187,   192
 };
 #endif
 
@@ -1352,106 +1343,106 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 153 "plural.y" /* yacc.c:1645  */
+#line 144 "plural.y" /* yacc.c:1645  */
     {
 	    if ((yyvsp[0].exp) == NULL)
 	      YYABORT;
 	    arg->res = (yyvsp[0].exp);
 	  }
-#line 1362 "plural.c" /* yacc.c:1645  */
+#line 1353 "plural.c" /* yacc.c:1645  */
     break;
 
   case 3:
-#line 161 "plural.y" /* yacc.c:1645  */
+#line 152 "plural.y" /* yacc.c:1645  */
     {
 	    (yyval.exp) = new_exp_3 (qmop, (yyvsp[-4].exp), (yyvsp[-2].exp), (yyvsp[0].exp));
 	  }
-#line 1370 "plural.c" /* yacc.c:1645  */
+#line 1361 "plural.c" /* yacc.c:1645  */
     break;
 
   case 4:
-#line 165 "plural.y" /* yacc.c:1645  */
+#line 156 "plural.y" /* yacc.c:1645  */
     {
 	    (yyval.exp) = new_exp_2 (lor, (yyvsp[-2].exp), (yyvsp[0].exp));
 	  }
-#line 1378 "plural.c" /* yacc.c:1645  */
+#line 1369 "plural.c" /* yacc.c:1645  */
     break;
 
   case 5:
-#line 169 "plural.y" /* yacc.c:1645  */
+#line 160 "plural.y" /* yacc.c:1645  */
     {
 	    (yyval.exp) = new_exp_2 (land, (yyvsp[-2].exp), (yyvsp[0].exp));
 	  }
-#line 1386 "plural.c" /* yacc.c:1645  */
+#line 1377 "plural.c" /* yacc.c:1645  */
     break;
 
   case 6:
-#line 173 "plural.y" /* yacc.c:1645  */
+#line 164 "plural.y" /* yacc.c:1645  */
     {
 	    (yyval.exp) = new_exp_2 ((yyvsp[-1].op), (yyvsp[-2].exp), (yyvsp[0].exp));
 	  }
-#line 1394 "plural.c" /* yacc.c:1645  */
+#line 1385 "plural.c" /* yacc.c:1645  */
     break;
 
   case 7:
-#line 177 "plural.y" /* yacc.c:1645  */
+#line 168 "plural.y" /* yacc.c:1645  */
     {
 	    (yyval.exp) = new_exp_2 ((yyvsp[-1].op), (yyvsp[-2].exp), (yyvsp[0].exp));
 	  }
-#line 1402 "plural.c" /* yacc.c:1645  */
+#line 1393 "plural.c" /* yacc.c:1645  */
     break;
 
   case 8:
-#line 181 "plural.y" /* yacc.c:1645  */
+#line 172 "plural.y" /* yacc.c:1645  */
     {
 	    (yyval.exp) = new_exp_2 ((yyvsp[-1].op), (yyvsp[-2].exp), (yyvsp[0].exp));
 	  }
-#line 1410 "plural.c" /* yacc.c:1645  */
+#line 1401 "plural.c" /* yacc.c:1645  */
     break;
 
   case 9:
-#line 185 "plural.y" /* yacc.c:1645  */
+#line 176 "plural.y" /* yacc.c:1645  */
     {
 	    (yyval.exp) = new_exp_2 ((yyvsp[-1].op), (yyvsp[-2].exp), (yyvsp[0].exp));
 	  }
-#line 1418 "plural.c" /* yacc.c:1645  */
+#line 1409 "plural.c" /* yacc.c:1645  */
     break;
 
   case 10:
-#line 189 "plural.y" /* yacc.c:1645  */
+#line 180 "plural.y" /* yacc.c:1645  */
     {
 	    (yyval.exp) = new_exp_1 (lnot, (yyvsp[0].exp));
 	  }
-#line 1426 "plural.c" /* yacc.c:1645  */
+#line 1417 "plural.c" /* yacc.c:1645  */
     break;
 
   case 11:
-#line 193 "plural.y" /* yacc.c:1645  */
+#line 184 "plural.y" /* yacc.c:1645  */
     {
 	    (yyval.exp) = new_exp_0 (var);
 	  }
-#line 1434 "plural.c" /* yacc.c:1645  */
+#line 1425 "plural.c" /* yacc.c:1645  */
     break;
 
   case 12:
-#line 197 "plural.y" /* yacc.c:1645  */
+#line 188 "plural.y" /* yacc.c:1645  */
     {
 	    if (((yyval.exp) = new_exp_0 (num)) != NULL)
 	      (yyval.exp)->val.num = (yyvsp[0].num);
 	  }
-#line 1443 "plural.c" /* yacc.c:1645  */
+#line 1434 "plural.c" /* yacc.c:1645  */
     break;
 
   case 13:
-#line 202 "plural.y" /* yacc.c:1645  */
+#line 193 "plural.y" /* yacc.c:1645  */
     {
 	    (yyval.exp) = (yyvsp[-1].exp);
 	  }
-#line 1451 "plural.c" /* yacc.c:1645  */
+#line 1442 "plural.c" /* yacc.c:1645  */
     break;
 
 
-#line 1455 "plural.c" /* yacc.c:1645  */
+#line 1446 "plural.c" /* yacc.c:1645  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1678,7 +1669,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 207 "plural.y" /* yacc.c:1903  */
+#line 198 "plural.y" /* yacc.c:1903  */
 
 
 void

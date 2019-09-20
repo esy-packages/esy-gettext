@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: hello-perl 0.20-rc1\n"
-"Report-Msgid-Bugs-To: bug-gnu-gettext@gnu.org\n"
+"Report-Msgid-Bugs-To: bug-gettext@gnu.org\n"
 "PO-Revision-Date: 2019-04-14 10:37-0300\n"
 "Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <ldpbr-translation@lists.sourceforge."
