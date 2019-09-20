@@ -1,6 +1,6 @@
 {
   "name": "esy-gettext",
-  "version": "0.20.000",
+  "version": "0.20.1000",
   "description": "gettext packaged for esy",
   "esy": {
     "buildsInSource": true,
