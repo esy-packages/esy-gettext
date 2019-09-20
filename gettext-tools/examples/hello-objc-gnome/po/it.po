@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: hello-objc-gnome 0.19.4.73\n"
-"Report-Msgid-Bugs-To: bug-gnu-gettext@gnu.org\n"
+"Report-Msgid-Bugs-To: bug-gettext@gnu.org\n"
 "PO-Revision-Date: 2015-08-05 12:18+0100\n"
 "Last-Translator: Marco Colombo <m.colombo@ed.ac.uk>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"

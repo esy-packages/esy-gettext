@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on May, 8 2019 by texi2html 1.78a -->
+<!-- Created on May, 12 2019 by texi2html 1.78a -->
 <!--
 Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -43,7 +43,7 @@ ul.toc {list-style: none}
 
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="gettext_3.html#SEC16" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="gettext_5.html#SEC28" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left">[<a href="gettext_5.html#SEC34" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -51,7 +51,7 @@ ul.toc {list-style: none}
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="gettext_toc.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="gettext_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="gettext_21.html#SEC370" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gettext_21.html#SEC376" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="gettext_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
@@ -77,7 +77,7 @@ needing translation.
 
 <p>Presuming that your set of programs, or package, has been adjusted
 so all needed GNU <code>gettext</code> files are available, and your
-&lsquo;<tt>Makefile</tt>&rsquo; files are adjusted (see section <a href="gettext_13.html#SEC215">The Maintainer's View</a>), each C module
+&lsquo;<tt>Makefile</tt>&rsquo; files are adjusted (see section <a href="gettext_13.html#SEC221">The Maintainer's View</a>), each C module
 having translated C strings should contain the line:
 </p>
 <a name="IDX110"></a>
@@ -204,12 +204,17 @@ Split at paragraphs.
 Use format strings instead of string concatenation.
 
 </li><li>
+Use placeholders in format strings instead of embedded URLs.
+
+</li><li>
 Avoid unusual markup and unusual control characters.
 </li></ul>
 
 <p>Let's look at some examples of these guidelines.
 </p>
-<a name="IDX120"></a>
+<a name="SEC21"></a>
+<h3 class="subheading"> Decent English style </h3>
+
 <p>Translatable strings should be in good English style.  If slang language
 with abbreviations and shortcuts is used, often translators will not
 understand the message and will produce very inappropriate translations.
@@ -228,11 +233,13 @@ attempting to set something on fire? Does it mean &quot;The given object does
 not match the template&quot;? Does it mean &quot;The template does not fit for any
 of the objects&quot;?
 </p>
-<a name="IDX121"></a>
+<a name="IDX120"></a>
 <p>In both cases, adding more words to the message will help both the
 translator and the English speaking user.
 </p>
-<a name="IDX122"></a>
+<a name="SEC22"></a>
+<h3 class="subheading"> Entire sentences </h3>
+
 <p>Translatable strings should be entire sentences.  It is often not possible
 to translate single verbs or adjectives in a substitutable way.
 </p>
@@ -292,7 +299,9 @@ in other places as well, you will do a favour to the translator by not
 merging the two.  (Identical messages occurring in several places are
 combined by xgettext, so the translator has to handle them once only.)
 </p>
-<a name="IDX123"></a>
+<a name="SEC23"></a>
+<h3 class="subheading"> Split at paragraphs </h3>
+
 <p>Translatable strings should be limited to one paragraph; don't let a
 single message be longer than ten lines.  The reason is that when the
 translatable string changes, the translator is faced with the task of
@@ -301,7 +310,7 @@ have changed in the English string, but the translator doesn't see that
 (with the current translation tools), therefore she has to proofread
 the entire message.
 </p>
-<a name="IDX124"></a>
+<a name="IDX121"></a>
 <p>Many GNU programs have a &lsquo;<samp>--help</samp>&rsquo; output that extends over several
 screen pages.  It is a courtesy towards the translators to split such a
 message into several ones of five to ten lines each.  While doing that,
@@ -310,8 +319,9 @@ such as the input options, the output options, and the informative
 output options.  This will help every user to find the option he is
 looking for.
 </p>
-<a name="IDX125"></a>
-<a name="IDX126"></a>
+<a name="SEC24"></a>
+<h3 class="subheading"> No string concatenation </h3>
+
 <p>Hardcoded string concatenation is sometimes used to construct English
 strings:
 </p>
@@ -330,7 +340,7 @@ to use a format string:
 <table><tr><td>&nbsp;</td><td><pre class="example">sprintf (s, &quot;Replace %s with %s?&quot;, object1, object2);
 </pre></td></tr></table>
 
-<a name="IDX127"></a>
+<a name="IDX122"></a>
 <p>A similar case is compile time concatenation of strings.  The ISO C 99
 include file <code>&lt;inttypes.h&gt;</code> contains a macro <code>PRId64</code> that
 can be used as a formatting directive for outputting an &lsquo;<samp>int64_t</samp>&rsquo;
@@ -368,8 +378,8 @@ of 100 is safe, because all available hardware integer types are limited to
 128 bits, and to print a 128 bit integer one needs at most 54 characters,
 regardless whether in decimal, octal or hexadecimal.
 </p>
-<a name="IDX128"></a>
-<a name="IDX129"></a>
+<a name="IDX123"></a>
+<a name="IDX124"></a>
 <p>All this applies to other programming languages as well.  For example, in
 Java and C#, string concatenation is very frequently used, because it is a
 compiler built-in operator.  Like in C, in Java, you would change
@@ -395,8 +405,38 @@ compiler built-in operator.  Like in C, in Java, you would change
     String.Format(&quot;Replace {0} with {1}?&quot;, object1, object2));
 </pre></td></tr></table>
 
-<a name="IDX130"></a>
-<a name="IDX131"></a>
+<a name="SEC25"></a>
+<h3 class="subheading"> No embedded URLs </h3>
+
+<p>It is good to not embed URLs in translatable strings, for several reasons:
+</p><ul>
+<li>
+It avoids possible mistakes during copy and paste.
+</li><li>
+Translators cannot translate the URLs or, by mistake, use the URLs from
+other packages that are present in their compendium.
+</li><li>
+When the URLs change, translators don't need to revisit the translation
+of the string.
+</li></ul>
+
+<p>The same holds for email addresses.
+</p>
+<p>So, you would change
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">fputs (_(&quot;GNU GPL version 3 &lt;https://gnu.org/licenses/gpl.html&gt;\n&quot;),
+       stream);
+</pre></td></tr></table>
+
+<p>to
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">fprintf (stream, _(&quot;GNU GPL version 3 &lt;%s&gt;\n&quot;),
+         &quot;https://gnu.org/licenses/gpl.html&quot;);
+</pre></td></tr></table>
+
+<a name="SEC26"></a>
+<h3 class="subheading"> No unusual markup </h3>
+
 <p>Unusual markup or control characters should not be used in translatable
 strings.  Translators will likely not understand the particular meaning
 of the markup or control characters.
@@ -423,7 +463,7 @@ don't verify that the translations are well-formed HTML.
 </p>
 
 <a name="Mark-Keywords"></a>
-<a name="SEC21"></a>
+<a name="SEC27"></a>
 <h2 class="section"> <a href="gettext_toc.html#TOC21">4.4 How Marks Appear in Sources</a> </h2>
 
 <p>All strings requiring translation should be marked in the C sources.  Marking
@@ -446,7 +486,7 @@ return the proper translation, as far as possible or wanted, for the
 argument string.  Most localizable strings are found in executable
 positions, that is, attached to variables or given as parameters to
 functions.  But this is not universal usage, and some translatable
-strings appear in structured initializations.  See section <a href="#SEC24">Special Cases of Translatable Strings</a>.
+strings appear in structured initializations.  See section <a href="#SEC30">Special Cases of Translatable Strings</a>.
 </p>
 <p>The second goal of the marking operation is to help <code>xgettext</code>
 at properly extracting all translatable strings when it scans a set
@@ -465,7 +505,7 @@ are internationalized.  Further, a long keyword has the disadvantage
 of using more horizontal space, forcing more indentation work on
 sources for those trying to keep them within 79 or 80 columns.
 </p>
-<a name="IDX132"></a>
+<a name="IDX125"></a>
 <p>Many packages use &lsquo;<samp>_</samp>&rsquo; (a simple underline) as a keyword,
 and write &lsquo;<samp>_(&quot;Translatable string&quot;)</samp>&rsquo; instead of &lsquo;<samp>gettext
 (&quot;Translatable string&quot;)</samp>&rsquo;.  Further, the coding rule, from GNU standards,
@@ -491,7 +531,7 @@ the marked argument position depend on the total number of arguments of
 the function call; this is useful in C++.  All this is achieved using
 <code>xgettext</code>'s &lsquo;<samp>--keyword</samp>&rsquo; option.  How to pass such an option
 to <code>xgettext</code>, assuming that <code>gettextize</code> is used, is described
-in <a href="gettext_13.html#SEC222">&lsquo;<tt>Makevars</tt>&rsquo; in &lsquo;<tt>po/</tt>&rsquo;</a> and <a href="gettext_13.html#SEC237">AM_XGETTEXT_OPTION in &lsquo;<tt>po.m4</tt>&rsquo;</a>.
+in <a href="gettext_13.html#SEC228">&lsquo;<tt>Makevars</tt>&rsquo; in &lsquo;<tt>po/</tt>&rsquo;</a> and <a href="gettext_13.html#SEC243">AM_XGETTEXT_OPTION in &lsquo;<tt>po.m4</tt>&rsquo;</a>.
 </p>
 <p>Note also that long strings can be split across lines, into multiple
 adjacent string tokens.  Automatic string concatenation is performed
@@ -508,7 +548,7 @@ in English, it's customary to put a space before a colon.
 </p>
 
 <a name="Marking"></a>
-<a name="SEC22"></a>
+<a name="SEC28"></a>
 <h2 class="section"> <a href="gettext_toc.html#TOC22">4.5 Marking Translatable Strings</a> </h2>
 
 <p>In PO mode, one set of features is meant more for the programmer than
@@ -522,7 +562,7 @@ like translators, a tool letting them work at marking translatable
 strings in the program sources, while simultaneously producing a set of
 translation in some language, for the package being internationalized.
 </p>
-<a name="IDX133"></a>
+<a name="IDX126"></a>
 <p>The set of program sources, targeted by the PO mode commands describe
 here, should have an Emacs tags table constructed for your project,
 prior to using these PO file commands.  This is easy to do.  In any
@@ -538,7 +578,7 @@ explore all said files and create a &lsquo;<tt>TAGS</tt>&rsquo; file in your roo
 directory, somewhat summarizing the contents using a special file
 format Emacs can understand.
 </p>
-<a name="IDX134"></a>
+<a name="IDX127"></a>
 <p>For packages following the GNU coding standards, there is
 a make goal <code>tags</code> or <code>TAGS</code> which constructs the tag files in
 all directories and for all files containing source code.
@@ -553,18 +593,18 @@ fill in while you mark strings as translatable in your program sources.
 </p>
 <dl compact="compact">
 <dt> <kbd>,</kbd></dt>
-<dd><a name="IDX135"></a>
+<dd><a name="IDX128"></a>
 <p>Search through program sources for a string which looks like a
 candidate for translation (<code>po-tags-search</code>).
 </p>
 </dd>
 <dt> <kbd>M-,</kbd></dt>
-<dd><a name="IDX136"></a>
+<dd><a name="IDX129"></a>
 <p>Mark the last string found with &lsquo;<samp>_()</samp>&rsquo; (<code>po-mark-translatable</code>).
 </p>
 </dd>
 <dt> <kbd>M-.</kbd></dt>
-<dd><a name="IDX137"></a>
+<dd><a name="IDX130"></a>
 <p>Mark the last string found with a keyword taken from a set of possible
 keywords.  This command with a prefix allows some management of these
 keywords (<code>po-select-mark-and-mark</code>).
@@ -572,7 +612,7 @@ keywords (<code>po-select-mark-and-mark</code>).
 </dd>
 </dl>
 
-<a name="IDX138"></a>
+<a name="IDX131"></a>
 <p>The <kbd>,</kbd> (<code>po-tags-search</code>) command searches for the next
 occurrence of a string which looks like a possible candidate for
 translation, and displays the program source in another Emacs window,
@@ -614,8 +654,8 @@ independent <kbd>,</kbd> search sequence.  However, as implemented, the
 prefix) might also reinitialize the regular Emacs tags searching to the
 first tags file, this reinitialization might be considered spurious.
 </p>
-<a name="IDX139"></a>
-<a name="IDX140"></a>
+<a name="IDX132"></a>
+<a name="IDX133"></a>
 <p>The <kbd>M-,</kbd> (<code>po-mark-translatable</code>) command will mark the
 recently found string with the &lsquo;<samp>_</samp>&rsquo; keyword.  The <kbd>M-.</kbd>
 (<code>po-select-mark-and-mark</code>) command will request that you type
@@ -666,7 +706,7 @@ prefer &lsquo;<samp>_</samp>&rsquo;, as this one is already built in the <kbd>M-
 </p>
 
 <a name="c_002dformat-Flag"></a>
-<a name="SEC23"></a>
+<a name="SEC29"></a>
 <h2 class="section"> <a href="gettext_toc.html#TOC23">4.6 Special Comments preceding Keywords</a> </h2>
 
 
@@ -715,8 +755,8 @@ thinks might be a format string.  There is no absolute rule for this,
 only a heuristic.  In the &lsquo;<tt>.po</tt>&rsquo; file the entry is marked using the
 <code>c-format</code> flag in the <code>#,</code> comment line (see section <a href="gettext_3.html#SEC16">The Format of PO Files</a>).
 </p>
-<a name="IDX141"></a>
-<a name="IDX142"></a>
+<a name="IDX134"></a>
+<a name="IDX135"></a>
 <p>The careful reader now might say that this again can cause problems.
 The heuristic might guess it wrong.  This is true and therefore
 <code>xgettext</code> knows about a special kind of comment which lets
@@ -747,12 +787,12 @@ to use must contain the string <code>xgettext:no-c-format</code>.
 </p>
 <p>If a string is marked with <code>c-format</code> and this is not correct the
 user can find out who is responsible for the decision.  See
-<a href="gettext_5.html#SEC29">Invoking the <code>xgettext</code> Program</a> to see how the <code>--debug</code> option can be
+<a href="gettext_5.html#SEC35">Invoking the <code>xgettext</code> Program</a> to see how the <code>--debug</code> option can be
 used for solving this problem.
 </p>
 
 <a name="Special-cases"></a>
-<a name="SEC24"></a>
+<a name="SEC30"></a>
 <h2 class="section"> <a href="gettext_toc.html#TOC24">4.7 Special Cases of Translatable Strings</a> </h2>
 
 <p>The attentive reader might now point out that it is not always possible
@@ -777,7 +817,7 @@ Consider the following case:
 <p>While it is no problem to mark the string <code>&quot;a default message&quot;</code> it
 is not possible to mark the string initializers for <code>messages</code>.
 What is to be done?  We have to fulfill two tasks.  First we have to mark the
-strings so that the <code>xgettext</code> program (see section <a href="gettext_5.html#SEC29">Invoking the <code>xgettext</code> Program</a>)
+strings so that the <code>xgettext</code> program (see section <a href="gettext_5.html#SEC35">Invoking the <code>xgettext</code> Program</a>)
 can find them, and second we have to translate the string at runtime
 before printing them.
 </p>
@@ -804,7 +844,7 @@ from the array.  So one solution can look like this:
 
 <p>Please convince yourself that the string which is written by
 <code>fputs</code> is translated in any case.  How to get <code>xgettext</code> know
-the additional keyword <code>gettext_noop</code> is explained in <a href="gettext_5.html#SEC29">Invoking the <code>xgettext</code> Program</a>.
+the additional keyword <code>gettext_noop</code> is explained in <a href="gettext_5.html#SEC35">Invoking the <code>xgettext</code> Program</a>.
 </p>
 <p>The above is of course not the only solution.  You could also come along
 with the following one:
@@ -837,7 +877,7 @@ use this second method in this situation.
 </p>
 
 <a name="Bug-Report-Address"></a>
-<a name="SEC25"></a>
+<a name="SEC31"></a>
 <h2 class="section"> <a href="gettext_toc.html#TOC25">4.8 Letting Users Report Translation Bugs</a> </h2>
 
 <p>Code sometimes has bugs, but translations sometimes have bugs too.  The
@@ -884,7 +924,7 @@ msgstr &quot;&quot;
 
 
 <a name="Names"></a>
-<a name="SEC26"></a>
+<a name="SEC32"></a>
 <h2 class="section"> <a href="gettext_toc.html#TOC26">4.9 Marking Proper Names for Translation</a> </h2>
 
 <p>Should names of persons, cities, locations etc. be marked for translation
@@ -966,7 +1006,7 @@ idea to test your translation before submitting it.
 </p>
 
 <a name="Libraries"></a>
-<a name="SEC27"></a>
+<a name="SEC33"></a>
 <h2 class="section"> <a href="gettext_toc.html#TOC27">4.10 Preparing Library Sources</a> </h2>
 
 <p>When you are preparing a library, not a program, for the use of
@@ -1059,7 +1099,7 @@ Similarly, the <code>dngettext</code> function should be used in place of the
 
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#SEC17" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="gettext_5.html#SEC28" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left">[<a href="gettext_5.html#SEC34" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -1067,12 +1107,12 @@ Similarly, the <code>dngettext</code> function should be used in place of the
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="gettext_toc.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="gettext_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="gettext_21.html#SEC370" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gettext_21.html#SEC376" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="gettext_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated by <em>Bruno Haible</em> on <em>May, 8 2019</em> using <a href="https://www.nongnu.org/texi2html/"><em>texi2html 1.78a</em></a>.
+  This document was generated by <em>Bruno Haible</em> on <em>May, 12 2019</em> using <a href="https://www.nongnu.org/texi2html/"><em>texi2html 1.78a</em></a>.
  </font>
  <br>
 

@@ -16,7 +16,7 @@ msgstr ""
 #, c-format, no-wrap
 msgid ""
 "Copyright (C) %s Free Software Foundation, Inc.\n"
-"License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>\n"
+"License GPLv3+: GNU GPL version 3 or later <%s>\n"
 "This is free software: you are free to change and redistribute it.\n"
 "There is NO WARRANTY, to the extent permitted by law.\n"
 msgstr ""
@@ -423,7 +423,10 @@ msgstr ""
 msgid "  -V, --version               output version information and exit\n"
 msgstr ""
 
-msgid "Report bugs to <bug-gnu-gettext@gnu.org>.\n"
+#, c-format
+msgid ""
+"Report bugs in the bug tracker at <%s>\n"
+"or by email to <%s>.\n"
 msgstr ""
 
 msgid "this file may not contain domain directives"

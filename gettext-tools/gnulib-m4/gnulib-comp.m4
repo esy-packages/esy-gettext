@@ -763,7 +763,7 @@ AC_DEFUN([gl_INIT],
   AC_SUBST([GNULIB_GL_UNISTD_H_GETOPT])
   gl_FUNC_GETPROGNAME
   dnl you must add AM_GNU_GETTEXT([external]) or similar to configure.ac.
-  AM_GNU_GETTEXT_VERSION([0.18.1])
+  AM_GNU_GETTEXT_VERSION([0.20])
   AC_SUBST([LIBINTL])
   AC_SUBST([LTLIBINTL])
   gl_GETTIME
@@ -2379,8 +2379,6 @@ AC_DEFUN([gl_FILE_LIST], [
   m4/gettext.m4
   m4/gettime.m4
   m4/gettimeofday.m4
-  m4/glibc2.m4
-  m4/glibc21.m4
   m4/gnulib-common.m4
   m4/host-cpu-c-abi.m4
   m4/iconv.m4
@@ -2389,12 +2387,8 @@ AC_DEFUN([gl_FILE_LIST], [
   m4/include_next.m4
   m4/inet_pton.m4
   m4/inline.m4
-  m4/intdiv0.m4
   m4/intl-thread-locale.m4
-  m4/intl.m4
-  m4/intldir.m4
   m4/intlmacosx.m4
-  m4/intmax.m4
   m4/intmax_t.m4
   m4/inttypes-pri.m4
   m4/inttypes.m4
@@ -2477,7 +2471,6 @@ AC_DEFUN([gl_FILE_LIST], [
   m4/po.m4
   m4/posix_spawn.m4
   m4/pow.m4
-  m4/printf-posix.m4
   m4/printf.m4
   m4/progtest.m4
   m4/pthread_rwlock_rdlock.m4
@@ -2557,7 +2550,6 @@ AC_DEFUN([gl_FILE_LIST], [
   m4/timespec.m4
   m4/tls.m4
   m4/tmpdir.m4
-  m4/uintmax_t.m4
   m4/ungetc.m4
   m4/unionwait.m4
   m4/unistd-safer.m4
@@ -2570,7 +2562,6 @@ AC_DEFUN([gl_FILE_LIST], [
   m4/utimes.m4
   m4/vasnprintf.m4
   m4/vasprintf.m4
-  m4/visibility.m4
   m4/vsnprintf.m4
   m4/wait-process.m4
   m4/waitpid.m4

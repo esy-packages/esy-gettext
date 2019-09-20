@@ -2125,7 +2125,7 @@ libgnuintl_la_DEPENDENCIES = $(WOE32_LIBADD)
 # libtool documentation, section "Library interface versions".
 LTV_CURRENT = 9
 LTV_REVISION = 6
-LTV_AGE = 2
+LTV_AGE = 1
 
 # How to build libintl.la and libgnuintl.la.
 OTHER_LDFLAGS = \
@@ -2367,9 +2367,9 @@ maintainer-clean-generic:
 	-rm -f plural.c
 	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
 	-test -z "$(MAINTAINERCLEANFILES)" || rm -f $(MAINTAINERCLEANFILES)
-@PACKAGE_IS_GETTEXT_TOOLS_FALSE@@PRELOADABLE_LIBINTL_FALSE@@USE_INCLUDED_LIBINTL_FALSE@uninstall-local:
 @PRELOADABLE_LIBINTL_FALSE@@USE_INCLUDED_LIBINTL_FALSE@install-exec-local:
 @PACKAGE_IS_GETTEXT_TOOLS_FALSE@@USE_INCLUDED_LIBINTL_FALSE@install-data-local:
+@PACKAGE_IS_GETTEXT_TOOLS_FALSE@@PRELOADABLE_LIBINTL_FALSE@@USE_INCLUDED_LIBINTL_FALSE@uninstall-local:
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \

@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on May, 8 2019 by texi2html 1.78a -->
+<!-- Created on May, 12 2019 by texi2html 1.78a -->
 <!--
 Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -51,7 +51,7 @@ ul.toc {list-style: none}
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="gettext_toc.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="gettext_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="gettext_21.html#SEC370" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gettext_21.html#SEC376" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="gettext_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
@@ -152,7 +152,7 @@ can judge if the translation requires further modification, or is
 acceptable as is.  Once satisfied with the translation, she then removes
 this <code>fuzzy</code> attribute.  The <code>msgmerge</code> program inserts this
 when it combined the <code>msgid</code> and <code>msgstr</code> entries after fuzzy
-search only.  See section <a href="gettext_8.html#SEC65">Fuzzy Entries</a>.
+search only.  See section <a href="gettext_8.html#SEC71">Fuzzy Entries</a>.
 </p>
 </dd>
 <dt> <code>c-format</code></dt>
@@ -172,7 +172,7 @@ string happens to look like a C format string (with &lsquo;<samp>%</samp>&rsquo;
 </p>
 <p>When the <code>c-format</code> flag is given for a string the <code>msgfmt</code>
 program does some more tests to check the validity of the translation.
-See section <a href="gettext_10.html#SEC159">Invoking the <code>msgfmt</code> Program</a>, <a href="gettext_4.html#SEC23">Special Comments preceding Keywords</a> and <a href="gettext_15.html#SEC252">C Format Strings</a>.
+See section <a href="gettext_10.html#SEC165">Invoking the <code>msgfmt</code> Program</a>, <a href="gettext_4.html#SEC29">Special Comments preceding Keywords</a> and <a href="gettext_15.html#SEC258">C Format Strings</a>.
 </p>
 </dd>
 <dt> <code>objc-format</code></dt>
@@ -180,7 +180,7 @@ See section <a href="gettext_10.html#SEC159">Invoking the <code>msgfmt</code> Pr
 </dd>
 <dt> <code>no-objc-format</code></dt>
 <dd><a name="IDX52"></a>
-<p>Likewise for Objective C, see <a href="gettext_15.html#SEC253">Objective C Format Strings</a>.
+<p>Likewise for Objective C, see <a href="gettext_15.html#SEC259">Objective C Format Strings</a>.
 </p>
 </dd>
 <dt> <code>sh-format</code></dt>
@@ -188,7 +188,7 @@ See section <a href="gettext_10.html#SEC159">Invoking the <code>msgfmt</code> Pr
 </dd>
 <dt> <code>no-sh-format</code></dt>
 <dd><a name="IDX54"></a>
-<p>Likewise for Shell, see <a href="gettext_15.html#SEC254">Shell Format Strings</a>.
+<p>Likewise for Shell, see <a href="gettext_15.html#SEC260">Shell Format Strings</a>.
 </p>
 </dd>
 <dt> <code>python-format</code></dt>
@@ -196,7 +196,7 @@ See section <a href="gettext_10.html#SEC159">Invoking the <code>msgfmt</code> Pr
 </dd>
 <dt> <code>no-python-format</code></dt>
 <dd><a name="IDX56"></a>
-<p>Likewise for Python, see <a href="gettext_15.html#SEC255">Python Format Strings</a>.
+<p>Likewise for Python, see <a href="gettext_15.html#SEC261">Python Format Strings</a>.
 </p>
 </dd>
 <dt> <code>python-brace-format</code></dt>
@@ -204,7 +204,7 @@ See section <a href="gettext_10.html#SEC159">Invoking the <code>msgfmt</code> Pr
 </dd>
 <dt> <code>no-python-brace-format</code></dt>
 <dd><a name="IDX58"></a>
-<p>Likewise for Python brace, see <a href="gettext_15.html#SEC255">Python Format Strings</a>.
+<p>Likewise for Python brace, see <a href="gettext_15.html#SEC261">Python Format Strings</a>.
 </p>
 </dd>
 <dt> <code>lisp-format</code></dt>
@@ -212,7 +212,7 @@ See section <a href="gettext_10.html#SEC159">Invoking the <code>msgfmt</code> Pr
 </dd>
 <dt> <code>no-lisp-format</code></dt>
 <dd><a name="IDX60"></a>
-<p>Likewise for Lisp, see <a href="gettext_15.html#SEC256">Lisp Format Strings</a>.
+<p>Likewise for Lisp, see <a href="gettext_15.html#SEC262">Lisp Format Strings</a>.
 </p>
 </dd>
 <dt> <code>elisp-format</code></dt>
@@ -220,7 +220,7 @@ See section <a href="gettext_10.html#SEC159">Invoking the <code>msgfmt</code> Pr
 </dd>
 <dt> <code>no-elisp-format</code></dt>
 <dd><a name="IDX62"></a>
-<p>Likewise for Emacs Lisp, see <a href="gettext_15.html#SEC257">Emacs Lisp Format Strings</a>.
+<p>Likewise for Emacs Lisp, see <a href="gettext_15.html#SEC263">Emacs Lisp Format Strings</a>.
 </p>
 </dd>
 <dt> <code>librep-format</code></dt>
@@ -228,7 +228,7 @@ See section <a href="gettext_10.html#SEC159">Invoking the <code>msgfmt</code> Pr
 </dd>
 <dt> <code>no-librep-format</code></dt>
 <dd><a name="IDX64"></a>
-<p>Likewise for librep, see <a href="gettext_15.html#SEC258">librep Format Strings</a>.
+<p>Likewise for librep, see <a href="gettext_15.html#SEC264">librep Format Strings</a>.
 </p>
 </dd>
 <dt> <code>scheme-format</code></dt>
@@ -236,7 +236,7 @@ See section <a href="gettext_10.html#SEC159">Invoking the <code>msgfmt</code> Pr
 </dd>
 <dt> <code>no-scheme-format</code></dt>
 <dd><a name="IDX66"></a>
-<p>Likewise for Scheme, see <a href="gettext_15.html#SEC259">Scheme Format Strings</a>.
+<p>Likewise for Scheme, see <a href="gettext_15.html#SEC265">Scheme Format Strings</a>.
 </p>
 </dd>
 <dt> <code>smalltalk-format</code></dt>
@@ -244,7 +244,7 @@ See section <a href="gettext_10.html#SEC159">Invoking the <code>msgfmt</code> Pr
 </dd>
 <dt> <code>no-smalltalk-format</code></dt>
 <dd><a name="IDX68"></a>
-<p>Likewise for Smalltalk, see <a href="gettext_15.html#SEC260">Smalltalk Format Strings</a>.
+<p>Likewise for Smalltalk, see <a href="gettext_15.html#SEC266">Smalltalk Format Strings</a>.
 </p>
 </dd>
 <dt> <code>java-format</code></dt>
@@ -252,7 +252,7 @@ See section <a href="gettext_10.html#SEC159">Invoking the <code>msgfmt</code> Pr
 </dd>
 <dt> <code>no-java-format</code></dt>
 <dd><a name="IDX70"></a>
-<p>Likewise for Java, see <a href="gettext_15.html#SEC261">Java Format Strings</a>.
+<p>Likewise for Java, see <a href="gettext_15.html#SEC267">Java Format Strings</a>.
 </p>
 </dd>
 <dt> <code>csharp-format</code></dt>
@@ -260,7 +260,7 @@ See section <a href="gettext_10.html#SEC159">Invoking the <code>msgfmt</code> Pr
 </dd>
 <dt> <code>no-csharp-format</code></dt>
 <dd><a name="IDX72"></a>
-<p>Likewise for C#, see <a href="gettext_15.html#SEC262">C# Format Strings</a>.
+<p>Likewise for C#, see <a href="gettext_15.html#SEC268">C# Format Strings</a>.
 </p>
 </dd>
 <dt> <code>awk-format</code></dt>
@@ -268,7 +268,7 @@ See section <a href="gettext_10.html#SEC159">Invoking the <code>msgfmt</code> Pr
 </dd>
 <dt> <code>no-awk-format</code></dt>
 <dd><a name="IDX74"></a>
-<p>Likewise for awk, see <a href="gettext_15.html#SEC263">awk Format Strings</a>.
+<p>Likewise for awk, see <a href="gettext_15.html#SEC269">awk Format Strings</a>.
 </p>
 </dd>
 <dt> <code>object-pascal-format</code></dt>
@@ -276,7 +276,7 @@ See section <a href="gettext_10.html#SEC159">Invoking the <code>msgfmt</code> Pr
 </dd>
 <dt> <code>no-object-pascal-format</code></dt>
 <dd><a name="IDX76"></a>
-<p>Likewise for Object Pascal, see <a href="gettext_15.html#SEC264">Object Pascal Format Strings</a>.
+<p>Likewise for Object Pascal, see <a href="gettext_15.html#SEC270">Object Pascal Format Strings</a>.
 </p>
 </dd>
 <dt> <code>ycp-format</code></dt>
@@ -284,7 +284,7 @@ See section <a href="gettext_10.html#SEC159">Invoking the <code>msgfmt</code> Pr
 </dd>
 <dt> <code>no-ycp-format</code></dt>
 <dd><a name="IDX78"></a>
-<p>Likewise for YCP, see <a href="gettext_15.html#SEC265">YCP Format Strings</a>.
+<p>Likewise for YCP, see <a href="gettext_15.html#SEC271">YCP Format Strings</a>.
 </p>
 </dd>
 <dt> <code>tcl-format</code></dt>
@@ -292,7 +292,7 @@ See section <a href="gettext_10.html#SEC159">Invoking the <code>msgfmt</code> Pr
 </dd>
 <dt> <code>no-tcl-format</code></dt>
 <dd><a name="IDX80"></a>
-<p>Likewise for Tcl, see <a href="gettext_15.html#SEC266">Tcl Format Strings</a>.
+<p>Likewise for Tcl, see <a href="gettext_15.html#SEC272">Tcl Format Strings</a>.
 </p>
 </dd>
 <dt> <code>perl-format</code></dt>
@@ -300,7 +300,7 @@ See section <a href="gettext_10.html#SEC159">Invoking the <code>msgfmt</code> Pr
 </dd>
 <dt> <code>no-perl-format</code></dt>
 <dd><a name="IDX82"></a>
-<p>Likewise for Perl, see <a href="gettext_15.html#SEC267">Perl Format Strings</a>.
+<p>Likewise for Perl, see <a href="gettext_15.html#SEC273">Perl Format Strings</a>.
 </p>
 </dd>
 <dt> <code>perl-brace-format</code></dt>
@@ -308,7 +308,7 @@ See section <a href="gettext_10.html#SEC159">Invoking the <code>msgfmt</code> Pr
 </dd>
 <dt> <code>no-perl-brace-format</code></dt>
 <dd><a name="IDX84"></a>
-<p>Likewise for Perl brace, see <a href="gettext_15.html#SEC267">Perl Format Strings</a>.
+<p>Likewise for Perl brace, see <a href="gettext_15.html#SEC273">Perl Format Strings</a>.
 </p>
 </dd>
 <dt> <code>php-format</code></dt>
@@ -316,7 +316,7 @@ See section <a href="gettext_10.html#SEC159">Invoking the <code>msgfmt</code> Pr
 </dd>
 <dt> <code>no-php-format</code></dt>
 <dd><a name="IDX86"></a>
-<p>Likewise for PHP, see <a href="gettext_15.html#SEC268">PHP Format Strings</a>.
+<p>Likewise for PHP, see <a href="gettext_15.html#SEC274">PHP Format Strings</a>.
 </p>
 </dd>
 <dt> <code>gcc-internal-format</code></dt>
@@ -324,7 +324,7 @@ See section <a href="gettext_10.html#SEC159">Invoking the <code>msgfmt</code> Pr
 </dd>
 <dt> <code>no-gcc-internal-format</code></dt>
 <dd><a name="IDX88"></a>
-<p>Likewise for the GCC sources, see <a href="gettext_15.html#SEC269">GCC internal Format Strings</a>.
+<p>Likewise for the GCC sources, see <a href="gettext_15.html#SEC275">GCC internal Format Strings</a>.
 </p>
 </dd>
 <dt> <code>gfc-internal-format</code></dt>
@@ -332,7 +332,7 @@ See section <a href="gettext_10.html#SEC159">Invoking the <code>msgfmt</code> Pr
 </dd>
 <dt> <code>no-gfc-internal-format</code></dt>
 <dd><a name="IDX90"></a>
-<p>Likewise for the GNU Fortran Compiler sources, see <a href="gettext_15.html#SEC270">GFC internal Format Strings</a>.
+<p>Likewise for the GNU Fortran Compiler sources, see <a href="gettext_15.html#SEC276">GFC internal Format Strings</a>.
 </p>
 </dd>
 <dt> <code>qt-format</code></dt>
@@ -340,7 +340,7 @@ See section <a href="gettext_10.html#SEC159">Invoking the <code>msgfmt</code> Pr
 </dd>
 <dt> <code>no-qt-format</code></dt>
 <dd><a name="IDX92"></a>
-<p>Likewise for Qt, see <a href="gettext_15.html#SEC271">Qt Format Strings</a>.
+<p>Likewise for Qt, see <a href="gettext_15.html#SEC277">Qt Format Strings</a>.
 </p>
 </dd>
 <dt> <code>qt-plural-format</code></dt>
@@ -348,7 +348,7 @@ See section <a href="gettext_10.html#SEC159">Invoking the <code>msgfmt</code> Pr
 </dd>
 <dt> <code>no-qt-plural-format</code></dt>
 <dd><a name="IDX94"></a>
-<p>Likewise for Qt plural forms, see <a href="gettext_15.html#SEC272">Qt Format Strings</a>.
+<p>Likewise for Qt plural forms, see <a href="gettext_15.html#SEC278">Qt Format Strings</a>.
 </p>
 </dd>
 <dt> <code>kde-format</code></dt>
@@ -356,7 +356,7 @@ See section <a href="gettext_10.html#SEC159">Invoking the <code>msgfmt</code> Pr
 </dd>
 <dt> <code>no-kde-format</code></dt>
 <dd><a name="IDX96"></a>
-<p>Likewise for KDE, see <a href="gettext_15.html#SEC273">KDE Format Strings</a>.
+<p>Likewise for KDE, see <a href="gettext_15.html#SEC279">KDE Format Strings</a>.
 </p>
 </dd>
 <dt> <code>boost-format</code></dt>
@@ -364,7 +364,7 @@ See section <a href="gettext_10.html#SEC159">Invoking the <code>msgfmt</code> Pr
 </dd>
 <dt> <code>no-boost-format</code></dt>
 <dd><a name="IDX98"></a>
-<p>Likewise for Boost, see <a href="gettext_15.html#SEC275">Boost Format Strings</a>.
+<p>Likewise for Boost, see <a href="gettext_15.html#SEC281">Boost Format Strings</a>.
 </p>
 </dd>
 <dt> <code>lua-format</code></dt>
@@ -372,7 +372,7 @@ See section <a href="gettext_10.html#SEC159">Invoking the <code>msgfmt</code> Pr
 </dd>
 <dt> <code>no-lua-format</code></dt>
 <dd><a name="IDX100"></a>
-<p>Likewise for Lua, see <a href="gettext_15.html#SEC276">Lua Format Strings</a>.
+<p>Likewise for Lua, see <a href="gettext_15.html#SEC282">Lua Format Strings</a>.
 </p>
 </dd>
 <dt> <code>javascript-format</code></dt>
@@ -380,7 +380,7 @@ See section <a href="gettext_10.html#SEC159">Invoking the <code>msgfmt</code> Pr
 </dd>
 <dt> <code>no-javascript-format</code></dt>
 <dd><a name="IDX102"></a>
-<p>Likewise for JavaScript, see <a href="gettext_15.html#SEC277">JavaScript Format Strings</a>.
+<p>Likewise for JavaScript, see <a href="gettext_15.html#SEC283">JavaScript Format Strings</a>.
 </p>
 </dd>
 </dl>
@@ -469,7 +469,7 @@ idea of the precise format of a PO file.  On the other hand, those
 wishing to modify PO files by hand should carefully continue reading on.
 </p>
 <p>An empty <var>untranslated-string</var> is reserved to contain the header
-entry with the meta information (see section <a href="gettext_6.html#SEC45">Filling in the Header Entry</a>).  This header
+entry with the meta information (see section <a href="gettext_6.html#SEC51">Filling in the Header Entry</a>).  This header
 entry should be the first entry of the file.  The empty
 <var>untranslated-string</var> is reserved for this purpose and must
 not be used anywhere else.
@@ -529,12 +529,12 @@ file is given to <code>msgmerge</code>.
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="gettext_toc.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="gettext_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="gettext_21.html#SEC370" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gettext_21.html#SEC376" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="gettext_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated by <em>Bruno Haible</em> on <em>May, 8 2019</em> using <a href="https://www.nongnu.org/texi2html/"><em>texi2html 1.78a</em></a>.
+  This document was generated by <em>Bruno Haible</em> on <em>May, 12 2019</em> using <a href="https://www.nongnu.org/texi2html/"><em>texi2html 1.78a</em></a>.
  </font>
  <br>
 

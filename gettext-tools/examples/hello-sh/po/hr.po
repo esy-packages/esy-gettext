@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: hello-sh-0.20-rc1\n"
-"Report-Msgid-Bugs-To: bug-gnu-gettext@gnu.org\n"
+"Report-Msgid-Bugs-To: bug-gettext@gnu.org\n"
 "PO-Revision-Date: 2019-04-15 13:55-0700\n"
 "Last-Translator: Božidar Putanec <bozidarp@yahoo.com>\n"
 "Language-Team: Croatian <lokalizacija@linux.hr>\n"

@@ -193,8 +193,7 @@ am__DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/installpaths.in \
 	$(top_srcdir)/../../build-aux/mkinstalldirs \
 	../../build-aux/compile ../../build-aux/config.guess \
 	../../build-aux/config.rpath ../../build-aux/config.sub \
-	../../build-aux/depcomp ../../build-aux/install-sh \
-	../../build-aux/ltmain.sh ../../build-aux/mdate-sh \
+	../../build-aux/install-sh ../../build-aux/ltmain.sh \
 	../../build-aux/missing ../../build-aux/mkinstalldirs \
 	../../build-aux/texinfo.tex ../../build-aux/ylwrap ChangeLog \
 	README

@@ -1,3 +1,23 @@
+2019-05-12  Bruno Haible  <bruno@clisp.org>
+
+	intl: Fix wrong libtool versioning information.
+	Reported by Ken Takata <ktakata65536@gmail.com>
+	in <https://savannah.gnu.org/bugs/?56305>.
+
+	* gettext-runtime/intl/Makefile.am (LTV_*): Bump to 9:6:1, not 9:6:2.
+	* NEWS: Mention the change.
+
+2019-05-11  Bruno Haible  <bruno@clisp.org>
+
+	intl: Remove obsolete code.
+	* gettext-runtime/intl/plural.y: Assume bison >= 2.0.
+
+	Update after gnulib changed.
+	* autogen.sh: Don't copy intl.m4.
+	* Makefile.am (distcheck-hook): Don't check glibc2.m4, glibc21.m4, intdiv0.m4,
+	intl.m4, intmax.m4, printf-posix.m4, uintmax_t.m4, visibility.m4.
+	* gettext-runtime/intl/verify.h: Update from gnulib.
+
 2019-04-28  Bruno Haible  <bruno@clisp.org>
 
 	Update after gnulib changed.
